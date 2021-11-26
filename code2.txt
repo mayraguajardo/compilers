@@ -1,5 +1,26 @@
-int a 
-float b
-a = 1
-b = 3 + a
-print (b)
+int i = 0;
+int j = 0;
+string myString = "Hello world";
+for(int loop = 0; loop < 15; loop = loop + 1){
+  print(loop);
+}
+bool condition;
+condition = true;
+print(condition == false);
+while(j < 10) {
+  print(j);
+  j = j + 1;
+}
+do {
+  print("doing do's doodley doo");
+  i = i + 1;
+} while(i < 5);
+if(myString == "not correct"){
+  print("Not correct");
+}
+elif(myString == "Hello world"){
+  print("Yabadabadu");
+}
+else {
+  print("else called");
+}

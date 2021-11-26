@@ -243,24 +243,147 @@ def p_error(p):
         print("Syntax error at EOF")
 
 parser = yacc.yacc()
-file = open("code2.txt",'r')
+file = open('code2.txt','r')
 s = file.read()
-yacc.pase(s)
+yacc.parse(s)
 
-# Console 
-#while True:
-#    try:
-#        s = input('calc > ')
-#    except EOFError:
-#        break
-#    if not s:
-#        continue
-#    yacc.parse(s)
+#**************** Intermediate Code Generator*********************
 
-#File
-inputData = []
-with open('./code2.txt') as file:
-    inputData = file.readlines()
+fo = open("results.txt",'w')
 
-for data in inputData:
-    yacc.parse(data)
+def results_label():
+    global label_Cnt
+    label_Cnt += 1
+    return "L" + str(label_Cnt)
+
+
+def results_variable():
+    global variable_Cnt
+    variable_Cnt += 1
+    return "V" + str(variable_Cnt)
+
+def parseInst(inst):
+    if type(inst) is not tuple:
+        return inst
+
+    cStmt = inst[0]
+
+    if cStmt == "print":
+        parsedStatement = parseInst(inst[1])
+        fo.write(f'print {parsedStatement} \n')
+
+    elif cStmt == "declare":
+        dataType = inst[1]
+        id = inst[2]
+        fo.write(f'{dataType} {id} \n')
+
+    elif cStmt == "declare_assign":
+        dataType = inst[1]
+        id = inst[2]
+        fo.write(f'{dataType} {id} \n')
+        parsedStatement = parseInst(inst[3])
+        fo.write(f'{id} = {parsedStatement} \n')
+
+    elif cStmt == "assign":
+        id = inst[1]
+        parsedStatement = parseInst(inst[2])
+        fo.write(f'{id} = {parsedStatement} \n')
+
+    elif cStmt == "condition":
+        ifStatement = inst[1]
+        elifStatements = inst[2]
+        elseStatement = inst[3]
+
+        condition = parseInst(ifStatement[1])
+        currentCheckpoint = results_label()
+        endingCheckpoint = results_label()
+        statements = ifStatement[2]
+        fo.write(f'if {condition} fails, go to {currentCheckpoint}\n')
+
+        for statement in statements:
+            parseInst(statement)
+        fo.write(f'go to {endingCheckpoint}\n')
+        fo.write(f'label {currentCheckpoint}\n')
+
+        for elifStatement in elifStatements:
+            condition = parseInst(elifStatement[1])
+            statements = elifStatement[2]
+            currentCheckpoint = results_label()
+
+            fo.write(f'if {condition} fails, go to {currentCheckpoint}\n')
+
+            for statement in statements:
+                parseInst(statement)
+
+            fo.write(f'go to {endingCheckpoint}\n')
+            fo.write(f'label {currentCheckpoint}\n')
+
+        if elseStatement is not None:
+            statements = elseStatement[1]
+
+            for statement in statements:
+                parseInst(statement)
+
+        fo.write(f'label {endingCheckpoint}\n')
+
+    elif cStmt == "operation":
+
+        leftStatement = parseInst(inst[1])
+        operation = inst[2]
+        rightStatement = parseInst(inst[3])
+        addressCode = results_variable()
+
+        fo.write(
+            f'{addressCode} = {leftStatement} {operation} {rightStatement} \n')
+
+        return addressCode
+
+    elif cStmt == "do-while":
+        statements = inst[2]
+        startCheckpoint = results_label()
+
+        fo.write(f'go to {startCheckpoint}\n')
+
+        for statement in statements:
+            parseInst(statement)
+
+        condition = parseInst(inst[1])
+        fo.write(f'if {condition} fails, go to {startCheckpoint}\n')
+
+    elif cStmt == "while":
+        statements = inst[2]
+        startCheckpoint = results_label()
+        endingCheckpoint = results_label()
+        condition = parseInst(inst[1])
+
+        fo.write(f'label {startCheckpoint}\n')
+        fo.write(f'if {condition} fails, go to {endingCheckpoint}\n')
+
+        for statement in statements:
+            parseInst(statement)
+
+        fo.write(f'go to {startCheckpoint}\n')
+        fo.write(f'label {endingCheckpoint}\n')
+
+        
+    elif cStmt == "for":
+        parseInst(inst[1])
+        innerStatements = inst[4]
+
+        startCheckpoint = results_label()
+        endingCheckpoint = results_label()
+
+        fo.write(f'label {startCheckpoint}\n')
+
+        condition = parseInst(inst[2])
+        fo.write(f'if {condition} fails, go to {endingCheckpoint}\n')
+
+        for statement in innerStatements:
+            parseInst(statement)
+
+        fo.write(f'go to {startCheckpoint}\n')
+        fo.write(f'label {endingCheckpoint}\n')
+
+    else:
+        fo.write(
+            f'-----ERROR: Unknown statement: {cStmt}-----\n')
