@@ -1,0 +1,628 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    ADDITION
+    AND
+    ASSIGN
+    BOOL
+    DIVISION
+    DO
+    ELIF
+    ELSE
+    EQUALS
+    EQ_LESS
+    EQ_MORE
+    EXP
+    FALSE
+    FINISH
+    FOR
+    IF
+    LESS
+    L_KEY
+    L_PAREN
+    MORE
+    MULTI
+    NOT_EQUALS
+    OR
+    R_KEY
+    R_PAREN
+    STRING
+    STRINGVAL
+    SUBTRACTION
+    TRUE
+    WHILE
+
+Grammar
+
+Rule 0     S' -> statement
+Rule 1     statement -> INTDEC NAME is_assing
+Rule 2     is_assing -> = expression
+Rule 3     is_assing -> <empty>
+Rule 4     statement -> FLOATDEC NAME
+Rule 5     statement -> PRINT ( expression )
+Rule 6     statement -> NAME = expression
+Rule 7     statement -> expression
+Rule 8     expression -> expression + expression
+Rule 9     expression -> expression - expression
+Rule 10    expression -> expression * expression
+Rule 11    expression -> expression / expression
+Rule 12    expression -> - expression
+Rule 13    expression -> ( expression )
+Rule 14    expression -> INUMBER
+Rule 15    expression -> FNUMBER
+Rule 16    expression -> NAME
+
+Terminals, with rules where they appear
+
+(                    : 5 13
+)                    : 5 13
+*                    : 10
++                    : 8
+-                    : 9 12
+/                    : 11
+=                    : 2 6
+ADDITION             : 
+AND                  : 
+ASSIGN               : 
+BOOL                 : 
+DIVISION             : 
+DO                   : 
+ELIF                 : 
+ELSE                 : 
+EQUALS               : 
+EQ_LESS              : 
+EQ_MORE              : 
+EXP                  : 
+FALSE                : 
+FINISH               : 
+FLOATDEC             : 4
+FNUMBER              : 15
+FOR                  : 
+IF                   : 
+INTDEC               : 1
+INUMBER              : 14
+LESS                 : 
+L_KEY                : 
+L_PAREN              : 
+MORE                 : 
+MULTI                : 
+NAME                 : 1 4 6 16
+NOT_EQUALS           : 
+OR                   : 
+PRINT                : 5
+R_KEY                : 
+R_PAREN              : 
+STRING               : 
+STRINGVAL            : 
+SUBTRACTION          : 
+TRUE                 : 
+WHILE                : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+expression           : 2 5 6 7 8 8 9 9 10 10 11 11 12 13
+is_assing            : 1
+statement            : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . statement
+    (1) statement -> . INTDEC NAME is_assing
+    (4) statement -> . FLOATDEC NAME
+    (5) statement -> . PRINT ( expression )
+    (6) statement -> . NAME = expression
+    (7) statement -> . expression
+    (8) expression -> . expression + expression
+    (9) expression -> . expression - expression
+    (10) expression -> . expression * expression
+    (11) expression -> . expression / expression
+    (12) expression -> . - expression
+    (13) expression -> . ( expression )
+    (14) expression -> . INUMBER
+    (15) expression -> . FNUMBER
+    (16) expression -> . NAME
+
+    INTDEC          shift and go to state 2
+    FLOATDEC        shift and go to state 4
+    PRINT           shift and go to state 5
+    NAME            shift and go to state 3
+    -               shift and go to state 8
+    (               shift and go to state 6
+    INUMBER         shift and go to state 9
+    FNUMBER         shift and go to state 10
+
+    statement                      shift and go to state 1
+    expression                     shift and go to state 7
+
+state 1
+
+    (0) S' -> statement .
+
+
+
+state 2
+
+    (1) statement -> INTDEC . NAME is_assing
+
+    NAME            shift and go to state 11
+
+
+state 3
+
+    (6) statement -> NAME . = expression
+    (16) expression -> NAME .
+
+    =               shift and go to state 12
+    +               reduce using rule 16 (expression -> NAME .)
+    -               reduce using rule 16 (expression -> NAME .)
+    *               reduce using rule 16 (expression -> NAME .)
+    /               reduce using rule 16 (expression -> NAME .)
+    $end            reduce using rule 16 (expression -> NAME .)
+
+
+state 4
+
+    (4) statement -> FLOATDEC . NAME
+
+    NAME            shift and go to state 13
+
+
+state 5
+
+    (5) statement -> PRINT . ( expression )
+
+    (               shift and go to state 14
+
+
+state 6
+
+    (13) expression -> ( . expression )
+    (8) expression -> . expression + expression
+    (9) expression -> . expression - expression
+    (10) expression -> . expression * expression
+    (11) expression -> . expression / expression
+    (12) expression -> . - expression
+    (13) expression -> . ( expression )
+    (14) expression -> . INUMBER
+    (15) expression -> . FNUMBER
+    (16) expression -> . NAME
+
+    -               shift and go to state 8
+    (               shift and go to state 6
+    INUMBER         shift and go to state 9
+    FNUMBER         shift and go to state 10
+    NAME            shift and go to state 16
+
+    expression                     shift and go to state 15
+
+state 7
+
+    (7) statement -> expression .
+    (8) expression -> expression . + expression
+    (9) expression -> expression . - expression
+    (10) expression -> expression . * expression
+    (11) expression -> expression . / expression
+
+    $end            reduce using rule 7 (statement -> expression .)
+    +               shift and go to state 17
+    -               shift and go to state 18
+    *               shift and go to state 19
+    /               shift and go to state 20
+
+
+state 8
+
+    (12) expression -> - . expression
+    (8) expression -> . expression + expression
+    (9) expression -> . expression - expression
+    (10) expression -> . expression * expression
+    (11) expression -> . expression / expression
+    (12) expression -> . - expression
+    (13) expression -> . ( expression )
+    (14) expression -> . INUMBER
+    (15) expression -> . FNUMBER
+    (16) expression -> . NAME
+
+    -               shift and go to state 8
+    (               shift and go to state 6
+    INUMBER         shift and go to state 9
+    FNUMBER         shift and go to state 10
+    NAME            shift and go to state 16
+
+    expression                     shift and go to state 21
+
+state 9
+
+    (14) expression -> INUMBER .
+
+    +               reduce using rule 14 (expression -> INUMBER .)
+    -               reduce using rule 14 (expression -> INUMBER .)
+    *               reduce using rule 14 (expression -> INUMBER .)
+    /               reduce using rule 14 (expression -> INUMBER .)
+    $end            reduce using rule 14 (expression -> INUMBER .)
+    )               reduce using rule 14 (expression -> INUMBER .)
+
+
+state 10
+
+    (15) expression -> FNUMBER .
+
+    +               reduce using rule 15 (expression -> FNUMBER .)
+    -               reduce using rule 15 (expression -> FNUMBER .)
+    *               reduce using rule 15 (expression -> FNUMBER .)
+    /               reduce using rule 15 (expression -> FNUMBER .)
+    $end            reduce using rule 15 (expression -> FNUMBER .)
+    )               reduce using rule 15 (expression -> FNUMBER .)
+
+
+state 11
+
+    (1) statement -> INTDEC NAME . is_assing
+    (2) is_assing -> . = expression
+    (3) is_assing -> .
+
+    =               shift and go to state 23
+    $end            reduce using rule 3 (is_assing -> .)
+
+    is_assing                      shift and go to state 22
+
+state 12
+
+    (6) statement -> NAME = . expression
+    (8) expression -> . expression + expression
+    (9) expression -> . expression - expression
+    (10) expression -> . expression * expression
+    (11) expression -> . expression / expression
+    (12) expression -> . - expression
+    (13) expression -> . ( expression )
+    (14) expression -> . INUMBER
+    (15) expression -> . FNUMBER
+    (16) expression -> . NAME
+
+    -               shift and go to state 8
+    (               shift and go to state 6
+    INUMBER         shift and go to state 9
+    FNUMBER         shift and go to state 10
+    NAME            shift and go to state 16
+
+    expression                     shift and go to state 24
+
+state 13
+
+    (4) statement -> FLOATDEC NAME .
+
+    $end            reduce using rule 4 (statement -> FLOATDEC NAME .)
+
+
+state 14
+
+    (5) statement -> PRINT ( . expression )
+    (8) expression -> . expression + expression
+    (9) expression -> . expression - expression
+    (10) expression -> . expression * expression
+    (11) expression -> . expression / expression
+    (12) expression -> . - expression
+    (13) expression -> . ( expression )
+    (14) expression -> . INUMBER
+    (15) expression -> . FNUMBER
+    (16) expression -> . NAME
+
+    -               shift and go to state 8
+    (               shift and go to state 6
+    INUMBER         shift and go to state 9
+    FNUMBER         shift and go to state 10
+    NAME            shift and go to state 16
+
+    expression                     shift and go to state 25
+
+state 15
+
+    (13) expression -> ( expression . )
+    (8) expression -> expression . + expression
+    (9) expression -> expression . - expression
+    (10) expression -> expression . * expression
+    (11) expression -> expression . / expression
+
+    )               shift and go to state 26
+    +               shift and go to state 17
+    -               shift and go to state 18
+    *               shift and go to state 19
+    /               shift and go to state 20
+
+
+state 16
+
+    (16) expression -> NAME .
+
+    )               reduce using rule 16 (expression -> NAME .)
+    +               reduce using rule 16 (expression -> NAME .)
+    -               reduce using rule 16 (expression -> NAME .)
+    *               reduce using rule 16 (expression -> NAME .)
+    /               reduce using rule 16 (expression -> NAME .)
+    $end            reduce using rule 16 (expression -> NAME .)
+
+
+state 17
+
+    (8) expression -> expression + . expression
+    (8) expression -> . expression + expression
+    (9) expression -> . expression - expression
+    (10) expression -> . expression * expression
+    (11) expression -> . expression / expression
+    (12) expression -> . - expression
+    (13) expression -> . ( expression )
+    (14) expression -> . INUMBER
+    (15) expression -> . FNUMBER
+    (16) expression -> . NAME
+
+    -               shift and go to state 8
+    (               shift and go to state 6
+    INUMBER         shift and go to state 9
+    FNUMBER         shift and go to state 10
+    NAME            shift and go to state 16
+
+    expression                     shift and go to state 27
+
+state 18
+
+    (9) expression -> expression - . expression
+    (8) expression -> . expression + expression
+    (9) expression -> . expression - expression
+    (10) expression -> . expression * expression
+    (11) expression -> . expression / expression
+    (12) expression -> . - expression
+    (13) expression -> . ( expression )
+    (14) expression -> . INUMBER
+    (15) expression -> . FNUMBER
+    (16) expression -> . NAME
+
+    -               shift and go to state 8
+    (               shift and go to state 6
+    INUMBER         shift and go to state 9
+    FNUMBER         shift and go to state 10
+    NAME            shift and go to state 16
+
+    expression                     shift and go to state 28
+
+state 19
+
+    (10) expression -> expression * . expression
+    (8) expression -> . expression + expression
+    (9) expression -> . expression - expression
+    (10) expression -> . expression * expression
+    (11) expression -> . expression / expression
+    (12) expression -> . - expression
+    (13) expression -> . ( expression )
+    (14) expression -> . INUMBER
+    (15) expression -> . FNUMBER
+    (16) expression -> . NAME
+
+    -               shift and go to state 8
+    (               shift and go to state 6
+    INUMBER         shift and go to state 9
+    FNUMBER         shift and go to state 10
+    NAME            shift and go to state 16
+
+    expression                     shift and go to state 29
+
+state 20
+
+    (11) expression -> expression / . expression
+    (8) expression -> . expression + expression
+    (9) expression -> . expression - expression
+    (10) expression -> . expression * expression
+    (11) expression -> . expression / expression
+    (12) expression -> . - expression
+    (13) expression -> . ( expression )
+    (14) expression -> . INUMBER
+    (15) expression -> . FNUMBER
+    (16) expression -> . NAME
+
+    -               shift and go to state 8
+    (               shift and go to state 6
+    INUMBER         shift and go to state 9
+    FNUMBER         shift and go to state 10
+    NAME            shift and go to state 16
+
+    expression                     shift and go to state 30
+
+state 21
+
+    (12) expression -> - expression .
+    (8) expression -> expression . + expression
+    (9) expression -> expression . - expression
+    (10) expression -> expression . * expression
+    (11) expression -> expression . / expression
+
+    +               reduce using rule 12 (expression -> - expression .)
+    -               reduce using rule 12 (expression -> - expression .)
+    *               reduce using rule 12 (expression -> - expression .)
+    /               reduce using rule 12 (expression -> - expression .)
+    $end            reduce using rule 12 (expression -> - expression .)
+    )               reduce using rule 12 (expression -> - expression .)
+
+  ! +               [ shift and go to state 17 ]
+  ! -               [ shift and go to state 18 ]
+  ! *               [ shift and go to state 19 ]
+  ! /               [ shift and go to state 20 ]
+
+
+state 22
+
+    (1) statement -> INTDEC NAME is_assing .
+
+    $end            reduce using rule 1 (statement -> INTDEC NAME is_assing .)
+
+
+state 23
+
+    (2) is_assing -> = . expression
+    (8) expression -> . expression + expression
+    (9) expression -> . expression - expression
+    (10) expression -> . expression * expression
+    (11) expression -> . expression / expression
+    (12) expression -> . - expression
+    (13) expression -> . ( expression )
+    (14) expression -> . INUMBER
+    (15) expression -> . FNUMBER
+    (16) expression -> . NAME
+
+    -               shift and go to state 8
+    (               shift and go to state 6
+    INUMBER         shift and go to state 9
+    FNUMBER         shift and go to state 10
+    NAME            shift and go to state 16
+
+    expression                     shift and go to state 31
+
+state 24
+
+    (6) statement -> NAME = expression .
+    (8) expression -> expression . + expression
+    (9) expression -> expression . - expression
+    (10) expression -> expression . * expression
+    (11) expression -> expression . / expression
+
+    $end            reduce using rule 6 (statement -> NAME = expression .)
+    +               shift and go to state 17
+    -               shift and go to state 18
+    *               shift and go to state 19
+    /               shift and go to state 20
+
+
+state 25
+
+    (5) statement -> PRINT ( expression . )
+    (8) expression -> expression . + expression
+    (9) expression -> expression . - expression
+    (10) expression -> expression . * expression
+    (11) expression -> expression . / expression
+
+    )               shift and go to state 32
+    +               shift and go to state 17
+    -               shift and go to state 18
+    *               shift and go to state 19
+    /               shift and go to state 20
+
+
+state 26
+
+    (13) expression -> ( expression ) .
+
+    +               reduce using rule 13 (expression -> ( expression ) .)
+    -               reduce using rule 13 (expression -> ( expression ) .)
+    *               reduce using rule 13 (expression -> ( expression ) .)
+    /               reduce using rule 13 (expression -> ( expression ) .)
+    $end            reduce using rule 13 (expression -> ( expression ) .)
+    )               reduce using rule 13 (expression -> ( expression ) .)
+
+
+state 27
+
+    (8) expression -> expression + expression .
+    (8) expression -> expression . + expression
+    (9) expression -> expression . - expression
+    (10) expression -> expression . * expression
+    (11) expression -> expression . / expression
+
+    +               reduce using rule 8 (expression -> expression + expression .)
+    -               reduce using rule 8 (expression -> expression + expression .)
+    $end            reduce using rule 8 (expression -> expression + expression .)
+    )               reduce using rule 8 (expression -> expression + expression .)
+    *               shift and go to state 19
+    /               shift and go to state 20
+
+  ! *               [ reduce using rule 8 (expression -> expression + expression .) ]
+  ! /               [ reduce using rule 8 (expression -> expression + expression .) ]
+  ! +               [ shift and go to state 17 ]
+  ! -               [ shift and go to state 18 ]
+
+
+state 28
+
+    (9) expression -> expression - expression .
+    (8) expression -> expression . + expression
+    (9) expression -> expression . - expression
+    (10) expression -> expression . * expression
+    (11) expression -> expression . / expression
+
+    +               reduce using rule 9 (expression -> expression - expression .)
+    -               reduce using rule 9 (expression -> expression - expression .)
+    $end            reduce using rule 9 (expression -> expression - expression .)
+    )               reduce using rule 9 (expression -> expression - expression .)
+    *               shift and go to state 19
+    /               shift and go to state 20
+
+  ! *               [ reduce using rule 9 (expression -> expression - expression .) ]
+  ! /               [ reduce using rule 9 (expression -> expression - expression .) ]
+  ! +               [ shift and go to state 17 ]
+  ! -               [ shift and go to state 18 ]
+
+
+state 29
+
+    (10) expression -> expression * expression .
+    (8) expression -> expression . + expression
+    (9) expression -> expression . - expression
+    (10) expression -> expression . * expression
+    (11) expression -> expression . / expression
+
+    +               reduce using rule 10 (expression -> expression * expression .)
+    -               reduce using rule 10 (expression -> expression * expression .)
+    *               reduce using rule 10 (expression -> expression * expression .)
+    /               reduce using rule 10 (expression -> expression * expression .)
+    $end            reduce using rule 10 (expression -> expression * expression .)
+    )               reduce using rule 10 (expression -> expression * expression .)
+
+  ! +               [ shift and go to state 17 ]
+  ! -               [ shift and go to state 18 ]
+  ! *               [ shift and go to state 19 ]
+  ! /               [ shift and go to state 20 ]
+
+
+state 30
+
+    (11) expression -> expression / expression .
+    (8) expression -> expression . + expression
+    (9) expression -> expression . - expression
+    (10) expression -> expression . * expression
+    (11) expression -> expression . / expression
+
+    +               reduce using rule 11 (expression -> expression / expression .)
+    -               reduce using rule 11 (expression -> expression / expression .)
+    *               reduce using rule 11 (expression -> expression / expression .)
+    /               reduce using rule 11 (expression -> expression / expression .)
+    $end            reduce using rule 11 (expression -> expression / expression .)
+    )               reduce using rule 11 (expression -> expression / expression .)
+
+  ! +               [ shift and go to state 17 ]
+  ! -               [ shift and go to state 18 ]
+  ! *               [ shift and go to state 19 ]
+  ! /               [ shift and go to state 20 ]
+
+
+state 31
+
+    (2) is_assing -> = expression .
+    (8) expression -> expression . + expression
+    (9) expression -> expression . - expression
+    (10) expression -> expression . * expression
+    (11) expression -> expression . / expression
+
+    $end            reduce using rule 2 (is_assing -> = expression .)
+    +               shift and go to state 17
+    -               shift and go to state 18
+    *               shift and go to state 19
+    /               shift and go to state 20
+
+
+state 32
+
+    (5) statement -> PRINT ( expression ) .
+
+    $end            reduce using rule 5 (statement -> PRINT ( expression ) .)
+

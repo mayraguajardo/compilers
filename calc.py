@@ -1,16 +1,55 @@
 import ply.yacc as yacc
 import ply.lex as lex
 
+# Project inspired in the PLY lesson from https://www.dabeaz.com/ply/ply.html
+
+# Lexical analysis
 literals = ['=', '+', '-', '*', '/', '(', ')']
+
 reserved = { 
     'int' : 'INTDEC',
     'float' : 'FLOATDEC',
-    'print' : 'PRINT'
+    'string': 'STRING',
+    'print' : 'PRINT',
+    'bool' : 'BOOL',
+    'and' : 'AND',
+    'or' : 'OR',
+    'true': 'TRUE',
+    'false': 'FALSE',
+    'if': 'IF',
+    'elif': 'ELIF',
+    'else': 'ELSE',
+    'do': 'DO',
+    'while': 'WHILE',
+    'for': 'FOR',
  }
 
-tokens = [
-    'INUMBER', 'FNUMBER', 'NAME'
-] + list(reserved.values())
+#tuple to avoid errors and values can be modified
+tokens = tuple(['INUMBER', 'FNUMBER', 'NAME','STRINGVAL','ADDITION',
+                'SUBTRACTION','MULTI','DIVISION','EXP','EQUALS',
+                'EQ_MORE','EQ_LESS','NOT_EQUALS','MORE','LESS',
+                'ASSIGN','L_PAREN','R_PAREN','L_KEY','R_KEY','FINISH'] + list(reserved.values())) 
+
+#Regex -> Lex identifies tokens
+
+t_ADDITION = r'\+'
+t_SUBTRACTION = r'-'
+t_MULTI = r'\*'
+t_DIVISION = r'/'
+t_EXP = r'\^'
+t_EQUALS = r'=='
+t_EQ_MORE =r'>='
+t_EQ_LESS =r'<='
+t_NOT_EQUALS = r'!='
+t_MORE = r'>'
+t_LESS = r'<'
+t_ASSIGN = r'=='
+t_L_PAREN = r'\('
+t_R_PAREN = r'\)'
+t_L_KEY = r'{'
+t_R_KEY = r'}'
+t_FINISH = r';'
+
 
 # Token
 def t_NAME(t):
@@ -26,6 +65,11 @@ def t_FNUMBER(t):
 def t_INUMBER(t):
     r'\d+'
     t.value = int(t.value)
+    return t
+
+def t_STRINGVAL(t):
+    r'\"[^\n]+\"'
+    t.value = t.value.replace("\"", "")
     return t
 
 t_ignore = " \t"
@@ -142,7 +186,7 @@ parser = yacc.yacc()
 
 #File
 inputData = []
-with open('code2.txt') as file:
+with open('./code2.txt') as file:
     inputData = file.readlines()
 
 for data in inputData:
