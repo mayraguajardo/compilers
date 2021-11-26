@@ -4,7 +4,6 @@ import ply.lex as lex
 # Project inspired in the PLY lesson from https://www.dabeaz.com/ply/ply.html
 
 # Lexical analysis
-literals = ['=', '+', '-', '*', '/', '(', ')']
 
 reserved = { 
     'int' : 'INTDEC',
