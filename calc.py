@@ -1,12 +1,12 @@
 import ply.yacc as yacc
 import ply.lex as lex
 
+
 # Project inspired in the PLY lesson from https://www.dabeaz.com/ply/ply.html
 
 # Lexical analysis
-
-reserved = { 
-    'int' : 'INTDEC',
+reserved  = {
+     'int' : 'INTDEC',
     'float' : 'FLOATDEC',
     'string': 'STRING',
     'print' : 'PRINT',
@@ -21,7 +21,7 @@ reserved = {
     'do': 'DO',
     'while': 'WHILE',
     'for': 'FOR',
- }
+}
 
 #tuple to avoid errors and values can be modified
 tokens = tuple(['INUMBER', 'FNUMBER', 'NAME','STRING_VAL','ADDITION',
@@ -36,13 +36,13 @@ t_SUBTRACTION = r'-'
 t_MULTI = r'\*'
 t_DIVISION = r'/'
 t_EXP = r'\^'
+t_ASSIGN = r'='
 t_EQUALS = r'=='
-t_EQ_MORE =r'>='
-t_EQ_LESS =r'<='
 t_NOT_EQUALS = r'!='
+t_EQ_MORE = r'>='
+t_EQ_LESS = r'<='
 t_MORE = r'>'
 t_LESS = r'<'
-t_ASSIGN = r'=='
 t_L_PAREN = r'\('
 t_R_PAREN = r'\)'
 t_L_KEY = r'{'
@@ -52,8 +52,8 @@ t_FINISH = r';'
 
 # Token
 def t_NAME(t):
-    r'[a-zA-Z_][a-zA-Z_0-9]*'
-    t.type = reserved.get(t.value,'NAME')    # Check for reserved words
+    r'[a-zA-Z_][a-zA-Z0-9_]*'
+    t.type = reserved .get(t.value, 'NAME')
     return t
 
 def t_FNUMBER(t):
@@ -71,17 +71,17 @@ def t_STRING_VAL(t):
     t.value = t.value.replace("\"", "")
     return t
 
-t_ignore = " \t"
+t_ignore = ' \t'
 
 def t_newline(t):
     r'\n+'
-    t.lexer.lineno += t.value.count("\n")
+    t.lexer.lineno += len(t.value)
 
 def t_error(t):
     print("Illegal character '%s'" % t.value[0])
     t.lexer.skip(1)
 
-# Build the lexer
+
 lexer = lex.lex()
 
 # ***************** Here starts syntactical analysis *********************
@@ -93,18 +93,18 @@ precedence = (
     ('left', 'ADDITION', 'SUBTRACTION'),
     ('left', 'MULTI', 'DIVISION'),
     ('left', 'EXP'),
-    ('right', 'UMINUS'),
+    ('right', 'UMINUS'),  
 )
 
-# dictionary of names
-names = []
-abstractTree = []
 
-#initia prod
+names = ()
+
+
+
 
 def p_start(p):
     '''start : statement'''
-    global names 
+    global names
     names = p[1]
 
 def p_statement(p):
@@ -121,28 +121,28 @@ def p_statement(p):
     else:
         p[0] = ()
 
-def p_expression_name(p):
+def p_expression_NAME(p):
     "expression : NAME"
     p[0] = p[1]
 
 def p_expression_binop(p):
     '''expression : expression AND expression
-                    | expression OR expression
-                    | expression ADDITION expression
-                    | expression SUBTRACTION expression
-                    | expression MULTI expression
-                    | expression DIVISION expression
-                    | expression EXP expression
-                    | expression EQUALS expression
-                    | expression EQ_MORE expression
-                    | expression EQ_LESS expression
-                    | expression NOT_EQUALS expression
-                    | expression MORE expression
-                    | expression LESS expression'''
+                | expression OR expression
+                | expression ADDITION expression
+                | expression SUBTRACTION expression
+                | expression MULTI expression
+                | expression DIVISION expression
+                | expression EXP expression
+                | expression EQUALS expression
+                | expression NOT_EQUALS expression
+                | expression EQ_MORE expression
+                | expression EQ_LESS expression
+                | expression MORE expression
+                | expression LESS expression'''
 
     p[0] = ('operation', p[1], p[2], p[3])
 
-def p_expression_values(p):
+def p_expression_valuesues(p):
     '''expression : FNUMBER
                  | INUMBER
                  | STRING_VAL
@@ -162,18 +162,18 @@ def p_expression_parenthesis(p):
     p[0] = p[2]
 
 def p_expression_uminus(p):
-    "expression : SUBTRACTION expression %prec UMINUS"
+    'expression : SUBTRACTION expression %prec UMINUS'
     p[0] = -p[2]
 
 def p_statement_print(p):
-    '''statement_print : PRINT  expression  '''
+    'statement_print : PRINT expression'
     p[0] = ('print', p[2])
 
 def p_statement_register(p):
     '''statement_register : declare_register
             | declare_assign_register
             | assign_register'''
-    p[0] = p[1]  
+    p[0] = p[1]
 
 def p_declare_register(p):
     '''declare_register : type NAME'''
@@ -237,19 +237,19 @@ def p_type(p):
 
 def p_error(p):
     if p:
-        print(p)
-        print("Syntax error at line '%s' " % (p.value) )
+        print("Syntax error at '%s'" % p.value)
     else:
         print("Syntax error at EOF")
 
-parser = yacc.yacc()
-file = open('code2.txt','r')
+
+yacc.yacc()
+file = open("code2.txt", "r")
 s = file.read()
 yacc.parse(s)
 
 #**************** Intermediate Code Generator*********************
 
-fo = open("results.txt",'w')
+fo = open("output.txt", "w")
 
 def results_label():
     global label_Cnt
@@ -339,16 +339,16 @@ def parseInst(inst):
         return addressCode
 
     elif cStmt == "do-while":
-        statements = inst[2]
-        startCheckpoint = results_label()
+            statements = inst[2]
+            startCheckpoint = results_label()
 
-        fo.write(f'go to {startCheckpoint}\n')
+            fo.write(f'go to {startCheckpoint}\n')
 
-        for statement in statements:
-            parseInst(statement)
+            for statement in statements:
+                parseInst(statement)
 
-        condition = parseInst(inst[1])
-        fo.write(f'if {condition} fails, go to {startCheckpoint}\n')
+            condition = parseInst(inst[1])
+            fo.write(f'if {condition} fails, go to {startCheckpoint}\n')
 
     elif cStmt == "while":
         statements = inst[2]
@@ -384,6 +384,19 @@ def parseInst(inst):
         fo.write(f'go to {startCheckpoint}\n')
         fo.write(f'label {endingCheckpoint}\n')
 
+    
+
+    
+
     else:
         fo.write(
             f'-----ERROR: Unknown statement: {cStmt}-----\n')
+
+
+variable_Cnt = -1
+label_Cnt = -1
+
+
+for inst in names:
+    parseInst(inst)
+fo.close()

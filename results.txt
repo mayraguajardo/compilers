@@ -1,0 +1,12 @@
+V0 = myString == not correct 
+if V0 fails, go to L0
+print Not correct 
+go to L1
+label L0
+V1 = myString == Hello world 
+if V1 fails, go to L2
+print Yabadabadu 
+go to L1
+label L2
+print else called 
+label L1

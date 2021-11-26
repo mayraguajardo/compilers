@@ -19,9 +19,9 @@ Rule 13    expression -> expression MULTI expression
 Rule 14    expression -> expression DIVISION expression
 Rule 15    expression -> expression EXP expression
 Rule 16    expression -> expression EQUALS expression
-Rule 17    expression -> expression EQ_MORE expression
-Rule 18    expression -> expression EQ_LESS expression
-Rule 19    expression -> expression NOT_EQUALS expression
+Rule 17    expression -> expression NOT_EQUALS expression
+Rule 18    expression -> expression EQ_MORE expression
+Rule 19    expression -> expression EQ_LESS expression
 Rule 20    expression -> expression MORE expression
 Rule 21    expression -> expression LESS expression
 Rule 22    expression -> FNUMBER
@@ -65,8 +65,8 @@ DO                   : 45
 ELIF                 : 39
 ELSE                 : 41
 EQUALS               : 16
-EQ_LESS              : 18
-EQ_MORE              : 17
+EQ_LESS              : 19
+EQ_MORE              : 18
 EXP                  : 15
 FALSE                : 27
 FINISH               : 2 3 43 43 45
@@ -82,7 +82,7 @@ L_PAREN              : 28 38 39 43 44 45
 MORE                 : 20
 MULTI                : 13
 NAME                 : 8 34 35 36
-NOT_EQUALS           : 19
+NOT_EQUALS           : 17
 OR                   : 10
 PRINT                : 30
 R_KEY                : 38 39 41 43 44 45
@@ -376,9 +376,9 @@ state 9
     (14) expression -> . expression DIVISION expression
     (15) expression -> . expression EXP expression
     (16) expression -> . expression EQUALS expression
-    (17) expression -> . expression EQ_MORE expression
-    (18) expression -> . expression EQ_LESS expression
-    (19) expression -> . expression NOT_EQUALS expression
+    (17) expression -> . expression NOT_EQUALS expression
+    (18) expression -> . expression EQ_MORE expression
+    (19) expression -> . expression EQ_LESS expression
     (20) expression -> . expression MORE expression
     (21) expression -> . expression LESS expression
     (22) expression -> . FNUMBER
@@ -660,9 +660,9 @@ state 29
     (14) expression -> expression . DIVISION expression
     (15) expression -> expression . EXP expression
     (16) expression -> expression . EQUALS expression
-    (17) expression -> expression . EQ_MORE expression
-    (18) expression -> expression . EQ_LESS expression
-    (19) expression -> expression . NOT_EQUALS expression
+    (17) expression -> expression . NOT_EQUALS expression
+    (18) expression -> expression . EQ_MORE expression
+    (19) expression -> expression . EQ_LESS expression
     (20) expression -> expression . MORE expression
     (21) expression -> expression . LESS expression
 
@@ -675,9 +675,9 @@ state 29
     DIVISION        shift and go to state 55
     EXP             shift and go to state 56
     EQUALS          shift and go to state 57
-    EQ_MORE         shift and go to state 58
-    EQ_LESS         shift and go to state 59
-    NOT_EQUALS      shift and go to state 60
+    NOT_EQUALS      shift and go to state 58
+    EQ_MORE         shift and go to state 59
+    EQ_LESS         shift and go to state 60
     MORE            shift and go to state 61
     LESS            shift and go to state 62
 
@@ -694,9 +694,9 @@ state 30
     DIVISION        reduce using rule 8 (expression -> NAME .)
     EXP             reduce using rule 8 (expression -> NAME .)
     EQUALS          reduce using rule 8 (expression -> NAME .)
+    NOT_EQUALS      reduce using rule 8 (expression -> NAME .)
     EQ_MORE         reduce using rule 8 (expression -> NAME .)
     EQ_LESS         reduce using rule 8 (expression -> NAME .)
-    NOT_EQUALS      reduce using rule 8 (expression -> NAME .)
     MORE            reduce using rule 8 (expression -> NAME .)
     LESS            reduce using rule 8 (expression -> NAME .)
     FINISH          reduce using rule 8 (expression -> NAME .)
@@ -715,9 +715,9 @@ state 31
     (14) expression -> . expression DIVISION expression
     (15) expression -> . expression EXP expression
     (16) expression -> . expression EQUALS expression
-    (17) expression -> . expression EQ_MORE expression
-    (18) expression -> . expression EQ_LESS expression
-    (19) expression -> . expression NOT_EQUALS expression
+    (17) expression -> . expression NOT_EQUALS expression
+    (18) expression -> . expression EQ_MORE expression
+    (19) expression -> . expression EQ_LESS expression
     (20) expression -> . expression MORE expression
     (21) expression -> . expression LESS expression
     (22) expression -> . FNUMBER
@@ -753,9 +753,9 @@ state 32
     DIVISION        reduce using rule 22 (expression -> FNUMBER .)
     EXP             reduce using rule 22 (expression -> FNUMBER .)
     EQUALS          reduce using rule 22 (expression -> FNUMBER .)
+    NOT_EQUALS      reduce using rule 22 (expression -> FNUMBER .)
     EQ_MORE         reduce using rule 22 (expression -> FNUMBER .)
     EQ_LESS         reduce using rule 22 (expression -> FNUMBER .)
-    NOT_EQUALS      reduce using rule 22 (expression -> FNUMBER .)
     MORE            reduce using rule 22 (expression -> FNUMBER .)
     LESS            reduce using rule 22 (expression -> FNUMBER .)
     FINISH          reduce using rule 22 (expression -> FNUMBER .)
@@ -774,9 +774,9 @@ state 33
     DIVISION        reduce using rule 23 (expression -> INUMBER .)
     EXP             reduce using rule 23 (expression -> INUMBER .)
     EQUALS          reduce using rule 23 (expression -> INUMBER .)
+    NOT_EQUALS      reduce using rule 23 (expression -> INUMBER .)
     EQ_MORE         reduce using rule 23 (expression -> INUMBER .)
     EQ_LESS         reduce using rule 23 (expression -> INUMBER .)
-    NOT_EQUALS      reduce using rule 23 (expression -> INUMBER .)
     MORE            reduce using rule 23 (expression -> INUMBER .)
     LESS            reduce using rule 23 (expression -> INUMBER .)
     FINISH          reduce using rule 23 (expression -> INUMBER .)
@@ -795,9 +795,9 @@ state 34
     DIVISION        reduce using rule 24 (expression -> STRING_VAL .)
     EXP             reduce using rule 24 (expression -> STRING_VAL .)
     EQUALS          reduce using rule 24 (expression -> STRING_VAL .)
+    NOT_EQUALS      reduce using rule 24 (expression -> STRING_VAL .)
     EQ_MORE         reduce using rule 24 (expression -> STRING_VAL .)
     EQ_LESS         reduce using rule 24 (expression -> STRING_VAL .)
-    NOT_EQUALS      reduce using rule 24 (expression -> STRING_VAL .)
     MORE            reduce using rule 24 (expression -> STRING_VAL .)
     LESS            reduce using rule 24 (expression -> STRING_VAL .)
     FINISH          reduce using rule 24 (expression -> STRING_VAL .)
@@ -816,9 +816,9 @@ state 35
     DIVISION        reduce using rule 25 (expression -> bool_val .)
     EXP             reduce using rule 25 (expression -> bool_val .)
     EQUALS          reduce using rule 25 (expression -> bool_val .)
+    NOT_EQUALS      reduce using rule 25 (expression -> bool_val .)
     EQ_MORE         reduce using rule 25 (expression -> bool_val .)
     EQ_LESS         reduce using rule 25 (expression -> bool_val .)
-    NOT_EQUALS      reduce using rule 25 (expression -> bool_val .)
     MORE            reduce using rule 25 (expression -> bool_val .)
     LESS            reduce using rule 25 (expression -> bool_val .)
     FINISH          reduce using rule 25 (expression -> bool_val .)
@@ -837,9 +837,9 @@ state 36
     (14) expression -> . expression DIVISION expression
     (15) expression -> . expression EXP expression
     (16) expression -> . expression EQUALS expression
-    (17) expression -> . expression EQ_MORE expression
-    (18) expression -> . expression EQ_LESS expression
-    (19) expression -> . expression NOT_EQUALS expression
+    (17) expression -> . expression NOT_EQUALS expression
+    (18) expression -> . expression EQ_MORE expression
+    (19) expression -> . expression EQ_LESS expression
     (20) expression -> . expression MORE expression
     (21) expression -> . expression LESS expression
     (22) expression -> . FNUMBER
@@ -875,9 +875,9 @@ state 37
     DIVISION        reduce using rule 26 (bool_val -> TRUE .)
     EXP             reduce using rule 26 (bool_val -> TRUE .)
     EQUALS          reduce using rule 26 (bool_val -> TRUE .)
+    NOT_EQUALS      reduce using rule 26 (bool_val -> TRUE .)
     EQ_MORE         reduce using rule 26 (bool_val -> TRUE .)
     EQ_LESS         reduce using rule 26 (bool_val -> TRUE .)
-    NOT_EQUALS      reduce using rule 26 (bool_val -> TRUE .)
     MORE            reduce using rule 26 (bool_val -> TRUE .)
     LESS            reduce using rule 26 (bool_val -> TRUE .)
     FINISH          reduce using rule 26 (bool_val -> TRUE .)
@@ -896,9 +896,9 @@ state 38
     DIVISION        reduce using rule 27 (bool_val -> FALSE .)
     EXP             reduce using rule 27 (bool_val -> FALSE .)
     EQUALS          reduce using rule 27 (bool_val -> FALSE .)
+    NOT_EQUALS      reduce using rule 27 (bool_val -> FALSE .)
     EQ_MORE         reduce using rule 27 (bool_val -> FALSE .)
     EQ_LESS         reduce using rule 27 (bool_val -> FALSE .)
-    NOT_EQUALS      reduce using rule 27 (bool_val -> FALSE .)
     MORE            reduce using rule 27 (bool_val -> FALSE .)
     LESS            reduce using rule 27 (bool_val -> FALSE .)
     FINISH          reduce using rule 27 (bool_val -> FALSE .)
@@ -984,9 +984,9 @@ state 43
     (14) expression -> . expression DIVISION expression
     (15) expression -> . expression EXP expression
     (16) expression -> . expression EQUALS expression
-    (17) expression -> . expression EQ_MORE expression
-    (18) expression -> . expression EQ_LESS expression
-    (19) expression -> . expression NOT_EQUALS expression
+    (17) expression -> . expression NOT_EQUALS expression
+    (18) expression -> . expression EQ_MORE expression
+    (19) expression -> . expression EQ_LESS expression
     (20) expression -> . expression MORE expression
     (21) expression -> . expression LESS expression
     (22) expression -> . FNUMBER
@@ -1083,9 +1083,9 @@ state 46
     (14) expression -> . expression DIVISION expression
     (15) expression -> . expression EXP expression
     (16) expression -> . expression EQUALS expression
-    (17) expression -> . expression EQ_MORE expression
-    (18) expression -> . expression EQ_LESS expression
-    (19) expression -> . expression NOT_EQUALS expression
+    (17) expression -> . expression NOT_EQUALS expression
+    (18) expression -> . expression EQ_MORE expression
+    (19) expression -> . expression EQ_LESS expression
     (20) expression -> . expression MORE expression
     (21) expression -> . expression LESS expression
     (22) expression -> . FNUMBER
@@ -1121,9 +1121,9 @@ state 47
     (14) expression -> . expression DIVISION expression
     (15) expression -> . expression EXP expression
     (16) expression -> . expression EQUALS expression
-    (17) expression -> . expression EQ_MORE expression
-    (18) expression -> . expression EQ_LESS expression
-    (19) expression -> . expression NOT_EQUALS expression
+    (17) expression -> . expression NOT_EQUALS expression
+    (18) expression -> . expression EQ_MORE expression
+    (19) expression -> . expression EQ_LESS expression
     (20) expression -> . expression MORE expression
     (21) expression -> . expression LESS expression
     (22) expression -> . FNUMBER
@@ -1175,9 +1175,9 @@ state 50
     (14) expression -> . expression DIVISION expression
     (15) expression -> . expression EXP expression
     (16) expression -> . expression EQUALS expression
-    (17) expression -> . expression EQ_MORE expression
-    (18) expression -> . expression EQ_LESS expression
-    (19) expression -> . expression NOT_EQUALS expression
+    (17) expression -> . expression NOT_EQUALS expression
+    (18) expression -> . expression EQ_MORE expression
+    (19) expression -> . expression EQ_LESS expression
     (20) expression -> . expression MORE expression
     (21) expression -> . expression LESS expression
     (22) expression -> . FNUMBER
@@ -1213,9 +1213,9 @@ state 51
     (14) expression -> . expression DIVISION expression
     (15) expression -> . expression EXP expression
     (16) expression -> . expression EQUALS expression
-    (17) expression -> . expression EQ_MORE expression
-    (18) expression -> . expression EQ_LESS expression
-    (19) expression -> . expression NOT_EQUALS expression
+    (17) expression -> . expression NOT_EQUALS expression
+    (18) expression -> . expression EQ_MORE expression
+    (19) expression -> . expression EQ_LESS expression
     (20) expression -> . expression MORE expression
     (21) expression -> . expression LESS expression
     (22) expression -> . FNUMBER
@@ -1251,9 +1251,9 @@ state 52
     (14) expression -> . expression DIVISION expression
     (15) expression -> . expression EXP expression
     (16) expression -> . expression EQUALS expression
-    (17) expression -> . expression EQ_MORE expression
-    (18) expression -> . expression EQ_LESS expression
-    (19) expression -> . expression NOT_EQUALS expression
+    (17) expression -> . expression NOT_EQUALS expression
+    (18) expression -> . expression EQ_MORE expression
+    (19) expression -> . expression EQ_LESS expression
     (20) expression -> . expression MORE expression
     (21) expression -> . expression LESS expression
     (22) expression -> . FNUMBER
@@ -1289,9 +1289,9 @@ state 53
     (14) expression -> . expression DIVISION expression
     (15) expression -> . expression EXP expression
     (16) expression -> . expression EQUALS expression
-    (17) expression -> . expression EQ_MORE expression
-    (18) expression -> . expression EQ_LESS expression
-    (19) expression -> . expression NOT_EQUALS expression
+    (17) expression -> . expression NOT_EQUALS expression
+    (18) expression -> . expression EQ_MORE expression
+    (19) expression -> . expression EQ_LESS expression
     (20) expression -> . expression MORE expression
     (21) expression -> . expression LESS expression
     (22) expression -> . FNUMBER
@@ -1327,9 +1327,9 @@ state 54
     (14) expression -> . expression DIVISION expression
     (15) expression -> . expression EXP expression
     (16) expression -> . expression EQUALS expression
-    (17) expression -> . expression EQ_MORE expression
-    (18) expression -> . expression EQ_LESS expression
-    (19) expression -> . expression NOT_EQUALS expression
+    (17) expression -> . expression NOT_EQUALS expression
+    (18) expression -> . expression EQ_MORE expression
+    (19) expression -> . expression EQ_LESS expression
     (20) expression -> . expression MORE expression
     (21) expression -> . expression LESS expression
     (22) expression -> . FNUMBER
@@ -1365,9 +1365,9 @@ state 55
     (14) expression -> . expression DIVISION expression
     (15) expression -> . expression EXP expression
     (16) expression -> . expression EQUALS expression
-    (17) expression -> . expression EQ_MORE expression
-    (18) expression -> . expression EQ_LESS expression
-    (19) expression -> . expression NOT_EQUALS expression
+    (17) expression -> . expression NOT_EQUALS expression
+    (18) expression -> . expression EQ_MORE expression
+    (19) expression -> . expression EQ_LESS expression
     (20) expression -> . expression MORE expression
     (21) expression -> . expression LESS expression
     (22) expression -> . FNUMBER
@@ -1403,9 +1403,9 @@ state 56
     (14) expression -> . expression DIVISION expression
     (15) expression -> . expression EXP expression
     (16) expression -> . expression EQUALS expression
-    (17) expression -> . expression EQ_MORE expression
-    (18) expression -> . expression EQ_LESS expression
-    (19) expression -> . expression NOT_EQUALS expression
+    (17) expression -> . expression NOT_EQUALS expression
+    (18) expression -> . expression EQ_MORE expression
+    (19) expression -> . expression EQ_LESS expression
     (20) expression -> . expression MORE expression
     (21) expression -> . expression LESS expression
     (22) expression -> . FNUMBER
@@ -1441,9 +1441,9 @@ state 57
     (14) expression -> . expression DIVISION expression
     (15) expression -> . expression EXP expression
     (16) expression -> . expression EQUALS expression
-    (17) expression -> . expression EQ_MORE expression
-    (18) expression -> . expression EQ_LESS expression
-    (19) expression -> . expression NOT_EQUALS expression
+    (17) expression -> . expression NOT_EQUALS expression
+    (18) expression -> . expression EQ_MORE expression
+    (19) expression -> . expression EQ_LESS expression
     (20) expression -> . expression MORE expression
     (21) expression -> . expression LESS expression
     (22) expression -> . FNUMBER
@@ -1469,7 +1469,7 @@ state 57
 
 state 58
 
-    (17) expression -> expression EQ_MORE . expression
+    (17) expression -> expression NOT_EQUALS . expression
     (8) expression -> . NAME
     (9) expression -> . expression AND expression
     (10) expression -> . expression OR expression
@@ -1479,9 +1479,9 @@ state 58
     (14) expression -> . expression DIVISION expression
     (15) expression -> . expression EXP expression
     (16) expression -> . expression EQUALS expression
-    (17) expression -> . expression EQ_MORE expression
-    (18) expression -> . expression EQ_LESS expression
-    (19) expression -> . expression NOT_EQUALS expression
+    (17) expression -> . expression NOT_EQUALS expression
+    (18) expression -> . expression EQ_MORE expression
+    (19) expression -> . expression EQ_LESS expression
     (20) expression -> . expression MORE expression
     (21) expression -> . expression LESS expression
     (22) expression -> . FNUMBER
@@ -1507,7 +1507,7 @@ state 58
 
 state 59
 
-    (18) expression -> expression EQ_LESS . expression
+    (18) expression -> expression EQ_MORE . expression
     (8) expression -> . NAME
     (9) expression -> . expression AND expression
     (10) expression -> . expression OR expression
@@ -1517,9 +1517,9 @@ state 59
     (14) expression -> . expression DIVISION expression
     (15) expression -> . expression EXP expression
     (16) expression -> . expression EQUALS expression
-    (17) expression -> . expression EQ_MORE expression
-    (18) expression -> . expression EQ_LESS expression
-    (19) expression -> . expression NOT_EQUALS expression
+    (17) expression -> . expression NOT_EQUALS expression
+    (18) expression -> . expression EQ_MORE expression
+    (19) expression -> . expression EQ_LESS expression
     (20) expression -> . expression MORE expression
     (21) expression -> . expression LESS expression
     (22) expression -> . FNUMBER
@@ -1545,7 +1545,7 @@ state 59
 
 state 60
 
-    (19) expression -> expression NOT_EQUALS . expression
+    (19) expression -> expression EQ_LESS . expression
     (8) expression -> . NAME
     (9) expression -> . expression AND expression
     (10) expression -> . expression OR expression
@@ -1555,9 +1555,9 @@ state 60
     (14) expression -> . expression DIVISION expression
     (15) expression -> . expression EXP expression
     (16) expression -> . expression EQUALS expression
-    (17) expression -> . expression EQ_MORE expression
-    (18) expression -> . expression EQ_LESS expression
-    (19) expression -> . expression NOT_EQUALS expression
+    (17) expression -> . expression NOT_EQUALS expression
+    (18) expression -> . expression EQ_MORE expression
+    (19) expression -> . expression EQ_LESS expression
     (20) expression -> . expression MORE expression
     (21) expression -> . expression LESS expression
     (22) expression -> . FNUMBER
@@ -1593,9 +1593,9 @@ state 61
     (14) expression -> . expression DIVISION expression
     (15) expression -> . expression EXP expression
     (16) expression -> . expression EQUALS expression
-    (17) expression -> . expression EQ_MORE expression
-    (18) expression -> . expression EQ_LESS expression
-    (19) expression -> . expression NOT_EQUALS expression
+    (17) expression -> . expression NOT_EQUALS expression
+    (18) expression -> . expression EQ_MORE expression
+    (19) expression -> . expression EQ_LESS expression
     (20) expression -> . expression MORE expression
     (21) expression -> . expression LESS expression
     (22) expression -> . FNUMBER
@@ -1631,9 +1631,9 @@ state 62
     (14) expression -> . expression DIVISION expression
     (15) expression -> . expression EXP expression
     (16) expression -> . expression EQUALS expression
-    (17) expression -> . expression EQ_MORE expression
-    (18) expression -> . expression EQ_LESS expression
-    (19) expression -> . expression NOT_EQUALS expression
+    (17) expression -> . expression NOT_EQUALS expression
+    (18) expression -> . expression EQ_MORE expression
+    (19) expression -> . expression EQ_LESS expression
     (20) expression -> . expression MORE expression
     (21) expression -> . expression LESS expression
     (22) expression -> . FNUMBER
@@ -1668,9 +1668,9 @@ state 63
     (14) expression -> expression . DIVISION expression
     (15) expression -> expression . EXP expression
     (16) expression -> expression . EQUALS expression
-    (17) expression -> expression . EQ_MORE expression
-    (18) expression -> expression . EQ_LESS expression
-    (19) expression -> expression . NOT_EQUALS expression
+    (17) expression -> expression . NOT_EQUALS expression
+    (18) expression -> expression . EQ_MORE expression
+    (19) expression -> expression . EQ_LESS expression
     (20) expression -> expression . MORE expression
     (21) expression -> expression . LESS expression
 
@@ -1682,9 +1682,9 @@ state 63
     DIVISION        reduce using rule 29 (expression -> SUBTRACTION expression .)
     EXP             reduce using rule 29 (expression -> SUBTRACTION expression .)
     EQUALS          reduce using rule 29 (expression -> SUBTRACTION expression .)
+    NOT_EQUALS      reduce using rule 29 (expression -> SUBTRACTION expression .)
     EQ_MORE         reduce using rule 29 (expression -> SUBTRACTION expression .)
     EQ_LESS         reduce using rule 29 (expression -> SUBTRACTION expression .)
-    NOT_EQUALS      reduce using rule 29 (expression -> SUBTRACTION expression .)
     MORE            reduce using rule 29 (expression -> SUBTRACTION expression .)
     LESS            reduce using rule 29 (expression -> SUBTRACTION expression .)
     FINISH          reduce using rule 29 (expression -> SUBTRACTION expression .)
@@ -1698,9 +1698,9 @@ state 63
   ! DIVISION        [ shift and go to state 55 ]
   ! EXP             [ shift and go to state 56 ]
   ! EQUALS          [ shift and go to state 57 ]
-  ! EQ_MORE         [ shift and go to state 58 ]
-  ! EQ_LESS         [ shift and go to state 59 ]
-  ! NOT_EQUALS      [ shift and go to state 60 ]
+  ! NOT_EQUALS      [ shift and go to state 58 ]
+  ! EQ_MORE         [ shift and go to state 59 ]
+  ! EQ_LESS         [ shift and go to state 60 ]
   ! MORE            [ shift and go to state 61 ]
   ! LESS            [ shift and go to state 62 ]
 
@@ -1716,9 +1716,9 @@ state 64
     (14) expression -> expression . DIVISION expression
     (15) expression -> expression . EXP expression
     (16) expression -> expression . EQUALS expression
-    (17) expression -> expression . EQ_MORE expression
-    (18) expression -> expression . EQ_LESS expression
-    (19) expression -> expression . NOT_EQUALS expression
+    (17) expression -> expression . NOT_EQUALS expression
+    (18) expression -> expression . EQ_MORE expression
+    (19) expression -> expression . EQ_LESS expression
     (20) expression -> expression . MORE expression
     (21) expression -> expression . LESS expression
 
@@ -1731,9 +1731,9 @@ state 64
     DIVISION        shift and go to state 55
     EXP             shift and go to state 56
     EQUALS          shift and go to state 57
-    EQ_MORE         shift and go to state 58
-    EQ_LESS         shift and go to state 59
-    NOT_EQUALS      shift and go to state 60
+    NOT_EQUALS      shift and go to state 58
+    EQ_MORE         shift and go to state 59
+    EQ_LESS         shift and go to state 60
     MORE            shift and go to state 61
     LESS            shift and go to state 62
 
@@ -1793,9 +1793,9 @@ state 68
     (14) expression -> . expression DIVISION expression
     (15) expression -> . expression EXP expression
     (16) expression -> . expression EQUALS expression
-    (17) expression -> . expression EQ_MORE expression
-    (18) expression -> . expression EQ_LESS expression
-    (19) expression -> . expression NOT_EQUALS expression
+    (17) expression -> . expression NOT_EQUALS expression
+    (18) expression -> . expression EQ_MORE expression
+    (19) expression -> . expression EQ_LESS expression
     (20) expression -> . expression MORE expression
     (21) expression -> . expression LESS expression
     (22) expression -> . FNUMBER
@@ -1844,9 +1844,9 @@ state 71
     (14) expression -> expression . DIVISION expression
     (15) expression -> expression . EXP expression
     (16) expression -> expression . EQUALS expression
-    (17) expression -> expression . EQ_MORE expression
-    (18) expression -> expression . EQ_LESS expression
-    (19) expression -> expression . NOT_EQUALS expression
+    (17) expression -> expression . NOT_EQUALS expression
+    (18) expression -> expression . EQ_MORE expression
+    (19) expression -> expression . EQ_LESS expression
     (20) expression -> expression . MORE expression
     (21) expression -> expression . LESS expression
 
@@ -1859,9 +1859,9 @@ state 71
     DIVISION        shift and go to state 55
     EXP             shift and go to state 56
     EQUALS          shift and go to state 57
-    EQ_MORE         shift and go to state 58
-    EQ_LESS         shift and go to state 59
-    NOT_EQUALS      shift and go to state 60
+    NOT_EQUALS      shift and go to state 58
+    EQ_MORE         shift and go to state 59
+    EQ_LESS         shift and go to state 60
     MORE            shift and go to state 61
     LESS            shift and go to state 62
 
@@ -1885,9 +1885,9 @@ state 73
     (14) expression -> . expression DIVISION expression
     (15) expression -> . expression EXP expression
     (16) expression -> . expression EQUALS expression
-    (17) expression -> . expression EQ_MORE expression
-    (18) expression -> . expression EQ_LESS expression
-    (19) expression -> . expression NOT_EQUALS expression
+    (17) expression -> . expression NOT_EQUALS expression
+    (18) expression -> . expression EQ_MORE expression
+    (19) expression -> . expression EQ_LESS expression
     (20) expression -> . expression MORE expression
     (21) expression -> . expression LESS expression
     (22) expression -> . FNUMBER
@@ -1922,9 +1922,9 @@ state 74
     (14) expression -> expression . DIVISION expression
     (15) expression -> expression . EXP expression
     (16) expression -> expression . EQUALS expression
-    (17) expression -> expression . EQ_MORE expression
-    (18) expression -> expression . EQ_LESS expression
-    (19) expression -> expression . NOT_EQUALS expression
+    (17) expression -> expression . NOT_EQUALS expression
+    (18) expression -> expression . EQ_MORE expression
+    (19) expression -> expression . EQ_LESS expression
     (20) expression -> expression . MORE expression
     (21) expression -> expression . LESS expression
 
@@ -1938,9 +1938,9 @@ state 74
     DIVISION        shift and go to state 55
     EXP             shift and go to state 56
     EQUALS          shift and go to state 57
-    EQ_MORE         shift and go to state 58
-    EQ_LESS         shift and go to state 59
-    NOT_EQUALS      shift and go to state 60
+    NOT_EQUALS      shift and go to state 58
+    EQ_MORE         shift and go to state 59
+    EQ_LESS         shift and go to state 60
     MORE            shift and go to state 61
     LESS            shift and go to state 62
 
@@ -1956,9 +1956,9 @@ state 75
     (14) expression -> expression . DIVISION expression
     (15) expression -> expression . EXP expression
     (16) expression -> expression . EQUALS expression
-    (17) expression -> expression . EQ_MORE expression
-    (18) expression -> expression . EQ_LESS expression
-    (19) expression -> expression . NOT_EQUALS expression
+    (17) expression -> expression . NOT_EQUALS expression
+    (18) expression -> expression . EQ_MORE expression
+    (19) expression -> expression . EQ_LESS expression
     (20) expression -> expression . MORE expression
     (21) expression -> expression . LESS expression
 
@@ -1971,9 +1971,9 @@ state 75
     DIVISION        shift and go to state 55
     EXP             shift and go to state 56
     EQUALS          shift and go to state 57
-    EQ_MORE         shift and go to state 58
-    EQ_LESS         shift and go to state 59
-    NOT_EQUALS      shift and go to state 60
+    NOT_EQUALS      shift and go to state 58
+    EQ_MORE         shift and go to state 59
+    EQ_LESS         shift and go to state 60
     MORE            shift and go to state 61
     LESS            shift and go to state 62
 
@@ -1989,9 +1989,9 @@ state 76
     (14) expression -> expression . DIVISION expression
     (15) expression -> expression . EXP expression
     (16) expression -> expression . EQUALS expression
-    (17) expression -> expression . EQ_MORE expression
-    (18) expression -> expression . EQ_LESS expression
-    (19) expression -> expression . NOT_EQUALS expression
+    (17) expression -> expression . NOT_EQUALS expression
+    (18) expression -> expression . EQ_MORE expression
+    (19) expression -> expression . EQ_LESS expression
     (20) expression -> expression . MORE expression
     (21) expression -> expression . LESS expression
 
@@ -2005,9 +2005,9 @@ state 76
     DIVISION        shift and go to state 55
     EXP             shift and go to state 56
     EQUALS          shift and go to state 57
-    EQ_MORE         shift and go to state 58
-    EQ_LESS         shift and go to state 59
-    NOT_EQUALS      shift and go to state 60
+    NOT_EQUALS      shift and go to state 58
+    EQ_MORE         shift and go to state 59
+    EQ_LESS         shift and go to state 60
     MORE            shift and go to state 61
     LESS            shift and go to state 62
 
@@ -2017,9 +2017,9 @@ state 76
   ! DIVISION        [ reduce using rule 9 (expression -> expression AND expression .) ]
   ! EXP             [ reduce using rule 9 (expression -> expression AND expression .) ]
   ! EQUALS          [ reduce using rule 9 (expression -> expression AND expression .) ]
+  ! NOT_EQUALS      [ reduce using rule 9 (expression -> expression AND expression .) ]
   ! EQ_MORE         [ reduce using rule 9 (expression -> expression AND expression .) ]
   ! EQ_LESS         [ reduce using rule 9 (expression -> expression AND expression .) ]
-  ! NOT_EQUALS      [ reduce using rule 9 (expression -> expression AND expression .) ]
   ! MORE            [ reduce using rule 9 (expression -> expression AND expression .) ]
   ! LESS            [ reduce using rule 9 (expression -> expression AND expression .) ]
   ! AND             [ shift and go to state 50 ]
@@ -2037,9 +2037,9 @@ state 77
     (14) expression -> expression . DIVISION expression
     (15) expression -> expression . EXP expression
     (16) expression -> expression . EQUALS expression
-    (17) expression -> expression . EQ_MORE expression
-    (18) expression -> expression . EQ_LESS expression
-    (19) expression -> expression . NOT_EQUALS expression
+    (17) expression -> expression . NOT_EQUALS expression
+    (18) expression -> expression . EQ_MORE expression
+    (19) expression -> expression . EQ_LESS expression
     (20) expression -> expression . MORE expression
     (21) expression -> expression . LESS expression
 
@@ -2053,9 +2053,9 @@ state 77
     DIVISION        shift and go to state 55
     EXP             shift and go to state 56
     EQUALS          shift and go to state 57
-    EQ_MORE         shift and go to state 58
-    EQ_LESS         shift and go to state 59
-    NOT_EQUALS      shift and go to state 60
+    NOT_EQUALS      shift and go to state 58
+    EQ_MORE         shift and go to state 59
+    EQ_LESS         shift and go to state 60
     MORE            shift and go to state 61
     LESS            shift and go to state 62
 
@@ -2065,9 +2065,9 @@ state 77
   ! DIVISION        [ reduce using rule 10 (expression -> expression OR expression .) ]
   ! EXP             [ reduce using rule 10 (expression -> expression OR expression .) ]
   ! EQUALS          [ reduce using rule 10 (expression -> expression OR expression .) ]
+  ! NOT_EQUALS      [ reduce using rule 10 (expression -> expression OR expression .) ]
   ! EQ_MORE         [ reduce using rule 10 (expression -> expression OR expression .) ]
   ! EQ_LESS         [ reduce using rule 10 (expression -> expression OR expression .) ]
-  ! NOT_EQUALS      [ reduce using rule 10 (expression -> expression OR expression .) ]
   ! MORE            [ reduce using rule 10 (expression -> expression OR expression .) ]
   ! LESS            [ reduce using rule 10 (expression -> expression OR expression .) ]
   ! AND             [ shift and go to state 50 ]
@@ -2085,9 +2085,9 @@ state 78
     (14) expression -> expression . DIVISION expression
     (15) expression -> expression . EXP expression
     (16) expression -> expression . EQUALS expression
-    (17) expression -> expression . EQ_MORE expression
-    (18) expression -> expression . EQ_LESS expression
-    (19) expression -> expression . NOT_EQUALS expression
+    (17) expression -> expression . NOT_EQUALS expression
+    (18) expression -> expression . EQ_MORE expression
+    (19) expression -> expression . EQ_LESS expression
     (20) expression -> expression . MORE expression
     (21) expression -> expression . LESS expression
 
@@ -2096,9 +2096,9 @@ state 78
     ADDITION        reduce using rule 11 (expression -> expression ADDITION expression .)
     SUBTRACTION     reduce using rule 11 (expression -> expression ADDITION expression .)
     EQUALS          reduce using rule 11 (expression -> expression ADDITION expression .)
+    NOT_EQUALS      reduce using rule 11 (expression -> expression ADDITION expression .)
     EQ_MORE         reduce using rule 11 (expression -> expression ADDITION expression .)
     EQ_LESS         reduce using rule 11 (expression -> expression ADDITION expression .)
-    NOT_EQUALS      reduce using rule 11 (expression -> expression ADDITION expression .)
     MORE            reduce using rule 11 (expression -> expression ADDITION expression .)
     LESS            reduce using rule 11 (expression -> expression ADDITION expression .)
     FINISH          reduce using rule 11 (expression -> expression ADDITION expression .)
@@ -2115,9 +2115,9 @@ state 78
   ! ADDITION        [ shift and go to state 52 ]
   ! SUBTRACTION     [ shift and go to state 53 ]
   ! EQUALS          [ shift and go to state 57 ]
-  ! EQ_MORE         [ shift and go to state 58 ]
-  ! EQ_LESS         [ shift and go to state 59 ]
-  ! NOT_EQUALS      [ shift and go to state 60 ]
+  ! NOT_EQUALS      [ shift and go to state 58 ]
+  ! EQ_MORE         [ shift and go to state 59 ]
+  ! EQ_LESS         [ shift and go to state 60 ]
   ! MORE            [ shift and go to state 61 ]
   ! LESS            [ shift and go to state 62 ]
 
@@ -2133,9 +2133,9 @@ state 79
     (14) expression -> expression . DIVISION expression
     (15) expression -> expression . EXP expression
     (16) expression -> expression . EQUALS expression
-    (17) expression -> expression . EQ_MORE expression
-    (18) expression -> expression . EQ_LESS expression
-    (19) expression -> expression . NOT_EQUALS expression
+    (17) expression -> expression . NOT_EQUALS expression
+    (18) expression -> expression . EQ_MORE expression
+    (19) expression -> expression . EQ_LESS expression
     (20) expression -> expression . MORE expression
     (21) expression -> expression . LESS expression
 
@@ -2144,9 +2144,9 @@ state 79
     ADDITION        reduce using rule 12 (expression -> expression SUBTRACTION expression .)
     SUBTRACTION     reduce using rule 12 (expression -> expression SUBTRACTION expression .)
     EQUALS          reduce using rule 12 (expression -> expression SUBTRACTION expression .)
+    NOT_EQUALS      reduce using rule 12 (expression -> expression SUBTRACTION expression .)
     EQ_MORE         reduce using rule 12 (expression -> expression SUBTRACTION expression .)
     EQ_LESS         reduce using rule 12 (expression -> expression SUBTRACTION expression .)
-    NOT_EQUALS      reduce using rule 12 (expression -> expression SUBTRACTION expression .)
     MORE            reduce using rule 12 (expression -> expression SUBTRACTION expression .)
     LESS            reduce using rule 12 (expression -> expression SUBTRACTION expression .)
     FINISH          reduce using rule 12 (expression -> expression SUBTRACTION expression .)
@@ -2163,9 +2163,9 @@ state 79
   ! ADDITION        [ shift and go to state 52 ]
   ! SUBTRACTION     [ shift and go to state 53 ]
   ! EQUALS          [ shift and go to state 57 ]
-  ! EQ_MORE         [ shift and go to state 58 ]
-  ! EQ_LESS         [ shift and go to state 59 ]
-  ! NOT_EQUALS      [ shift and go to state 60 ]
+  ! NOT_EQUALS      [ shift and go to state 58 ]
+  ! EQ_MORE         [ shift and go to state 59 ]
+  ! EQ_LESS         [ shift and go to state 60 ]
   ! MORE            [ shift and go to state 61 ]
   ! LESS            [ shift and go to state 62 ]
 
@@ -2181,9 +2181,9 @@ state 80
     (14) expression -> expression . DIVISION expression
     (15) expression -> expression . EXP expression
     (16) expression -> expression . EQUALS expression
-    (17) expression -> expression . EQ_MORE expression
-    (18) expression -> expression . EQ_LESS expression
-    (19) expression -> expression . NOT_EQUALS expression
+    (17) expression -> expression . NOT_EQUALS expression
+    (18) expression -> expression . EQ_MORE expression
+    (19) expression -> expression . EQ_LESS expression
     (20) expression -> expression . MORE expression
     (21) expression -> expression . LESS expression
 
@@ -2194,9 +2194,9 @@ state 80
     MULTI           reduce using rule 13 (expression -> expression MULTI expression .)
     DIVISION        reduce using rule 13 (expression -> expression MULTI expression .)
     EQUALS          reduce using rule 13 (expression -> expression MULTI expression .)
+    NOT_EQUALS      reduce using rule 13 (expression -> expression MULTI expression .)
     EQ_MORE         reduce using rule 13 (expression -> expression MULTI expression .)
     EQ_LESS         reduce using rule 13 (expression -> expression MULTI expression .)
-    NOT_EQUALS      reduce using rule 13 (expression -> expression MULTI expression .)
     MORE            reduce using rule 13 (expression -> expression MULTI expression .)
     LESS            reduce using rule 13 (expression -> expression MULTI expression .)
     FINISH          reduce using rule 13 (expression -> expression MULTI expression .)
@@ -2211,9 +2211,9 @@ state 80
   ! MULTI           [ shift and go to state 54 ]
   ! DIVISION        [ shift and go to state 55 ]
   ! EQUALS          [ shift and go to state 57 ]
-  ! EQ_MORE         [ shift and go to state 58 ]
-  ! EQ_LESS         [ shift and go to state 59 ]
-  ! NOT_EQUALS      [ shift and go to state 60 ]
+  ! NOT_EQUALS      [ shift and go to state 58 ]
+  ! EQ_MORE         [ shift and go to state 59 ]
+  ! EQ_LESS         [ shift and go to state 60 ]
   ! MORE            [ shift and go to state 61 ]
   ! LESS            [ shift and go to state 62 ]
 
@@ -2229,9 +2229,9 @@ state 81
     (14) expression -> expression . DIVISION expression
     (15) expression -> expression . EXP expression
     (16) expression -> expression . EQUALS expression
-    (17) expression -> expression . EQ_MORE expression
-    (18) expression -> expression . EQ_LESS expression
-    (19) expression -> expression . NOT_EQUALS expression
+    (17) expression -> expression . NOT_EQUALS expression
+    (18) expression -> expression . EQ_MORE expression
+    (19) expression -> expression . EQ_LESS expression
     (20) expression -> expression . MORE expression
     (21) expression -> expression . LESS expression
 
@@ -2242,9 +2242,9 @@ state 81
     MULTI           reduce using rule 14 (expression -> expression DIVISION expression .)
     DIVISION        reduce using rule 14 (expression -> expression DIVISION expression .)
     EQUALS          reduce using rule 14 (expression -> expression DIVISION expression .)
+    NOT_EQUALS      reduce using rule 14 (expression -> expression DIVISION expression .)
     EQ_MORE         reduce using rule 14 (expression -> expression DIVISION expression .)
     EQ_LESS         reduce using rule 14 (expression -> expression DIVISION expression .)
-    NOT_EQUALS      reduce using rule 14 (expression -> expression DIVISION expression .)
     MORE            reduce using rule 14 (expression -> expression DIVISION expression .)
     LESS            reduce using rule 14 (expression -> expression DIVISION expression .)
     FINISH          reduce using rule 14 (expression -> expression DIVISION expression .)
@@ -2259,9 +2259,9 @@ state 81
   ! MULTI           [ shift and go to state 54 ]
   ! DIVISION        [ shift and go to state 55 ]
   ! EQUALS          [ shift and go to state 57 ]
-  ! EQ_MORE         [ shift and go to state 58 ]
-  ! EQ_LESS         [ shift and go to state 59 ]
-  ! NOT_EQUALS      [ shift and go to state 60 ]
+  ! NOT_EQUALS      [ shift and go to state 58 ]
+  ! EQ_MORE         [ shift and go to state 59 ]
+  ! EQ_LESS         [ shift and go to state 60 ]
   ! MORE            [ shift and go to state 61 ]
   ! LESS            [ shift and go to state 62 ]
 
@@ -2277,9 +2277,9 @@ state 82
     (14) expression -> expression . DIVISION expression
     (15) expression -> expression . EXP expression
     (16) expression -> expression . EQUALS expression
-    (17) expression -> expression . EQ_MORE expression
-    (18) expression -> expression . EQ_LESS expression
-    (19) expression -> expression . NOT_EQUALS expression
+    (17) expression -> expression . NOT_EQUALS expression
+    (18) expression -> expression . EQ_MORE expression
+    (19) expression -> expression . EQ_LESS expression
     (20) expression -> expression . MORE expression
     (21) expression -> expression . LESS expression
 
@@ -2291,9 +2291,9 @@ state 82
     DIVISION        reduce using rule 15 (expression -> expression EXP expression .)
     EXP             reduce using rule 15 (expression -> expression EXP expression .)
     EQUALS          reduce using rule 15 (expression -> expression EXP expression .)
+    NOT_EQUALS      reduce using rule 15 (expression -> expression EXP expression .)
     EQ_MORE         reduce using rule 15 (expression -> expression EXP expression .)
     EQ_LESS         reduce using rule 15 (expression -> expression EXP expression .)
-    NOT_EQUALS      reduce using rule 15 (expression -> expression EXP expression .)
     MORE            reduce using rule 15 (expression -> expression EXP expression .)
     LESS            reduce using rule 15 (expression -> expression EXP expression .)
     FINISH          reduce using rule 15 (expression -> expression EXP expression .)
@@ -2307,9 +2307,9 @@ state 82
   ! DIVISION        [ shift and go to state 55 ]
   ! EXP             [ shift and go to state 56 ]
   ! EQUALS          [ shift and go to state 57 ]
-  ! EQ_MORE         [ shift and go to state 58 ]
-  ! EQ_LESS         [ shift and go to state 59 ]
-  ! NOT_EQUALS      [ shift and go to state 60 ]
+  ! NOT_EQUALS      [ shift and go to state 58 ]
+  ! EQ_MORE         [ shift and go to state 59 ]
+  ! EQ_LESS         [ shift and go to state 60 ]
   ! MORE            [ shift and go to state 61 ]
   ! LESS            [ shift and go to state 62 ]
 
@@ -2325,18 +2325,18 @@ state 83
     (14) expression -> expression . DIVISION expression
     (15) expression -> expression . EXP expression
     (16) expression -> expression . EQUALS expression
-    (17) expression -> expression . EQ_MORE expression
-    (18) expression -> expression . EQ_LESS expression
-    (19) expression -> expression . NOT_EQUALS expression
+    (17) expression -> expression . NOT_EQUALS expression
+    (18) expression -> expression . EQ_MORE expression
+    (19) expression -> expression . EQ_LESS expression
     (20) expression -> expression . MORE expression
     (21) expression -> expression . LESS expression
 
     AND             reduce using rule 16 (expression -> expression EQUALS expression .)
     OR              reduce using rule 16 (expression -> expression EQUALS expression .)
     EQUALS          reduce using rule 16 (expression -> expression EQUALS expression .)
+    NOT_EQUALS      reduce using rule 16 (expression -> expression EQUALS expression .)
     EQ_MORE         reduce using rule 16 (expression -> expression EQUALS expression .)
     EQ_LESS         reduce using rule 16 (expression -> expression EQUALS expression .)
-    NOT_EQUALS      reduce using rule 16 (expression -> expression EQUALS expression .)
     MORE            reduce using rule 16 (expression -> expression EQUALS expression .)
     LESS            reduce using rule 16 (expression -> expression EQUALS expression .)
     FINISH          reduce using rule 16 (expression -> expression EQUALS expression .)
@@ -2355,16 +2355,16 @@ state 83
   ! AND             [ shift and go to state 50 ]
   ! OR              [ shift and go to state 51 ]
   ! EQUALS          [ shift and go to state 57 ]
-  ! EQ_MORE         [ shift and go to state 58 ]
-  ! EQ_LESS         [ shift and go to state 59 ]
-  ! NOT_EQUALS      [ shift and go to state 60 ]
+  ! NOT_EQUALS      [ shift and go to state 58 ]
+  ! EQ_MORE         [ shift and go to state 59 ]
+  ! EQ_LESS         [ shift and go to state 60 ]
   ! MORE            [ shift and go to state 61 ]
   ! LESS            [ shift and go to state 62 ]
 
 
 state 84
 
-    (17) expression -> expression EQ_MORE expression .
+    (17) expression -> expression NOT_EQUALS expression .
     (9) expression -> expression . AND expression
     (10) expression -> expression . OR expression
     (11) expression -> expression . ADDITION expression
@@ -2373,46 +2373,46 @@ state 84
     (14) expression -> expression . DIVISION expression
     (15) expression -> expression . EXP expression
     (16) expression -> expression . EQUALS expression
-    (17) expression -> expression . EQ_MORE expression
-    (18) expression -> expression . EQ_LESS expression
-    (19) expression -> expression . NOT_EQUALS expression
+    (17) expression -> expression . NOT_EQUALS expression
+    (18) expression -> expression . EQ_MORE expression
+    (19) expression -> expression . EQ_LESS expression
     (20) expression -> expression . MORE expression
     (21) expression -> expression . LESS expression
 
-    AND             reduce using rule 17 (expression -> expression EQ_MORE expression .)
-    OR              reduce using rule 17 (expression -> expression EQ_MORE expression .)
-    EQUALS          reduce using rule 17 (expression -> expression EQ_MORE expression .)
-    EQ_MORE         reduce using rule 17 (expression -> expression EQ_MORE expression .)
-    EQ_LESS         reduce using rule 17 (expression -> expression EQ_MORE expression .)
-    NOT_EQUALS      reduce using rule 17 (expression -> expression EQ_MORE expression .)
-    MORE            reduce using rule 17 (expression -> expression EQ_MORE expression .)
-    LESS            reduce using rule 17 (expression -> expression EQ_MORE expression .)
-    FINISH          reduce using rule 17 (expression -> expression EQ_MORE expression .)
-    R_PAREN         reduce using rule 17 (expression -> expression EQ_MORE expression .)
+    AND             reduce using rule 17 (expression -> expression NOT_EQUALS expression .)
+    OR              reduce using rule 17 (expression -> expression NOT_EQUALS expression .)
+    EQUALS          reduce using rule 17 (expression -> expression NOT_EQUALS expression .)
+    NOT_EQUALS      reduce using rule 17 (expression -> expression NOT_EQUALS expression .)
+    EQ_MORE         reduce using rule 17 (expression -> expression NOT_EQUALS expression .)
+    EQ_LESS         reduce using rule 17 (expression -> expression NOT_EQUALS expression .)
+    MORE            reduce using rule 17 (expression -> expression NOT_EQUALS expression .)
+    LESS            reduce using rule 17 (expression -> expression NOT_EQUALS expression .)
+    FINISH          reduce using rule 17 (expression -> expression NOT_EQUALS expression .)
+    R_PAREN         reduce using rule 17 (expression -> expression NOT_EQUALS expression .)
     ADDITION        shift and go to state 52
     SUBTRACTION     shift and go to state 53
     MULTI           shift and go to state 54
     DIVISION        shift and go to state 55
     EXP             shift and go to state 56
 
-  ! ADDITION        [ reduce using rule 17 (expression -> expression EQ_MORE expression .) ]
-  ! SUBTRACTION     [ reduce using rule 17 (expression -> expression EQ_MORE expression .) ]
-  ! MULTI           [ reduce using rule 17 (expression -> expression EQ_MORE expression .) ]
-  ! DIVISION        [ reduce using rule 17 (expression -> expression EQ_MORE expression .) ]
-  ! EXP             [ reduce using rule 17 (expression -> expression EQ_MORE expression .) ]
+  ! ADDITION        [ reduce using rule 17 (expression -> expression NOT_EQUALS expression .) ]
+  ! SUBTRACTION     [ reduce using rule 17 (expression -> expression NOT_EQUALS expression .) ]
+  ! MULTI           [ reduce using rule 17 (expression -> expression NOT_EQUALS expression .) ]
+  ! DIVISION        [ reduce using rule 17 (expression -> expression NOT_EQUALS expression .) ]
+  ! EXP             [ reduce using rule 17 (expression -> expression NOT_EQUALS expression .) ]
   ! AND             [ shift and go to state 50 ]
   ! OR              [ shift and go to state 51 ]
   ! EQUALS          [ shift and go to state 57 ]
-  ! EQ_MORE         [ shift and go to state 58 ]
-  ! EQ_LESS         [ shift and go to state 59 ]
-  ! NOT_EQUALS      [ shift and go to state 60 ]
+  ! NOT_EQUALS      [ shift and go to state 58 ]
+  ! EQ_MORE         [ shift and go to state 59 ]
+  ! EQ_LESS         [ shift and go to state 60 ]
   ! MORE            [ shift and go to state 61 ]
   ! LESS            [ shift and go to state 62 ]
 
 
 state 85
 
-    (18) expression -> expression EQ_LESS expression .
+    (18) expression -> expression EQ_MORE expression .
     (9) expression -> expression . AND expression
     (10) expression -> expression . OR expression
     (11) expression -> expression . ADDITION expression
@@ -2421,46 +2421,46 @@ state 85
     (14) expression -> expression . DIVISION expression
     (15) expression -> expression . EXP expression
     (16) expression -> expression . EQUALS expression
-    (17) expression -> expression . EQ_MORE expression
-    (18) expression -> expression . EQ_LESS expression
-    (19) expression -> expression . NOT_EQUALS expression
+    (17) expression -> expression . NOT_EQUALS expression
+    (18) expression -> expression . EQ_MORE expression
+    (19) expression -> expression . EQ_LESS expression
     (20) expression -> expression . MORE expression
     (21) expression -> expression . LESS expression
 
-    AND             reduce using rule 18 (expression -> expression EQ_LESS expression .)
-    OR              reduce using rule 18 (expression -> expression EQ_LESS expression .)
-    EQUALS          reduce using rule 18 (expression -> expression EQ_LESS expression .)
-    EQ_MORE         reduce using rule 18 (expression -> expression EQ_LESS expression .)
-    EQ_LESS         reduce using rule 18 (expression -> expression EQ_LESS expression .)
-    NOT_EQUALS      reduce using rule 18 (expression -> expression EQ_LESS expression .)
-    MORE            reduce using rule 18 (expression -> expression EQ_LESS expression .)
-    LESS            reduce using rule 18 (expression -> expression EQ_LESS expression .)
-    FINISH          reduce using rule 18 (expression -> expression EQ_LESS expression .)
-    R_PAREN         reduce using rule 18 (expression -> expression EQ_LESS expression .)
+    AND             reduce using rule 18 (expression -> expression EQ_MORE expression .)
+    OR              reduce using rule 18 (expression -> expression EQ_MORE expression .)
+    EQUALS          reduce using rule 18 (expression -> expression EQ_MORE expression .)
+    NOT_EQUALS      reduce using rule 18 (expression -> expression EQ_MORE expression .)
+    EQ_MORE         reduce using rule 18 (expression -> expression EQ_MORE expression .)
+    EQ_LESS         reduce using rule 18 (expression -> expression EQ_MORE expression .)
+    MORE            reduce using rule 18 (expression -> expression EQ_MORE expression .)
+    LESS            reduce using rule 18 (expression -> expression EQ_MORE expression .)
+    FINISH          reduce using rule 18 (expression -> expression EQ_MORE expression .)
+    R_PAREN         reduce using rule 18 (expression -> expression EQ_MORE expression .)
     ADDITION        shift and go to state 52
     SUBTRACTION     shift and go to state 53
     MULTI           shift and go to state 54
     DIVISION        shift and go to state 55
     EXP             shift and go to state 56
 
-  ! ADDITION        [ reduce using rule 18 (expression -> expression EQ_LESS expression .) ]
-  ! SUBTRACTION     [ reduce using rule 18 (expression -> expression EQ_LESS expression .) ]
-  ! MULTI           [ reduce using rule 18 (expression -> expression EQ_LESS expression .) ]
-  ! DIVISION        [ reduce using rule 18 (expression -> expression EQ_LESS expression .) ]
-  ! EXP             [ reduce using rule 18 (expression -> expression EQ_LESS expression .) ]
+  ! ADDITION        [ reduce using rule 18 (expression -> expression EQ_MORE expression .) ]
+  ! SUBTRACTION     [ reduce using rule 18 (expression -> expression EQ_MORE expression .) ]
+  ! MULTI           [ reduce using rule 18 (expression -> expression EQ_MORE expression .) ]
+  ! DIVISION        [ reduce using rule 18 (expression -> expression EQ_MORE expression .) ]
+  ! EXP             [ reduce using rule 18 (expression -> expression EQ_MORE expression .) ]
   ! AND             [ shift and go to state 50 ]
   ! OR              [ shift and go to state 51 ]
   ! EQUALS          [ shift and go to state 57 ]
-  ! EQ_MORE         [ shift and go to state 58 ]
-  ! EQ_LESS         [ shift and go to state 59 ]
-  ! NOT_EQUALS      [ shift and go to state 60 ]
+  ! NOT_EQUALS      [ shift and go to state 58 ]
+  ! EQ_MORE         [ shift and go to state 59 ]
+  ! EQ_LESS         [ shift and go to state 60 ]
   ! MORE            [ shift and go to state 61 ]
   ! LESS            [ shift and go to state 62 ]
 
 
 state 86
 
-    (19) expression -> expression NOT_EQUALS expression .
+    (19) expression -> expression EQ_LESS expression .
     (9) expression -> expression . AND expression
     (10) expression -> expression . OR expression
     (11) expression -> expression . ADDITION expression
@@ -2469,39 +2469,39 @@ state 86
     (14) expression -> expression . DIVISION expression
     (15) expression -> expression . EXP expression
     (16) expression -> expression . EQUALS expression
-    (17) expression -> expression . EQ_MORE expression
-    (18) expression -> expression . EQ_LESS expression
-    (19) expression -> expression . NOT_EQUALS expression
+    (17) expression -> expression . NOT_EQUALS expression
+    (18) expression -> expression . EQ_MORE expression
+    (19) expression -> expression . EQ_LESS expression
     (20) expression -> expression . MORE expression
     (21) expression -> expression . LESS expression
 
-    AND             reduce using rule 19 (expression -> expression NOT_EQUALS expression .)
-    OR              reduce using rule 19 (expression -> expression NOT_EQUALS expression .)
-    EQUALS          reduce using rule 19 (expression -> expression NOT_EQUALS expression .)
-    EQ_MORE         reduce using rule 19 (expression -> expression NOT_EQUALS expression .)
-    EQ_LESS         reduce using rule 19 (expression -> expression NOT_EQUALS expression .)
-    NOT_EQUALS      reduce using rule 19 (expression -> expression NOT_EQUALS expression .)
-    MORE            reduce using rule 19 (expression -> expression NOT_EQUALS expression .)
-    LESS            reduce using rule 19 (expression -> expression NOT_EQUALS expression .)
-    FINISH          reduce using rule 19 (expression -> expression NOT_EQUALS expression .)
-    R_PAREN         reduce using rule 19 (expression -> expression NOT_EQUALS expression .)
+    AND             reduce using rule 19 (expression -> expression EQ_LESS expression .)
+    OR              reduce using rule 19 (expression -> expression EQ_LESS expression .)
+    EQUALS          reduce using rule 19 (expression -> expression EQ_LESS expression .)
+    NOT_EQUALS      reduce using rule 19 (expression -> expression EQ_LESS expression .)
+    EQ_MORE         reduce using rule 19 (expression -> expression EQ_LESS expression .)
+    EQ_LESS         reduce using rule 19 (expression -> expression EQ_LESS expression .)
+    MORE            reduce using rule 19 (expression -> expression EQ_LESS expression .)
+    LESS            reduce using rule 19 (expression -> expression EQ_LESS expression .)
+    FINISH          reduce using rule 19 (expression -> expression EQ_LESS expression .)
+    R_PAREN         reduce using rule 19 (expression -> expression EQ_LESS expression .)
     ADDITION        shift and go to state 52
     SUBTRACTION     shift and go to state 53
     MULTI           shift and go to state 54
     DIVISION        shift and go to state 55
     EXP             shift and go to state 56
 
-  ! ADDITION        [ reduce using rule 19 (expression -> expression NOT_EQUALS expression .) ]
-  ! SUBTRACTION     [ reduce using rule 19 (expression -> expression NOT_EQUALS expression .) ]
-  ! MULTI           [ reduce using rule 19 (expression -> expression NOT_EQUALS expression .) ]
-  ! DIVISION        [ reduce using rule 19 (expression -> expression NOT_EQUALS expression .) ]
-  ! EXP             [ reduce using rule 19 (expression -> expression NOT_EQUALS expression .) ]
+  ! ADDITION        [ reduce using rule 19 (expression -> expression EQ_LESS expression .) ]
+  ! SUBTRACTION     [ reduce using rule 19 (expression -> expression EQ_LESS expression .) ]
+  ! MULTI           [ reduce using rule 19 (expression -> expression EQ_LESS expression .) ]
+  ! DIVISION        [ reduce using rule 19 (expression -> expression EQ_LESS expression .) ]
+  ! EXP             [ reduce using rule 19 (expression -> expression EQ_LESS expression .) ]
   ! AND             [ shift and go to state 50 ]
   ! OR              [ shift and go to state 51 ]
   ! EQUALS          [ shift and go to state 57 ]
-  ! EQ_MORE         [ shift and go to state 58 ]
-  ! EQ_LESS         [ shift and go to state 59 ]
-  ! NOT_EQUALS      [ shift and go to state 60 ]
+  ! NOT_EQUALS      [ shift and go to state 58 ]
+  ! EQ_MORE         [ shift and go to state 59 ]
+  ! EQ_LESS         [ shift and go to state 60 ]
   ! MORE            [ shift and go to state 61 ]
   ! LESS            [ shift and go to state 62 ]
 
@@ -2517,18 +2517,18 @@ state 87
     (14) expression -> expression . DIVISION expression
     (15) expression -> expression . EXP expression
     (16) expression -> expression . EQUALS expression
-    (17) expression -> expression . EQ_MORE expression
-    (18) expression -> expression . EQ_LESS expression
-    (19) expression -> expression . NOT_EQUALS expression
+    (17) expression -> expression . NOT_EQUALS expression
+    (18) expression -> expression . EQ_MORE expression
+    (19) expression -> expression . EQ_LESS expression
     (20) expression -> expression . MORE expression
     (21) expression -> expression . LESS expression
 
     AND             reduce using rule 20 (expression -> expression MORE expression .)
     OR              reduce using rule 20 (expression -> expression MORE expression .)
     EQUALS          reduce using rule 20 (expression -> expression MORE expression .)
+    NOT_EQUALS      reduce using rule 20 (expression -> expression MORE expression .)
     EQ_MORE         reduce using rule 20 (expression -> expression MORE expression .)
     EQ_LESS         reduce using rule 20 (expression -> expression MORE expression .)
-    NOT_EQUALS      reduce using rule 20 (expression -> expression MORE expression .)
     MORE            reduce using rule 20 (expression -> expression MORE expression .)
     LESS            reduce using rule 20 (expression -> expression MORE expression .)
     FINISH          reduce using rule 20 (expression -> expression MORE expression .)
@@ -2547,9 +2547,9 @@ state 87
   ! AND             [ shift and go to state 50 ]
   ! OR              [ shift and go to state 51 ]
   ! EQUALS          [ shift and go to state 57 ]
-  ! EQ_MORE         [ shift and go to state 58 ]
-  ! EQ_LESS         [ shift and go to state 59 ]
-  ! NOT_EQUALS      [ shift and go to state 60 ]
+  ! NOT_EQUALS      [ shift and go to state 58 ]
+  ! EQ_MORE         [ shift and go to state 59 ]
+  ! EQ_LESS         [ shift and go to state 60 ]
   ! MORE            [ shift and go to state 61 ]
   ! LESS            [ shift and go to state 62 ]
 
@@ -2565,18 +2565,18 @@ state 88
     (14) expression -> expression . DIVISION expression
     (15) expression -> expression . EXP expression
     (16) expression -> expression . EQUALS expression
-    (17) expression -> expression . EQ_MORE expression
-    (18) expression -> expression . EQ_LESS expression
-    (19) expression -> expression . NOT_EQUALS expression
+    (17) expression -> expression . NOT_EQUALS expression
+    (18) expression -> expression . EQ_MORE expression
+    (19) expression -> expression . EQ_LESS expression
     (20) expression -> expression . MORE expression
     (21) expression -> expression . LESS expression
 
     AND             reduce using rule 21 (expression -> expression LESS expression .)
     OR              reduce using rule 21 (expression -> expression LESS expression .)
     EQUALS          reduce using rule 21 (expression -> expression LESS expression .)
+    NOT_EQUALS      reduce using rule 21 (expression -> expression LESS expression .)
     EQ_MORE         reduce using rule 21 (expression -> expression LESS expression .)
     EQ_LESS         reduce using rule 21 (expression -> expression LESS expression .)
-    NOT_EQUALS      reduce using rule 21 (expression -> expression LESS expression .)
     MORE            reduce using rule 21 (expression -> expression LESS expression .)
     LESS            reduce using rule 21 (expression -> expression LESS expression .)
     FINISH          reduce using rule 21 (expression -> expression LESS expression .)
@@ -2595,9 +2595,9 @@ state 88
   ! AND             [ shift and go to state 50 ]
   ! OR              [ shift and go to state 51 ]
   ! EQUALS          [ shift and go to state 57 ]
-  ! EQ_MORE         [ shift and go to state 58 ]
-  ! EQ_LESS         [ shift and go to state 59 ]
-  ! NOT_EQUALS      [ shift and go to state 60 ]
+  ! NOT_EQUALS      [ shift and go to state 58 ]
+  ! EQ_MORE         [ shift and go to state 59 ]
+  ! EQ_LESS         [ shift and go to state 60 ]
   ! MORE            [ shift and go to state 61 ]
   ! LESS            [ shift and go to state 62 ]
 
@@ -2614,9 +2614,9 @@ state 89
     DIVISION        reduce using rule 28 (expression -> L_PAREN expression R_PAREN .)
     EXP             reduce using rule 28 (expression -> L_PAREN expression R_PAREN .)
     EQUALS          reduce using rule 28 (expression -> L_PAREN expression R_PAREN .)
+    NOT_EQUALS      reduce using rule 28 (expression -> L_PAREN expression R_PAREN .)
     EQ_MORE         reduce using rule 28 (expression -> L_PAREN expression R_PAREN .)
     EQ_LESS         reduce using rule 28 (expression -> L_PAREN expression R_PAREN .)
-    NOT_EQUALS      reduce using rule 28 (expression -> L_PAREN expression R_PAREN .)
     MORE            reduce using rule 28 (expression -> L_PAREN expression R_PAREN .)
     LESS            reduce using rule 28 (expression -> L_PAREN expression R_PAREN .)
     FINISH          reduce using rule 28 (expression -> L_PAREN expression R_PAREN .)
@@ -2686,9 +2686,9 @@ state 91
     (14) expression -> expression . DIVISION expression
     (15) expression -> expression . EXP expression
     (16) expression -> expression . EQUALS expression
-    (17) expression -> expression . EQ_MORE expression
-    (18) expression -> expression . EQ_LESS expression
-    (19) expression -> expression . NOT_EQUALS expression
+    (17) expression -> expression . NOT_EQUALS expression
+    (18) expression -> expression . EQ_MORE expression
+    (19) expression -> expression . EQ_LESS expression
     (20) expression -> expression . MORE expression
     (21) expression -> expression . LESS expression
 
@@ -2701,9 +2701,9 @@ state 91
     DIVISION        shift and go to state 55
     EXP             shift and go to state 56
     EQUALS          shift and go to state 57
-    EQ_MORE         shift and go to state 58
-    EQ_LESS         shift and go to state 59
-    NOT_EQUALS      shift and go to state 60
+    NOT_EQUALS      shift and go to state 58
+    EQ_MORE         shift and go to state 59
+    EQ_LESS         shift and go to state 60
     MORE            shift and go to state 61
     LESS            shift and go to state 62
 
@@ -2720,9 +2720,9 @@ state 92
     (14) expression -> . expression DIVISION expression
     (15) expression -> . expression EXP expression
     (16) expression -> . expression EQUALS expression
-    (17) expression -> . expression EQ_MORE expression
-    (18) expression -> . expression EQ_LESS expression
-    (19) expression -> . expression NOT_EQUALS expression
+    (17) expression -> . expression NOT_EQUALS expression
+    (18) expression -> . expression EQ_MORE expression
+    (19) expression -> . expression EQ_LESS expression
     (20) expression -> . expression MORE expression
     (21) expression -> . expression LESS expression
     (22) expression -> . FNUMBER
@@ -2778,9 +2778,9 @@ state 96
     (14) expression -> expression . DIVISION expression
     (15) expression -> expression . EXP expression
     (16) expression -> expression . EQUALS expression
-    (17) expression -> expression . EQ_MORE expression
-    (18) expression -> expression . EQ_LESS expression
-    (19) expression -> expression . NOT_EQUALS expression
+    (17) expression -> expression . NOT_EQUALS expression
+    (18) expression -> expression . EQ_MORE expression
+    (19) expression -> expression . EQ_LESS expression
     (20) expression -> expression . MORE expression
     (21) expression -> expression . LESS expression
 
@@ -2793,9 +2793,9 @@ state 96
     DIVISION        shift and go to state 55
     EXP             shift and go to state 56
     EQUALS          shift and go to state 57
-    EQ_MORE         shift and go to state 58
-    EQ_LESS         shift and go to state 59
-    NOT_EQUALS      shift and go to state 60
+    NOT_EQUALS      shift and go to state 58
+    EQ_MORE         shift and go to state 59
+    EQ_LESS         shift and go to state 60
     MORE            shift and go to state 61
     LESS            shift and go to state 62
 
@@ -2832,9 +2832,9 @@ state 100
     (14) expression -> expression . DIVISION expression
     (15) expression -> expression . EXP expression
     (16) expression -> expression . EQUALS expression
-    (17) expression -> expression . EQ_MORE expression
-    (18) expression -> expression . EQ_LESS expression
-    (19) expression -> expression . NOT_EQUALS expression
+    (17) expression -> expression . NOT_EQUALS expression
+    (18) expression -> expression . EQ_MORE expression
+    (19) expression -> expression . EQ_LESS expression
     (20) expression -> expression . MORE expression
     (21) expression -> expression . LESS expression
 
@@ -2847,9 +2847,9 @@ state 100
     DIVISION        shift and go to state 55
     EXP             shift and go to state 56
     EQUALS          shift and go to state 57
-    EQ_MORE         shift and go to state 58
-    EQ_LESS         shift and go to state 59
-    NOT_EQUALS      shift and go to state 60
+    NOT_EQUALS      shift and go to state 58
+    EQ_MORE         shift and go to state 59
+    EQ_LESS         shift and go to state 60
     MORE            shift and go to state 61
     LESS            shift and go to state 62
 
@@ -3063,9 +3063,9 @@ state 108
     (14) expression -> . expression DIVISION expression
     (15) expression -> . expression EXP expression
     (16) expression -> . expression EQUALS expression
-    (17) expression -> . expression EQ_MORE expression
-    (18) expression -> . expression EQ_LESS expression
-    (19) expression -> . expression NOT_EQUALS expression
+    (17) expression -> . expression NOT_EQUALS expression
+    (18) expression -> . expression EQ_MORE expression
+    (19) expression -> . expression EQ_LESS expression
     (20) expression -> . expression MORE expression
     (21) expression -> . expression LESS expression
     (22) expression -> . FNUMBER
@@ -3139,9 +3139,9 @@ state 113
     (14) expression -> expression . DIVISION expression
     (15) expression -> expression . EXP expression
     (16) expression -> expression . EQUALS expression
-    (17) expression -> expression . EQ_MORE expression
-    (18) expression -> expression . EQ_LESS expression
-    (19) expression -> expression . NOT_EQUALS expression
+    (17) expression -> expression . NOT_EQUALS expression
+    (18) expression -> expression . EQ_MORE expression
+    (19) expression -> expression . EQ_LESS expression
     (20) expression -> expression . MORE expression
     (21) expression -> expression . LESS expression
 
@@ -3154,9 +3154,9 @@ state 113
     DIVISION        shift and go to state 55
     EXP             shift and go to state 56
     EQUALS          shift and go to state 57
-    EQ_MORE         shift and go to state 58
-    EQ_LESS         shift and go to state 59
-    NOT_EQUALS      shift and go to state 60
+    NOT_EQUALS      shift and go to state 58
+    EQ_MORE         shift and go to state 59
+    EQ_LESS         shift and go to state 60
     MORE            shift and go to state 61
     LESS            shift and go to state 62
 

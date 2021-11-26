@@ -1,0 +1,44 @@
+int i 
+i = 0 
+int j 
+j = 0 
+string myString 
+myString = Hello world 
+int loop 
+loop = 0 
+label L0
+V0 = loop < 15 
+if V0 fails, go to L1
+print loop 
+go to L0
+label L1
+bool condition 
+condition = True 
+V1 = condition == False 
+print V1 
+V2 = j < 10 
+label L2
+if V2 fails, go to L3
+print j 
+V3 = j + 1 
+j = V3 
+go to L2
+label L3
+go to L4
+print doing do's doodley doo 
+V4 = i + 1 
+i = V4 
+V5 = i < 5 
+if V5 fails, go to L4
+V6 = myString == not correct 
+if V6 fails, go to L5
+print Not correct 
+go to L6
+label L5
+V7 = myString == Hello world 
+if V7 fails, go to L7
+print Yabadabadu 
+go to L6
+label L7
+print else called 
+label L6
