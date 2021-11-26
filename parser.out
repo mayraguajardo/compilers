@@ -1,1 +1,3335 @@
 Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> start
+Rule 1     start -> statement
+Rule 2     statement -> statement_print FINISH statement
+Rule 3     statement -> statement_register FINISH statement
+Rule 4     statement -> statement_condition statement
+Rule 5     statement -> statement_for statement
+Rule 6     statement -> statement_while statement
+Rule 7     statement -> empty
+Rule 8     expression -> NAME
+Rule 9     expression -> expression AND expression
+Rule 10    expression -> expression OR expression
+Rule 11    expression -> expression ADDITION expression
+Rule 12    expression -> expression SUBTRACTION expression
+Rule 13    expression -> expression MULTI expression
+Rule 14    expression -> expression DIVISION expression
+Rule 15    expression -> expression EXP expression
+Rule 16    expression -> expression EQUALS expression
+Rule 17    expression -> expression EQ_MORE expression
+Rule 18    expression -> expression EQ_LESS expression
+Rule 19    expression -> expression NOT_EQUALS expression
+Rule 20    expression -> expression MORE expression
+Rule 21    expression -> expression LESS expression
+Rule 22    expression -> FNUMBER
+Rule 23    expression -> INUMBER
+Rule 24    expression -> STRING_VAL
+Rule 25    expression -> bool_val
+Rule 26    bool_val -> TRUE
+Rule 27    bool_val -> FALSE
+Rule 28    expression -> L_PAREN expression R_PAREN
+Rule 29    expression -> SUBTRACTION expression
+Rule 30    statement_print -> PRINT expression
+Rule 31    statement_register -> declare_register
+Rule 32    statement_register -> declare_assign_register
+Rule 33    statement_register -> assign_register
+Rule 34    declare_register -> type NAME
+Rule 35    declare_assign_register -> type NAME ASSIGN expression
+Rule 36    assign_register -> NAME ASSIGN expression
+Rule 37    statement_condition -> if_condition elif_condition else_condition
+Rule 38    if_condition -> IF L_PAREN expression R_PAREN L_KEY statement R_KEY
+Rule 39    elif_condition -> ELIF L_PAREN expression R_PAREN L_KEY statement R_KEY elif_condition
+Rule 40    elif_condition -> empty
+Rule 41    else_condition -> ELSE L_KEY statement R_KEY
+Rule 42    else_condition -> empty
+Rule 43    statement_for -> FOR L_PAREN declare_assign_register FINISH expression FINISH assign_register R_PAREN L_KEY statement R_KEY
+Rule 44    statement_while -> WHILE L_PAREN expression R_PAREN L_KEY statement R_KEY
+Rule 45    statement_while -> DO L_KEY statement R_KEY WHILE L_PAREN expression R_PAREN FINISH
+Rule 46    empty -> <empty>
+Rule 47    type -> BOOL
+Rule 48    type -> INTDEC
+Rule 49    type -> FLOATDEC
+Rule 50    type -> STRING
+
+Terminals, with rules where they appear
+
+ADDITION             : 11
+AND                  : 9
+ASSIGN               : 35 36
+BOOL                 : 47
+DIVISION             : 14
+DO                   : 45
+ELIF                 : 39
+ELSE                 : 41
+EQUALS               : 16
+EQ_LESS              : 18
+EQ_MORE              : 17
+EXP                  : 15
+FALSE                : 27
+FINISH               : 2 3 43 43 45
+FLOATDEC             : 49
+FNUMBER              : 22
+FOR                  : 43
+IF                   : 38
+INTDEC               : 48
+INUMBER              : 23
+LESS                 : 21
+L_KEY                : 38 39 41 43 44 45
+L_PAREN              : 28 38 39 43 44 45
+MORE                 : 20
+MULTI                : 13
+NAME                 : 8 34 35 36
+NOT_EQUALS           : 19
+OR                   : 10
+PRINT                : 30
+R_KEY                : 38 39 41 43 44 45
+R_PAREN              : 28 38 39 43 44 45
+STRING               : 50
+STRING_VAL           : 24
+SUBTRACTION          : 12 29
+TRUE                 : 26
+WHILE                : 44 45
+error                : 
+
+Nonterminals, with rules where they appear
+
+assign_register      : 33 43
+bool_val             : 25
+declare_assign_register : 32 43
+declare_register     : 31
+elif_condition       : 37 39
+else_condition       : 37
+empty                : 7 40 42
+expression           : 9 9 10 10 11 11 12 12 13 13 14 14 15 15 16 16 17 17 18 18 19 19 20 20 21 21 28 29 30 35 36 38 39 43 44 45
+if_condition         : 37
+start                : 0
+statement            : 1 2 3 4 5 6 38 39 41 43 44 45
+statement_condition  : 4
+statement_for        : 5
+statement_print      : 2
+statement_register   : 3
+statement_while      : 6
+type                 : 34 35
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . start
+    (1) start -> . statement
+    (2) statement -> . statement_print FINISH statement
+    (3) statement -> . statement_register FINISH statement
+    (4) statement -> . statement_condition statement
+    (5) statement -> . statement_for statement
+    (6) statement -> . statement_while statement
+    (7) statement -> . empty
+    (30) statement_print -> . PRINT expression
+    (31) statement_register -> . declare_register
+    (32) statement_register -> . declare_assign_register
+    (33) statement_register -> . assign_register
+    (37) statement_condition -> . if_condition elif_condition else_condition
+    (43) statement_for -> . FOR L_PAREN declare_assign_register FINISH expression FINISH assign_register R_PAREN L_KEY statement R_KEY
+    (44) statement_while -> . WHILE L_PAREN expression R_PAREN L_KEY statement R_KEY
+    (45) statement_while -> . DO L_KEY statement R_KEY WHILE L_PAREN expression R_PAREN FINISH
+    (46) empty -> .
+    (34) declare_register -> . type NAME
+    (35) declare_assign_register -> . type NAME ASSIGN expression
+    (36) assign_register -> . NAME ASSIGN expression
+    (38) if_condition -> . IF L_PAREN expression R_PAREN L_KEY statement R_KEY
+    (47) type -> . BOOL
+    (48) type -> . INTDEC
+    (49) type -> . FLOATDEC
+    (50) type -> . STRING
+
+    PRINT           shift and go to state 9
+    FOR             shift and go to state 14
+    WHILE           shift and go to state 15
+    DO              shift and go to state 16
+    $end            reduce using rule 46 (empty -> .)
+    NAME            shift and go to state 18
+    IF              shift and go to state 19
+    BOOL            shift and go to state 20
+    INTDEC          shift and go to state 21
+    FLOATDEC        shift and go to state 22
+    STRING          shift and go to state 23
+
+    start                          shift and go to state 1
+    statement                      shift and go to state 2
+    statement_print                shift and go to state 3
+    statement_register             shift and go to state 4
+    statement_condition            shift and go to state 5
+    statement_for                  shift and go to state 6
+    statement_while                shift and go to state 7
+    empty                          shift and go to state 8
+    declare_register               shift and go to state 10
+    declare_assign_register        shift and go to state 11
+    assign_register                shift and go to state 12
+    if_condition                   shift and go to state 13
+    type                           shift and go to state 17
+
+state 1
+
+    (0) S' -> start .
+
+
+
+state 2
+
+    (1) start -> statement .
+
+    $end            reduce using rule 1 (start -> statement .)
+
+
+state 3
+
+    (2) statement -> statement_print . FINISH statement
+
+    FINISH          shift and go to state 24
+
+
+state 4
+
+    (3) statement -> statement_register . FINISH statement
+
+    FINISH          shift and go to state 25
+
+
+state 5
+
+    (4) statement -> statement_condition . statement
+    (2) statement -> . statement_print FINISH statement
+    (3) statement -> . statement_register FINISH statement
+    (4) statement -> . statement_condition statement
+    (5) statement -> . statement_for statement
+    (6) statement -> . statement_while statement
+    (7) statement -> . empty
+    (30) statement_print -> . PRINT expression
+    (31) statement_register -> . declare_register
+    (32) statement_register -> . declare_assign_register
+    (33) statement_register -> . assign_register
+    (37) statement_condition -> . if_condition elif_condition else_condition
+    (43) statement_for -> . FOR L_PAREN declare_assign_register FINISH expression FINISH assign_register R_PAREN L_KEY statement R_KEY
+    (44) statement_while -> . WHILE L_PAREN expression R_PAREN L_KEY statement R_KEY
+    (45) statement_while -> . DO L_KEY statement R_KEY WHILE L_PAREN expression R_PAREN FINISH
+    (46) empty -> .
+    (34) declare_register -> . type NAME
+    (35) declare_assign_register -> . type NAME ASSIGN expression
+    (36) assign_register -> . NAME ASSIGN expression
+    (38) if_condition -> . IF L_PAREN expression R_PAREN L_KEY statement R_KEY
+    (47) type -> . BOOL
+    (48) type -> . INTDEC
+    (49) type -> . FLOATDEC
+    (50) type -> . STRING
+
+    PRINT           shift and go to state 9
+    FOR             shift and go to state 14
+    WHILE           shift and go to state 15
+    DO              shift and go to state 16
+    $end            reduce using rule 46 (empty -> .)
+    R_KEY           reduce using rule 46 (empty -> .)
+    NAME            shift and go to state 18
+    IF              shift and go to state 19
+    BOOL            shift and go to state 20
+    INTDEC          shift and go to state 21
+    FLOATDEC        shift and go to state 22
+    STRING          shift and go to state 23
+
+    statement_condition            shift and go to state 5
+    statement                      shift and go to state 26
+    statement_print                shift and go to state 3
+    statement_register             shift and go to state 4
+    statement_for                  shift and go to state 6
+    statement_while                shift and go to state 7
+    empty                          shift and go to state 8
+    declare_register               shift and go to state 10
+    declare_assign_register        shift and go to state 11
+    assign_register                shift and go to state 12
+    if_condition                   shift and go to state 13
+    type                           shift and go to state 17
+
+state 6
+
+    (5) statement -> statement_for . statement
+    (2) statement -> . statement_print FINISH statement
+    (3) statement -> . statement_register FINISH statement
+    (4) statement -> . statement_condition statement
+    (5) statement -> . statement_for statement
+    (6) statement -> . statement_while statement
+    (7) statement -> . empty
+    (30) statement_print -> . PRINT expression
+    (31) statement_register -> . declare_register
+    (32) statement_register -> . declare_assign_register
+    (33) statement_register -> . assign_register
+    (37) statement_condition -> . if_condition elif_condition else_condition
+    (43) statement_for -> . FOR L_PAREN declare_assign_register FINISH expression FINISH assign_register R_PAREN L_KEY statement R_KEY
+    (44) statement_while -> . WHILE L_PAREN expression R_PAREN L_KEY statement R_KEY
+    (45) statement_while -> . DO L_KEY statement R_KEY WHILE L_PAREN expression R_PAREN FINISH
+    (46) empty -> .
+    (34) declare_register -> . type NAME
+    (35) declare_assign_register -> . type NAME ASSIGN expression
+    (36) assign_register -> . NAME ASSIGN expression
+    (38) if_condition -> . IF L_PAREN expression R_PAREN L_KEY statement R_KEY
+    (47) type -> . BOOL
+    (48) type -> . INTDEC
+    (49) type -> . FLOATDEC
+    (50) type -> . STRING
+
+    PRINT           shift and go to state 9
+    FOR             shift and go to state 14
+    WHILE           shift and go to state 15
+    DO              shift and go to state 16
+    $end            reduce using rule 46 (empty -> .)
+    R_KEY           reduce using rule 46 (empty -> .)
+    NAME            shift and go to state 18
+    IF              shift and go to state 19
+    BOOL            shift and go to state 20
+    INTDEC          shift and go to state 21
+    FLOATDEC        shift and go to state 22
+    STRING          shift and go to state 23
+
+    statement_for                  shift and go to state 6
+    statement                      shift and go to state 27
+    statement_print                shift and go to state 3
+    statement_register             shift and go to state 4
+    statement_condition            shift and go to state 5
+    statement_while                shift and go to state 7
+    empty                          shift and go to state 8
+    declare_register               shift and go to state 10
+    declare_assign_register        shift and go to state 11
+    assign_register                shift and go to state 12
+    if_condition                   shift and go to state 13
+    type                           shift and go to state 17
+
+state 7
+
+    (6) statement -> statement_while . statement
+    (2) statement -> . statement_print FINISH statement
+    (3) statement -> . statement_register FINISH statement
+    (4) statement -> . statement_condition statement
+    (5) statement -> . statement_for statement
+    (6) statement -> . statement_while statement
+    (7) statement -> . empty
+    (30) statement_print -> . PRINT expression
+    (31) statement_register -> . declare_register
+    (32) statement_register -> . declare_assign_register
+    (33) statement_register -> . assign_register
+    (37) statement_condition -> . if_condition elif_condition else_condition
+    (43) statement_for -> . FOR L_PAREN declare_assign_register FINISH expression FINISH assign_register R_PAREN L_KEY statement R_KEY
+    (44) statement_while -> . WHILE L_PAREN expression R_PAREN L_KEY statement R_KEY
+    (45) statement_while -> . DO L_KEY statement R_KEY WHILE L_PAREN expression R_PAREN FINISH
+    (46) empty -> .
+    (34) declare_register -> . type NAME
+    (35) declare_assign_register -> . type NAME ASSIGN expression
+    (36) assign_register -> . NAME ASSIGN expression
+    (38) if_condition -> . IF L_PAREN expression R_PAREN L_KEY statement R_KEY
+    (47) type -> . BOOL
+    (48) type -> . INTDEC
+    (49) type -> . FLOATDEC
+    (50) type -> . STRING
+
+    PRINT           shift and go to state 9
+    FOR             shift and go to state 14
+    WHILE           shift and go to state 15
+    DO              shift and go to state 16
+    $end            reduce using rule 46 (empty -> .)
+    R_KEY           reduce using rule 46 (empty -> .)
+    NAME            shift and go to state 18
+    IF              shift and go to state 19
+    BOOL            shift and go to state 20
+    INTDEC          shift and go to state 21
+    FLOATDEC        shift and go to state 22
+    STRING          shift and go to state 23
+
+    statement_while                shift and go to state 7
+    statement                      shift and go to state 28
+    statement_print                shift and go to state 3
+    statement_register             shift and go to state 4
+    statement_condition            shift and go to state 5
+    statement_for                  shift and go to state 6
+    empty                          shift and go to state 8
+    declare_register               shift and go to state 10
+    declare_assign_register        shift and go to state 11
+    assign_register                shift and go to state 12
+    if_condition                   shift and go to state 13
+    type                           shift and go to state 17
+
+state 8
+
+    (7) statement -> empty .
+
+    $end            reduce using rule 7 (statement -> empty .)
+    R_KEY           reduce using rule 7 (statement -> empty .)
+
+
+state 9
+
+    (30) statement_print -> PRINT . expression
+    (8) expression -> . NAME
+    (9) expression -> . expression AND expression
+    (10) expression -> . expression OR expression
+    (11) expression -> . expression ADDITION expression
+    (12) expression -> . expression SUBTRACTION expression
+    (13) expression -> . expression MULTI expression
+    (14) expression -> . expression DIVISION expression
+    (15) expression -> . expression EXP expression
+    (16) expression -> . expression EQUALS expression
+    (17) expression -> . expression EQ_MORE expression
+    (18) expression -> . expression EQ_LESS expression
+    (19) expression -> . expression NOT_EQUALS expression
+    (20) expression -> . expression MORE expression
+    (21) expression -> . expression LESS expression
+    (22) expression -> . FNUMBER
+    (23) expression -> . INUMBER
+    (24) expression -> . STRING_VAL
+    (25) expression -> . bool_val
+    (28) expression -> . L_PAREN expression R_PAREN
+    (29) expression -> . SUBTRACTION expression
+    (26) bool_val -> . TRUE
+    (27) bool_val -> . FALSE
+
+    NAME            shift and go to state 30
+    FNUMBER         shift and go to state 32
+    INUMBER         shift and go to state 33
+    STRING_VAL      shift and go to state 34
+    L_PAREN         shift and go to state 36
+    SUBTRACTION     shift and go to state 31
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 29
+    bool_val                       shift and go to state 35
+
+state 10
+
+    (31) statement_register -> declare_register .
+
+    FINISH          reduce using rule 31 (statement_register -> declare_register .)
+
+
+state 11
+
+    (32) statement_register -> declare_assign_register .
+
+    FINISH          reduce using rule 32 (statement_register -> declare_assign_register .)
+
+
+state 12
+
+    (33) statement_register -> assign_register .
+
+    FINISH          reduce using rule 33 (statement_register -> assign_register .)
+
+
+state 13
+
+    (37) statement_condition -> if_condition . elif_condition else_condition
+    (39) elif_condition -> . ELIF L_PAREN expression R_PAREN L_KEY statement R_KEY elif_condition
+    (40) elif_condition -> . empty
+    (46) empty -> .
+
+    ELIF            shift and go to state 40
+    ELSE            reduce using rule 46 (empty -> .)
+    PRINT           reduce using rule 46 (empty -> .)
+    FOR             reduce using rule 46 (empty -> .)
+    WHILE           reduce using rule 46 (empty -> .)
+    DO              reduce using rule 46 (empty -> .)
+    NAME            reduce using rule 46 (empty -> .)
+    IF              reduce using rule 46 (empty -> .)
+    BOOL            reduce using rule 46 (empty -> .)
+    INTDEC          reduce using rule 46 (empty -> .)
+    FLOATDEC        reduce using rule 46 (empty -> .)
+    STRING          reduce using rule 46 (empty -> .)
+    $end            reduce using rule 46 (empty -> .)
+    R_KEY           reduce using rule 46 (empty -> .)
+
+    elif_condition                 shift and go to state 39
+    empty                          shift and go to state 41
+
+state 14
+
+    (43) statement_for -> FOR . L_PAREN declare_assign_register FINISH expression FINISH assign_register R_PAREN L_KEY statement R_KEY
+
+    L_PAREN         shift and go to state 42
+
+
+state 15
+
+    (44) statement_while -> WHILE . L_PAREN expression R_PAREN L_KEY statement R_KEY
+
+    L_PAREN         shift and go to state 43
+
+
+state 16
+
+    (45) statement_while -> DO . L_KEY statement R_KEY WHILE L_PAREN expression R_PAREN FINISH
+
+    L_KEY           shift and go to state 44
+
+
+state 17
+
+    (34) declare_register -> type . NAME
+    (35) declare_assign_register -> type . NAME ASSIGN expression
+
+    NAME            shift and go to state 45
+
+
+state 18
+
+    (36) assign_register -> NAME . ASSIGN expression
+
+    ASSIGN          shift and go to state 46
+
+
+state 19
+
+    (38) if_condition -> IF . L_PAREN expression R_PAREN L_KEY statement R_KEY
+
+    L_PAREN         shift and go to state 47
+
+
+state 20
+
+    (47) type -> BOOL .
+
+    NAME            reduce using rule 47 (type -> BOOL .)
+
+
+state 21
+
+    (48) type -> INTDEC .
+
+    NAME            reduce using rule 48 (type -> INTDEC .)
+
+
+state 22
+
+    (49) type -> FLOATDEC .
+
+    NAME            reduce using rule 49 (type -> FLOATDEC .)
+
+
+state 23
+
+    (50) type -> STRING .
+
+    NAME            reduce using rule 50 (type -> STRING .)
+
+
+state 24
+
+    (2) statement -> statement_print FINISH . statement
+    (2) statement -> . statement_print FINISH statement
+    (3) statement -> . statement_register FINISH statement
+    (4) statement -> . statement_condition statement
+    (5) statement -> . statement_for statement
+    (6) statement -> . statement_while statement
+    (7) statement -> . empty
+    (30) statement_print -> . PRINT expression
+    (31) statement_register -> . declare_register
+    (32) statement_register -> . declare_assign_register
+    (33) statement_register -> . assign_register
+    (37) statement_condition -> . if_condition elif_condition else_condition
+    (43) statement_for -> . FOR L_PAREN declare_assign_register FINISH expression FINISH assign_register R_PAREN L_KEY statement R_KEY
+    (44) statement_while -> . WHILE L_PAREN expression R_PAREN L_KEY statement R_KEY
+    (45) statement_while -> . DO L_KEY statement R_KEY WHILE L_PAREN expression R_PAREN FINISH
+    (46) empty -> .
+    (34) declare_register -> . type NAME
+    (35) declare_assign_register -> . type NAME ASSIGN expression
+    (36) assign_register -> . NAME ASSIGN expression
+    (38) if_condition -> . IF L_PAREN expression R_PAREN L_KEY statement R_KEY
+    (47) type -> . BOOL
+    (48) type -> . INTDEC
+    (49) type -> . FLOATDEC
+    (50) type -> . STRING
+
+    PRINT           shift and go to state 9
+    FOR             shift and go to state 14
+    WHILE           shift and go to state 15
+    DO              shift and go to state 16
+    $end            reduce using rule 46 (empty -> .)
+    R_KEY           reduce using rule 46 (empty -> .)
+    NAME            shift and go to state 18
+    IF              shift and go to state 19
+    BOOL            shift and go to state 20
+    INTDEC          shift and go to state 21
+    FLOATDEC        shift and go to state 22
+    STRING          shift and go to state 23
+
+    statement_print                shift and go to state 3
+    statement                      shift and go to state 48
+    statement_register             shift and go to state 4
+    statement_condition            shift and go to state 5
+    statement_for                  shift and go to state 6
+    statement_while                shift and go to state 7
+    empty                          shift and go to state 8
+    declare_register               shift and go to state 10
+    declare_assign_register        shift and go to state 11
+    assign_register                shift and go to state 12
+    if_condition                   shift and go to state 13
+    type                           shift and go to state 17
+
+state 25
+
+    (3) statement -> statement_register FINISH . statement
+    (2) statement -> . statement_print FINISH statement
+    (3) statement -> . statement_register FINISH statement
+    (4) statement -> . statement_condition statement
+    (5) statement -> . statement_for statement
+    (6) statement -> . statement_while statement
+    (7) statement -> . empty
+    (30) statement_print -> . PRINT expression
+    (31) statement_register -> . declare_register
+    (32) statement_register -> . declare_assign_register
+    (33) statement_register -> . assign_register
+    (37) statement_condition -> . if_condition elif_condition else_condition
+    (43) statement_for -> . FOR L_PAREN declare_assign_register FINISH expression FINISH assign_register R_PAREN L_KEY statement R_KEY
+    (44) statement_while -> . WHILE L_PAREN expression R_PAREN L_KEY statement R_KEY
+    (45) statement_while -> . DO L_KEY statement R_KEY WHILE L_PAREN expression R_PAREN FINISH
+    (46) empty -> .
+    (34) declare_register -> . type NAME
+    (35) declare_assign_register -> . type NAME ASSIGN expression
+    (36) assign_register -> . NAME ASSIGN expression
+    (38) if_condition -> . IF L_PAREN expression R_PAREN L_KEY statement R_KEY
+    (47) type -> . BOOL
+    (48) type -> . INTDEC
+    (49) type -> . FLOATDEC
+    (50) type -> . STRING
+
+    PRINT           shift and go to state 9
+    FOR             shift and go to state 14
+    WHILE           shift and go to state 15
+    DO              shift and go to state 16
+    $end            reduce using rule 46 (empty -> .)
+    R_KEY           reduce using rule 46 (empty -> .)
+    NAME            shift and go to state 18
+    IF              shift and go to state 19
+    BOOL            shift and go to state 20
+    INTDEC          shift and go to state 21
+    FLOATDEC        shift and go to state 22
+    STRING          shift and go to state 23
+
+    statement_register             shift and go to state 4
+    statement                      shift and go to state 49
+    statement_print                shift and go to state 3
+    statement_condition            shift and go to state 5
+    statement_for                  shift and go to state 6
+    statement_while                shift and go to state 7
+    empty                          shift and go to state 8
+    declare_register               shift and go to state 10
+    declare_assign_register        shift and go to state 11
+    assign_register                shift and go to state 12
+    if_condition                   shift and go to state 13
+    type                           shift and go to state 17
+
+state 26
+
+    (4) statement -> statement_condition statement .
+
+    $end            reduce using rule 4 (statement -> statement_condition statement .)
+    R_KEY           reduce using rule 4 (statement -> statement_condition statement .)
+
+
+state 27
+
+    (5) statement -> statement_for statement .
+
+    $end            reduce using rule 5 (statement -> statement_for statement .)
+    R_KEY           reduce using rule 5 (statement -> statement_for statement .)
+
+
+state 28
+
+    (6) statement -> statement_while statement .
+
+    $end            reduce using rule 6 (statement -> statement_while statement .)
+    R_KEY           reduce using rule 6 (statement -> statement_while statement .)
+
+
+state 29
+
+    (30) statement_print -> PRINT expression .
+    (9) expression -> expression . AND expression
+    (10) expression -> expression . OR expression
+    (11) expression -> expression . ADDITION expression
+    (12) expression -> expression . SUBTRACTION expression
+    (13) expression -> expression . MULTI expression
+    (14) expression -> expression . DIVISION expression
+    (15) expression -> expression . EXP expression
+    (16) expression -> expression . EQUALS expression
+    (17) expression -> expression . EQ_MORE expression
+    (18) expression -> expression . EQ_LESS expression
+    (19) expression -> expression . NOT_EQUALS expression
+    (20) expression -> expression . MORE expression
+    (21) expression -> expression . LESS expression
+
+    FINISH          reduce using rule 30 (statement_print -> PRINT expression .)
+    AND             shift and go to state 50
+    OR              shift and go to state 51
+    ADDITION        shift and go to state 52
+    SUBTRACTION     shift and go to state 53
+    MULTI           shift and go to state 54
+    DIVISION        shift and go to state 55
+    EXP             shift and go to state 56
+    EQUALS          shift and go to state 57
+    EQ_MORE         shift and go to state 58
+    EQ_LESS         shift and go to state 59
+    NOT_EQUALS      shift and go to state 60
+    MORE            shift and go to state 61
+    LESS            shift and go to state 62
+
+
+state 30
+
+    (8) expression -> NAME .
+
+    AND             reduce using rule 8 (expression -> NAME .)
+    OR              reduce using rule 8 (expression -> NAME .)
+    ADDITION        reduce using rule 8 (expression -> NAME .)
+    SUBTRACTION     reduce using rule 8 (expression -> NAME .)
+    MULTI           reduce using rule 8 (expression -> NAME .)
+    DIVISION        reduce using rule 8 (expression -> NAME .)
+    EXP             reduce using rule 8 (expression -> NAME .)
+    EQUALS          reduce using rule 8 (expression -> NAME .)
+    EQ_MORE         reduce using rule 8 (expression -> NAME .)
+    EQ_LESS         reduce using rule 8 (expression -> NAME .)
+    NOT_EQUALS      reduce using rule 8 (expression -> NAME .)
+    MORE            reduce using rule 8 (expression -> NAME .)
+    LESS            reduce using rule 8 (expression -> NAME .)
+    FINISH          reduce using rule 8 (expression -> NAME .)
+    R_PAREN         reduce using rule 8 (expression -> NAME .)
+
+
+state 31
+
+    (29) expression -> SUBTRACTION . expression
+    (8) expression -> . NAME
+    (9) expression -> . expression AND expression
+    (10) expression -> . expression OR expression
+    (11) expression -> . expression ADDITION expression
+    (12) expression -> . expression SUBTRACTION expression
+    (13) expression -> . expression MULTI expression
+    (14) expression -> . expression DIVISION expression
+    (15) expression -> . expression EXP expression
+    (16) expression -> . expression EQUALS expression
+    (17) expression -> . expression EQ_MORE expression
+    (18) expression -> . expression EQ_LESS expression
+    (19) expression -> . expression NOT_EQUALS expression
+    (20) expression -> . expression MORE expression
+    (21) expression -> . expression LESS expression
+    (22) expression -> . FNUMBER
+    (23) expression -> . INUMBER
+    (24) expression -> . STRING_VAL
+    (25) expression -> . bool_val
+    (28) expression -> . L_PAREN expression R_PAREN
+    (29) expression -> . SUBTRACTION expression
+    (26) bool_val -> . TRUE
+    (27) bool_val -> . FALSE
+
+    NAME            shift and go to state 30
+    FNUMBER         shift and go to state 32
+    INUMBER         shift and go to state 33
+    STRING_VAL      shift and go to state 34
+    L_PAREN         shift and go to state 36
+    SUBTRACTION     shift and go to state 31
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 63
+    bool_val                       shift and go to state 35
+
+state 32
+
+    (22) expression -> FNUMBER .
+
+    AND             reduce using rule 22 (expression -> FNUMBER .)
+    OR              reduce using rule 22 (expression -> FNUMBER .)
+    ADDITION        reduce using rule 22 (expression -> FNUMBER .)
+    SUBTRACTION     reduce using rule 22 (expression -> FNUMBER .)
+    MULTI           reduce using rule 22 (expression -> FNUMBER .)
+    DIVISION        reduce using rule 22 (expression -> FNUMBER .)
+    EXP             reduce using rule 22 (expression -> FNUMBER .)
+    EQUALS          reduce using rule 22 (expression -> FNUMBER .)
+    EQ_MORE         reduce using rule 22 (expression -> FNUMBER .)
+    EQ_LESS         reduce using rule 22 (expression -> FNUMBER .)
+    NOT_EQUALS      reduce using rule 22 (expression -> FNUMBER .)
+    MORE            reduce using rule 22 (expression -> FNUMBER .)
+    LESS            reduce using rule 22 (expression -> FNUMBER .)
+    FINISH          reduce using rule 22 (expression -> FNUMBER .)
+    R_PAREN         reduce using rule 22 (expression -> FNUMBER .)
+
+
+state 33
+
+    (23) expression -> INUMBER .
+
+    AND             reduce using rule 23 (expression -> INUMBER .)
+    OR              reduce using rule 23 (expression -> INUMBER .)
+    ADDITION        reduce using rule 23 (expression -> INUMBER .)
+    SUBTRACTION     reduce using rule 23 (expression -> INUMBER .)
+    MULTI           reduce using rule 23 (expression -> INUMBER .)
+    DIVISION        reduce using rule 23 (expression -> INUMBER .)
+    EXP             reduce using rule 23 (expression -> INUMBER .)
+    EQUALS          reduce using rule 23 (expression -> INUMBER .)
+    EQ_MORE         reduce using rule 23 (expression -> INUMBER .)
+    EQ_LESS         reduce using rule 23 (expression -> INUMBER .)
+    NOT_EQUALS      reduce using rule 23 (expression -> INUMBER .)
+    MORE            reduce using rule 23 (expression -> INUMBER .)
+    LESS            reduce using rule 23 (expression -> INUMBER .)
+    FINISH          reduce using rule 23 (expression -> INUMBER .)
+    R_PAREN         reduce using rule 23 (expression -> INUMBER .)
+
+
+state 34
+
+    (24) expression -> STRING_VAL .
+
+    AND             reduce using rule 24 (expression -> STRING_VAL .)
+    OR              reduce using rule 24 (expression -> STRING_VAL .)
+    ADDITION        reduce using rule 24 (expression -> STRING_VAL .)
+    SUBTRACTION     reduce using rule 24 (expression -> STRING_VAL .)
+    MULTI           reduce using rule 24 (expression -> STRING_VAL .)
+    DIVISION        reduce using rule 24 (expression -> STRING_VAL .)
+    EXP             reduce using rule 24 (expression -> STRING_VAL .)
+    EQUALS          reduce using rule 24 (expression -> STRING_VAL .)
+    EQ_MORE         reduce using rule 24 (expression -> STRING_VAL .)
+    EQ_LESS         reduce using rule 24 (expression -> STRING_VAL .)
+    NOT_EQUALS      reduce using rule 24 (expression -> STRING_VAL .)
+    MORE            reduce using rule 24 (expression -> STRING_VAL .)
+    LESS            reduce using rule 24 (expression -> STRING_VAL .)
+    FINISH          reduce using rule 24 (expression -> STRING_VAL .)
+    R_PAREN         reduce using rule 24 (expression -> STRING_VAL .)
+
+
+state 35
+
+    (25) expression -> bool_val .
+
+    AND             reduce using rule 25 (expression -> bool_val .)
+    OR              reduce using rule 25 (expression -> bool_val .)
+    ADDITION        reduce using rule 25 (expression -> bool_val .)
+    SUBTRACTION     reduce using rule 25 (expression -> bool_val .)
+    MULTI           reduce using rule 25 (expression -> bool_val .)
+    DIVISION        reduce using rule 25 (expression -> bool_val .)
+    EXP             reduce using rule 25 (expression -> bool_val .)
+    EQUALS          reduce using rule 25 (expression -> bool_val .)
+    EQ_MORE         reduce using rule 25 (expression -> bool_val .)
+    EQ_LESS         reduce using rule 25 (expression -> bool_val .)
+    NOT_EQUALS      reduce using rule 25 (expression -> bool_val .)
+    MORE            reduce using rule 25 (expression -> bool_val .)
+    LESS            reduce using rule 25 (expression -> bool_val .)
+    FINISH          reduce using rule 25 (expression -> bool_val .)
+    R_PAREN         reduce using rule 25 (expression -> bool_val .)
+
+
+state 36
+
+    (28) expression -> L_PAREN . expression R_PAREN
+    (8) expression -> . NAME
+    (9) expression -> . expression AND expression
+    (10) expression -> . expression OR expression
+    (11) expression -> . expression ADDITION expression
+    (12) expression -> . expression SUBTRACTION expression
+    (13) expression -> . expression MULTI expression
+    (14) expression -> . expression DIVISION expression
+    (15) expression -> . expression EXP expression
+    (16) expression -> . expression EQUALS expression
+    (17) expression -> . expression EQ_MORE expression
+    (18) expression -> . expression EQ_LESS expression
+    (19) expression -> . expression NOT_EQUALS expression
+    (20) expression -> . expression MORE expression
+    (21) expression -> . expression LESS expression
+    (22) expression -> . FNUMBER
+    (23) expression -> . INUMBER
+    (24) expression -> . STRING_VAL
+    (25) expression -> . bool_val
+    (28) expression -> . L_PAREN expression R_PAREN
+    (29) expression -> . SUBTRACTION expression
+    (26) bool_val -> . TRUE
+    (27) bool_val -> . FALSE
+
+    NAME            shift and go to state 30
+    FNUMBER         shift and go to state 32
+    INUMBER         shift and go to state 33
+    STRING_VAL      shift and go to state 34
+    L_PAREN         shift and go to state 36
+    SUBTRACTION     shift and go to state 31
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 64
+    bool_val                       shift and go to state 35
+
+state 37
+
+    (26) bool_val -> TRUE .
+
+    AND             reduce using rule 26 (bool_val -> TRUE .)
+    OR              reduce using rule 26 (bool_val -> TRUE .)
+    ADDITION        reduce using rule 26 (bool_val -> TRUE .)
+    SUBTRACTION     reduce using rule 26 (bool_val -> TRUE .)
+    MULTI           reduce using rule 26 (bool_val -> TRUE .)
+    DIVISION        reduce using rule 26 (bool_val -> TRUE .)
+    EXP             reduce using rule 26 (bool_val -> TRUE .)
+    EQUALS          reduce using rule 26 (bool_val -> TRUE .)
+    EQ_MORE         reduce using rule 26 (bool_val -> TRUE .)
+    EQ_LESS         reduce using rule 26 (bool_val -> TRUE .)
+    NOT_EQUALS      reduce using rule 26 (bool_val -> TRUE .)
+    MORE            reduce using rule 26 (bool_val -> TRUE .)
+    LESS            reduce using rule 26 (bool_val -> TRUE .)
+    FINISH          reduce using rule 26 (bool_val -> TRUE .)
+    R_PAREN         reduce using rule 26 (bool_val -> TRUE .)
+
+
+state 38
+
+    (27) bool_val -> FALSE .
+
+    AND             reduce using rule 27 (bool_val -> FALSE .)
+    OR              reduce using rule 27 (bool_val -> FALSE .)
+    ADDITION        reduce using rule 27 (bool_val -> FALSE .)
+    SUBTRACTION     reduce using rule 27 (bool_val -> FALSE .)
+    MULTI           reduce using rule 27 (bool_val -> FALSE .)
+    DIVISION        reduce using rule 27 (bool_val -> FALSE .)
+    EXP             reduce using rule 27 (bool_val -> FALSE .)
+    EQUALS          reduce using rule 27 (bool_val -> FALSE .)
+    EQ_MORE         reduce using rule 27 (bool_val -> FALSE .)
+    EQ_LESS         reduce using rule 27 (bool_val -> FALSE .)
+    NOT_EQUALS      reduce using rule 27 (bool_val -> FALSE .)
+    MORE            reduce using rule 27 (bool_val -> FALSE .)
+    LESS            reduce using rule 27 (bool_val -> FALSE .)
+    FINISH          reduce using rule 27 (bool_val -> FALSE .)
+    R_PAREN         reduce using rule 27 (bool_val -> FALSE .)
+
+
+state 39
+
+    (37) statement_condition -> if_condition elif_condition . else_condition
+    (41) else_condition -> . ELSE L_KEY statement R_KEY
+    (42) else_condition -> . empty
+    (46) empty -> .
+
+    ELSE            shift and go to state 66
+    PRINT           reduce using rule 46 (empty -> .)
+    FOR             reduce using rule 46 (empty -> .)
+    WHILE           reduce using rule 46 (empty -> .)
+    DO              reduce using rule 46 (empty -> .)
+    NAME            reduce using rule 46 (empty -> .)
+    IF              reduce using rule 46 (empty -> .)
+    BOOL            reduce using rule 46 (empty -> .)
+    INTDEC          reduce using rule 46 (empty -> .)
+    FLOATDEC        reduce using rule 46 (empty -> .)
+    STRING          reduce using rule 46 (empty -> .)
+    $end            reduce using rule 46 (empty -> .)
+    R_KEY           reduce using rule 46 (empty -> .)
+
+    else_condition                 shift and go to state 65
+    empty                          shift and go to state 67
+
+state 40
+
+    (39) elif_condition -> ELIF . L_PAREN expression R_PAREN L_KEY statement R_KEY elif_condition
+
+    L_PAREN         shift and go to state 68
+
+
+state 41
+
+    (40) elif_condition -> empty .
+
+    ELSE            reduce using rule 40 (elif_condition -> empty .)
+    PRINT           reduce using rule 40 (elif_condition -> empty .)
+    FOR             reduce using rule 40 (elif_condition -> empty .)
+    WHILE           reduce using rule 40 (elif_condition -> empty .)
+    DO              reduce using rule 40 (elif_condition -> empty .)
+    NAME            reduce using rule 40 (elif_condition -> empty .)
+    IF              reduce using rule 40 (elif_condition -> empty .)
+    BOOL            reduce using rule 40 (elif_condition -> empty .)
+    INTDEC          reduce using rule 40 (elif_condition -> empty .)
+    FLOATDEC        reduce using rule 40 (elif_condition -> empty .)
+    STRING          reduce using rule 40 (elif_condition -> empty .)
+    $end            reduce using rule 40 (elif_condition -> empty .)
+    R_KEY           reduce using rule 40 (elif_condition -> empty .)
+
+
+state 42
+
+    (43) statement_for -> FOR L_PAREN . declare_assign_register FINISH expression FINISH assign_register R_PAREN L_KEY statement R_KEY
+    (35) declare_assign_register -> . type NAME ASSIGN expression
+    (47) type -> . BOOL
+    (48) type -> . INTDEC
+    (49) type -> . FLOATDEC
+    (50) type -> . STRING
+
+    BOOL            shift and go to state 20
+    INTDEC          shift and go to state 21
+    FLOATDEC        shift and go to state 22
+    STRING          shift and go to state 23
+
+    declare_assign_register        shift and go to state 69
+    type                           shift and go to state 70
+
+state 43
+
+    (44) statement_while -> WHILE L_PAREN . expression R_PAREN L_KEY statement R_KEY
+    (8) expression -> . NAME
+    (9) expression -> . expression AND expression
+    (10) expression -> . expression OR expression
+    (11) expression -> . expression ADDITION expression
+    (12) expression -> . expression SUBTRACTION expression
+    (13) expression -> . expression MULTI expression
+    (14) expression -> . expression DIVISION expression
+    (15) expression -> . expression EXP expression
+    (16) expression -> . expression EQUALS expression
+    (17) expression -> . expression EQ_MORE expression
+    (18) expression -> . expression EQ_LESS expression
+    (19) expression -> . expression NOT_EQUALS expression
+    (20) expression -> . expression MORE expression
+    (21) expression -> . expression LESS expression
+    (22) expression -> . FNUMBER
+    (23) expression -> . INUMBER
+    (24) expression -> . STRING_VAL
+    (25) expression -> . bool_val
+    (28) expression -> . L_PAREN expression R_PAREN
+    (29) expression -> . SUBTRACTION expression
+    (26) bool_val -> . TRUE
+    (27) bool_val -> . FALSE
+
+    NAME            shift and go to state 30
+    FNUMBER         shift and go to state 32
+    INUMBER         shift and go to state 33
+    STRING_VAL      shift and go to state 34
+    L_PAREN         shift and go to state 36
+    SUBTRACTION     shift and go to state 31
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 71
+    bool_val                       shift and go to state 35
+
+state 44
+
+    (45) statement_while -> DO L_KEY . statement R_KEY WHILE L_PAREN expression R_PAREN FINISH
+    (2) statement -> . statement_print FINISH statement
+    (3) statement -> . statement_register FINISH statement
+    (4) statement -> . statement_condition statement
+    (5) statement -> . statement_for statement
+    (6) statement -> . statement_while statement
+    (7) statement -> . empty
+    (30) statement_print -> . PRINT expression
+    (31) statement_register -> . declare_register
+    (32) statement_register -> . declare_assign_register
+    (33) statement_register -> . assign_register
+    (37) statement_condition -> . if_condition elif_condition else_condition
+    (43) statement_for -> . FOR L_PAREN declare_assign_register FINISH expression FINISH assign_register R_PAREN L_KEY statement R_KEY
+    (44) statement_while -> . WHILE L_PAREN expression R_PAREN L_KEY statement R_KEY
+    (45) statement_while -> . DO L_KEY statement R_KEY WHILE L_PAREN expression R_PAREN FINISH
+    (46) empty -> .
+    (34) declare_register -> . type NAME
+    (35) declare_assign_register -> . type NAME ASSIGN expression
+    (36) assign_register -> . NAME ASSIGN expression
+    (38) if_condition -> . IF L_PAREN expression R_PAREN L_KEY statement R_KEY
+    (47) type -> . BOOL
+    (48) type -> . INTDEC
+    (49) type -> . FLOATDEC
+    (50) type -> . STRING
+
+    PRINT           shift and go to state 9
+    FOR             shift and go to state 14
+    WHILE           shift and go to state 15
+    DO              shift and go to state 16
+    R_KEY           reduce using rule 46 (empty -> .)
+    NAME            shift and go to state 18
+    IF              shift and go to state 19
+    BOOL            shift and go to state 20
+    INTDEC          shift and go to state 21
+    FLOATDEC        shift and go to state 22
+    STRING          shift and go to state 23
+
+    statement                      shift and go to state 72
+    statement_print                shift and go to state 3
+    statement_register             shift and go to state 4
+    statement_condition            shift and go to state 5
+    statement_for                  shift and go to state 6
+    statement_while                shift and go to state 7
+    empty                          shift and go to state 8
+    declare_register               shift and go to state 10
+    declare_assign_register        shift and go to state 11
+    assign_register                shift and go to state 12
+    if_condition                   shift and go to state 13
+    type                           shift and go to state 17
+
+state 45
+
+    (34) declare_register -> type NAME .
+    (35) declare_assign_register -> type NAME . ASSIGN expression
+
+    FINISH          reduce using rule 34 (declare_register -> type NAME .)
+    ASSIGN          shift and go to state 73
+
+
+state 46
+
+    (36) assign_register -> NAME ASSIGN . expression
+    (8) expression -> . NAME
+    (9) expression -> . expression AND expression
+    (10) expression -> . expression OR expression
+    (11) expression -> . expression ADDITION expression
+    (12) expression -> . expression SUBTRACTION expression
+    (13) expression -> . expression MULTI expression
+    (14) expression -> . expression DIVISION expression
+    (15) expression -> . expression EXP expression
+    (16) expression -> . expression EQUALS expression
+    (17) expression -> . expression EQ_MORE expression
+    (18) expression -> . expression EQ_LESS expression
+    (19) expression -> . expression NOT_EQUALS expression
+    (20) expression -> . expression MORE expression
+    (21) expression -> . expression LESS expression
+    (22) expression -> . FNUMBER
+    (23) expression -> . INUMBER
+    (24) expression -> . STRING_VAL
+    (25) expression -> . bool_val
+    (28) expression -> . L_PAREN expression R_PAREN
+    (29) expression -> . SUBTRACTION expression
+    (26) bool_val -> . TRUE
+    (27) bool_val -> . FALSE
+
+    NAME            shift and go to state 30
+    FNUMBER         shift and go to state 32
+    INUMBER         shift and go to state 33
+    STRING_VAL      shift and go to state 34
+    L_PAREN         shift and go to state 36
+    SUBTRACTION     shift and go to state 31
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 74
+    bool_val                       shift and go to state 35
+
+state 47
+
+    (38) if_condition -> IF L_PAREN . expression R_PAREN L_KEY statement R_KEY
+    (8) expression -> . NAME
+    (9) expression -> . expression AND expression
+    (10) expression -> . expression OR expression
+    (11) expression -> . expression ADDITION expression
+    (12) expression -> . expression SUBTRACTION expression
+    (13) expression -> . expression MULTI expression
+    (14) expression -> . expression DIVISION expression
+    (15) expression -> . expression EXP expression
+    (16) expression -> . expression EQUALS expression
+    (17) expression -> . expression EQ_MORE expression
+    (18) expression -> . expression EQ_LESS expression
+    (19) expression -> . expression NOT_EQUALS expression
+    (20) expression -> . expression MORE expression
+    (21) expression -> . expression LESS expression
+    (22) expression -> . FNUMBER
+    (23) expression -> . INUMBER
+    (24) expression -> . STRING_VAL
+    (25) expression -> . bool_val
+    (28) expression -> . L_PAREN expression R_PAREN
+    (29) expression -> . SUBTRACTION expression
+    (26) bool_val -> . TRUE
+    (27) bool_val -> . FALSE
+
+    NAME            shift and go to state 30
+    FNUMBER         shift and go to state 32
+    INUMBER         shift and go to state 33
+    STRING_VAL      shift and go to state 34
+    L_PAREN         shift and go to state 36
+    SUBTRACTION     shift and go to state 31
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 75
+    bool_val                       shift and go to state 35
+
+state 48
+
+    (2) statement -> statement_print FINISH statement .
+
+    $end            reduce using rule 2 (statement -> statement_print FINISH statement .)
+    R_KEY           reduce using rule 2 (statement -> statement_print FINISH statement .)
+
+
+state 49
+
+    (3) statement -> statement_register FINISH statement .
+
+    $end            reduce using rule 3 (statement -> statement_register FINISH statement .)
+    R_KEY           reduce using rule 3 (statement -> statement_register FINISH statement .)
+
+
+state 50
+
+    (9) expression -> expression AND . expression
+    (8) expression -> . NAME
+    (9) expression -> . expression AND expression
+    (10) expression -> . expression OR expression
+    (11) expression -> . expression ADDITION expression
+    (12) expression -> . expression SUBTRACTION expression
+    (13) expression -> . expression MULTI expression
+    (14) expression -> . expression DIVISION expression
+    (15) expression -> . expression EXP expression
+    (16) expression -> . expression EQUALS expression
+    (17) expression -> . expression EQ_MORE expression
+    (18) expression -> . expression EQ_LESS expression
+    (19) expression -> . expression NOT_EQUALS expression
+    (20) expression -> . expression MORE expression
+    (21) expression -> . expression LESS expression
+    (22) expression -> . FNUMBER
+    (23) expression -> . INUMBER
+    (24) expression -> . STRING_VAL
+    (25) expression -> . bool_val
+    (28) expression -> . L_PAREN expression R_PAREN
+    (29) expression -> . SUBTRACTION expression
+    (26) bool_val -> . TRUE
+    (27) bool_val -> . FALSE
+
+    NAME            shift and go to state 30
+    FNUMBER         shift and go to state 32
+    INUMBER         shift and go to state 33
+    STRING_VAL      shift and go to state 34
+    L_PAREN         shift and go to state 36
+    SUBTRACTION     shift and go to state 31
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 76
+    bool_val                       shift and go to state 35
+
+state 51
+
+    (10) expression -> expression OR . expression
+    (8) expression -> . NAME
+    (9) expression -> . expression AND expression
+    (10) expression -> . expression OR expression
+    (11) expression -> . expression ADDITION expression
+    (12) expression -> . expression SUBTRACTION expression
+    (13) expression -> . expression MULTI expression
+    (14) expression -> . expression DIVISION expression
+    (15) expression -> . expression EXP expression
+    (16) expression -> . expression EQUALS expression
+    (17) expression -> . expression EQ_MORE expression
+    (18) expression -> . expression EQ_LESS expression
+    (19) expression -> . expression NOT_EQUALS expression
+    (20) expression -> . expression MORE expression
+    (21) expression -> . expression LESS expression
+    (22) expression -> . FNUMBER
+    (23) expression -> . INUMBER
+    (24) expression -> . STRING_VAL
+    (25) expression -> . bool_val
+    (28) expression -> . L_PAREN expression R_PAREN
+    (29) expression -> . SUBTRACTION expression
+    (26) bool_val -> . TRUE
+    (27) bool_val -> . FALSE
+
+    NAME            shift and go to state 30
+    FNUMBER         shift and go to state 32
+    INUMBER         shift and go to state 33
+    STRING_VAL      shift and go to state 34
+    L_PAREN         shift and go to state 36
+    SUBTRACTION     shift and go to state 31
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 77
+    bool_val                       shift and go to state 35
+
+state 52
+
+    (11) expression -> expression ADDITION . expression
+    (8) expression -> . NAME
+    (9) expression -> . expression AND expression
+    (10) expression -> . expression OR expression
+    (11) expression -> . expression ADDITION expression
+    (12) expression -> . expression SUBTRACTION expression
+    (13) expression -> . expression MULTI expression
+    (14) expression -> . expression DIVISION expression
+    (15) expression -> . expression EXP expression
+    (16) expression -> . expression EQUALS expression
+    (17) expression -> . expression EQ_MORE expression
+    (18) expression -> . expression EQ_LESS expression
+    (19) expression -> . expression NOT_EQUALS expression
+    (20) expression -> . expression MORE expression
+    (21) expression -> . expression LESS expression
+    (22) expression -> . FNUMBER
+    (23) expression -> . INUMBER
+    (24) expression -> . STRING_VAL
+    (25) expression -> . bool_val
+    (28) expression -> . L_PAREN expression R_PAREN
+    (29) expression -> . SUBTRACTION expression
+    (26) bool_val -> . TRUE
+    (27) bool_val -> . FALSE
+
+    NAME            shift and go to state 30
+    FNUMBER         shift and go to state 32
+    INUMBER         shift and go to state 33
+    STRING_VAL      shift and go to state 34
+    L_PAREN         shift and go to state 36
+    SUBTRACTION     shift and go to state 31
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 78
+    bool_val                       shift and go to state 35
+
+state 53
+
+    (12) expression -> expression SUBTRACTION . expression
+    (8) expression -> . NAME
+    (9) expression -> . expression AND expression
+    (10) expression -> . expression OR expression
+    (11) expression -> . expression ADDITION expression
+    (12) expression -> . expression SUBTRACTION expression
+    (13) expression -> . expression MULTI expression
+    (14) expression -> . expression DIVISION expression
+    (15) expression -> . expression EXP expression
+    (16) expression -> . expression EQUALS expression
+    (17) expression -> . expression EQ_MORE expression
+    (18) expression -> . expression EQ_LESS expression
+    (19) expression -> . expression NOT_EQUALS expression
+    (20) expression -> . expression MORE expression
+    (21) expression -> . expression LESS expression
+    (22) expression -> . FNUMBER
+    (23) expression -> . INUMBER
+    (24) expression -> . STRING_VAL
+    (25) expression -> . bool_val
+    (28) expression -> . L_PAREN expression R_PAREN
+    (29) expression -> . SUBTRACTION expression
+    (26) bool_val -> . TRUE
+    (27) bool_val -> . FALSE
+
+    NAME            shift and go to state 30
+    FNUMBER         shift and go to state 32
+    INUMBER         shift and go to state 33
+    STRING_VAL      shift and go to state 34
+    L_PAREN         shift and go to state 36
+    SUBTRACTION     shift and go to state 31
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 79
+    bool_val                       shift and go to state 35
+
+state 54
+
+    (13) expression -> expression MULTI . expression
+    (8) expression -> . NAME
+    (9) expression -> . expression AND expression
+    (10) expression -> . expression OR expression
+    (11) expression -> . expression ADDITION expression
+    (12) expression -> . expression SUBTRACTION expression
+    (13) expression -> . expression MULTI expression
+    (14) expression -> . expression DIVISION expression
+    (15) expression -> . expression EXP expression
+    (16) expression -> . expression EQUALS expression
+    (17) expression -> . expression EQ_MORE expression
+    (18) expression -> . expression EQ_LESS expression
+    (19) expression -> . expression NOT_EQUALS expression
+    (20) expression -> . expression MORE expression
+    (21) expression -> . expression LESS expression
+    (22) expression -> . FNUMBER
+    (23) expression -> . INUMBER
+    (24) expression -> . STRING_VAL
+    (25) expression -> . bool_val
+    (28) expression -> . L_PAREN expression R_PAREN
+    (29) expression -> . SUBTRACTION expression
+    (26) bool_val -> . TRUE
+    (27) bool_val -> . FALSE
+
+    NAME            shift and go to state 30
+    FNUMBER         shift and go to state 32
+    INUMBER         shift and go to state 33
+    STRING_VAL      shift and go to state 34
+    L_PAREN         shift and go to state 36
+    SUBTRACTION     shift and go to state 31
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 80
+    bool_val                       shift and go to state 35
+
+state 55
+
+    (14) expression -> expression DIVISION . expression
+    (8) expression -> . NAME
+    (9) expression -> . expression AND expression
+    (10) expression -> . expression OR expression
+    (11) expression -> . expression ADDITION expression
+    (12) expression -> . expression SUBTRACTION expression
+    (13) expression -> . expression MULTI expression
+    (14) expression -> . expression DIVISION expression
+    (15) expression -> . expression EXP expression
+    (16) expression -> . expression EQUALS expression
+    (17) expression -> . expression EQ_MORE expression
+    (18) expression -> . expression EQ_LESS expression
+    (19) expression -> . expression NOT_EQUALS expression
+    (20) expression -> . expression MORE expression
+    (21) expression -> . expression LESS expression
+    (22) expression -> . FNUMBER
+    (23) expression -> . INUMBER
+    (24) expression -> . STRING_VAL
+    (25) expression -> . bool_val
+    (28) expression -> . L_PAREN expression R_PAREN
+    (29) expression -> . SUBTRACTION expression
+    (26) bool_val -> . TRUE
+    (27) bool_val -> . FALSE
+
+    NAME            shift and go to state 30
+    FNUMBER         shift and go to state 32
+    INUMBER         shift and go to state 33
+    STRING_VAL      shift and go to state 34
+    L_PAREN         shift and go to state 36
+    SUBTRACTION     shift and go to state 31
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 81
+    bool_val                       shift and go to state 35
+
+state 56
+
+    (15) expression -> expression EXP . expression
+    (8) expression -> . NAME
+    (9) expression -> . expression AND expression
+    (10) expression -> . expression OR expression
+    (11) expression -> . expression ADDITION expression
+    (12) expression -> . expression SUBTRACTION expression
+    (13) expression -> . expression MULTI expression
+    (14) expression -> . expression DIVISION expression
+    (15) expression -> . expression EXP expression
+    (16) expression -> . expression EQUALS expression
+    (17) expression -> . expression EQ_MORE expression
+    (18) expression -> . expression EQ_LESS expression
+    (19) expression -> . expression NOT_EQUALS expression
+    (20) expression -> . expression MORE expression
+    (21) expression -> . expression LESS expression
+    (22) expression -> . FNUMBER
+    (23) expression -> . INUMBER
+    (24) expression -> . STRING_VAL
+    (25) expression -> . bool_val
+    (28) expression -> . L_PAREN expression R_PAREN
+    (29) expression -> . SUBTRACTION expression
+    (26) bool_val -> . TRUE
+    (27) bool_val -> . FALSE
+
+    NAME            shift and go to state 30
+    FNUMBER         shift and go to state 32
+    INUMBER         shift and go to state 33
+    STRING_VAL      shift and go to state 34
+    L_PAREN         shift and go to state 36
+    SUBTRACTION     shift and go to state 31
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 82
+    bool_val                       shift and go to state 35
+
+state 57
+
+    (16) expression -> expression EQUALS . expression
+    (8) expression -> . NAME
+    (9) expression -> . expression AND expression
+    (10) expression -> . expression OR expression
+    (11) expression -> . expression ADDITION expression
+    (12) expression -> . expression SUBTRACTION expression
+    (13) expression -> . expression MULTI expression
+    (14) expression -> . expression DIVISION expression
+    (15) expression -> . expression EXP expression
+    (16) expression -> . expression EQUALS expression
+    (17) expression -> . expression EQ_MORE expression
+    (18) expression -> . expression EQ_LESS expression
+    (19) expression -> . expression NOT_EQUALS expression
+    (20) expression -> . expression MORE expression
+    (21) expression -> . expression LESS expression
+    (22) expression -> . FNUMBER
+    (23) expression -> . INUMBER
+    (24) expression -> . STRING_VAL
+    (25) expression -> . bool_val
+    (28) expression -> . L_PAREN expression R_PAREN
+    (29) expression -> . SUBTRACTION expression
+    (26) bool_val -> . TRUE
+    (27) bool_val -> . FALSE
+
+    NAME            shift and go to state 30
+    FNUMBER         shift and go to state 32
+    INUMBER         shift and go to state 33
+    STRING_VAL      shift and go to state 34
+    L_PAREN         shift and go to state 36
+    SUBTRACTION     shift and go to state 31
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 83
+    bool_val                       shift and go to state 35
+
+state 58
+
+    (17) expression -> expression EQ_MORE . expression
+    (8) expression -> . NAME
+    (9) expression -> . expression AND expression
+    (10) expression -> . expression OR expression
+    (11) expression -> . expression ADDITION expression
+    (12) expression -> . expression SUBTRACTION expression
+    (13) expression -> . expression MULTI expression
+    (14) expression -> . expression DIVISION expression
+    (15) expression -> . expression EXP expression
+    (16) expression -> . expression EQUALS expression
+    (17) expression -> . expression EQ_MORE expression
+    (18) expression -> . expression EQ_LESS expression
+    (19) expression -> . expression NOT_EQUALS expression
+    (20) expression -> . expression MORE expression
+    (21) expression -> . expression LESS expression
+    (22) expression -> . FNUMBER
+    (23) expression -> . INUMBER
+    (24) expression -> . STRING_VAL
+    (25) expression -> . bool_val
+    (28) expression -> . L_PAREN expression R_PAREN
+    (29) expression -> . SUBTRACTION expression
+    (26) bool_val -> . TRUE
+    (27) bool_val -> . FALSE
+
+    NAME            shift and go to state 30
+    FNUMBER         shift and go to state 32
+    INUMBER         shift and go to state 33
+    STRING_VAL      shift and go to state 34
+    L_PAREN         shift and go to state 36
+    SUBTRACTION     shift and go to state 31
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 84
+    bool_val                       shift and go to state 35
+
+state 59
+
+    (18) expression -> expression EQ_LESS . expression
+    (8) expression -> . NAME
+    (9) expression -> . expression AND expression
+    (10) expression -> . expression OR expression
+    (11) expression -> . expression ADDITION expression
+    (12) expression -> . expression SUBTRACTION expression
+    (13) expression -> . expression MULTI expression
+    (14) expression -> . expression DIVISION expression
+    (15) expression -> . expression EXP expression
+    (16) expression -> . expression EQUALS expression
+    (17) expression -> . expression EQ_MORE expression
+    (18) expression -> . expression EQ_LESS expression
+    (19) expression -> . expression NOT_EQUALS expression
+    (20) expression -> . expression MORE expression
+    (21) expression -> . expression LESS expression
+    (22) expression -> . FNUMBER
+    (23) expression -> . INUMBER
+    (24) expression -> . STRING_VAL
+    (25) expression -> . bool_val
+    (28) expression -> . L_PAREN expression R_PAREN
+    (29) expression -> . SUBTRACTION expression
+    (26) bool_val -> . TRUE
+    (27) bool_val -> . FALSE
+
+    NAME            shift and go to state 30
+    FNUMBER         shift and go to state 32
+    INUMBER         shift and go to state 33
+    STRING_VAL      shift and go to state 34
+    L_PAREN         shift and go to state 36
+    SUBTRACTION     shift and go to state 31
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 85
+    bool_val                       shift and go to state 35
+
+state 60
+
+    (19) expression -> expression NOT_EQUALS . expression
+    (8) expression -> . NAME
+    (9) expression -> . expression AND expression
+    (10) expression -> . expression OR expression
+    (11) expression -> . expression ADDITION expression
+    (12) expression -> . expression SUBTRACTION expression
+    (13) expression -> . expression MULTI expression
+    (14) expression -> . expression DIVISION expression
+    (15) expression -> . expression EXP expression
+    (16) expression -> . expression EQUALS expression
+    (17) expression -> . expression EQ_MORE expression
+    (18) expression -> . expression EQ_LESS expression
+    (19) expression -> . expression NOT_EQUALS expression
+    (20) expression -> . expression MORE expression
+    (21) expression -> . expression LESS expression
+    (22) expression -> . FNUMBER
+    (23) expression -> . INUMBER
+    (24) expression -> . STRING_VAL
+    (25) expression -> . bool_val
+    (28) expression -> . L_PAREN expression R_PAREN
+    (29) expression -> . SUBTRACTION expression
+    (26) bool_val -> . TRUE
+    (27) bool_val -> . FALSE
+
+    NAME            shift and go to state 30
+    FNUMBER         shift and go to state 32
+    INUMBER         shift and go to state 33
+    STRING_VAL      shift and go to state 34
+    L_PAREN         shift and go to state 36
+    SUBTRACTION     shift and go to state 31
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 86
+    bool_val                       shift and go to state 35
+
+state 61
+
+    (20) expression -> expression MORE . expression
+    (8) expression -> . NAME
+    (9) expression -> . expression AND expression
+    (10) expression -> . expression OR expression
+    (11) expression -> . expression ADDITION expression
+    (12) expression -> . expression SUBTRACTION expression
+    (13) expression -> . expression MULTI expression
+    (14) expression -> . expression DIVISION expression
+    (15) expression -> . expression EXP expression
+    (16) expression -> . expression EQUALS expression
+    (17) expression -> . expression EQ_MORE expression
+    (18) expression -> . expression EQ_LESS expression
+    (19) expression -> . expression NOT_EQUALS expression
+    (20) expression -> . expression MORE expression
+    (21) expression -> . expression LESS expression
+    (22) expression -> . FNUMBER
+    (23) expression -> . INUMBER
+    (24) expression -> . STRING_VAL
+    (25) expression -> . bool_val
+    (28) expression -> . L_PAREN expression R_PAREN
+    (29) expression -> . SUBTRACTION expression
+    (26) bool_val -> . TRUE
+    (27) bool_val -> . FALSE
+
+    NAME            shift and go to state 30
+    FNUMBER         shift and go to state 32
+    INUMBER         shift and go to state 33
+    STRING_VAL      shift and go to state 34
+    L_PAREN         shift and go to state 36
+    SUBTRACTION     shift and go to state 31
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 87
+    bool_val                       shift and go to state 35
+
+state 62
+
+    (21) expression -> expression LESS . expression
+    (8) expression -> . NAME
+    (9) expression -> . expression AND expression
+    (10) expression -> . expression OR expression
+    (11) expression -> . expression ADDITION expression
+    (12) expression -> . expression SUBTRACTION expression
+    (13) expression -> . expression MULTI expression
+    (14) expression -> . expression DIVISION expression
+    (15) expression -> . expression EXP expression
+    (16) expression -> . expression EQUALS expression
+    (17) expression -> . expression EQ_MORE expression
+    (18) expression -> . expression EQ_LESS expression
+    (19) expression -> . expression NOT_EQUALS expression
+    (20) expression -> . expression MORE expression
+    (21) expression -> . expression LESS expression
+    (22) expression -> . FNUMBER
+    (23) expression -> . INUMBER
+    (24) expression -> . STRING_VAL
+    (25) expression -> . bool_val
+    (28) expression -> . L_PAREN expression R_PAREN
+    (29) expression -> . SUBTRACTION expression
+    (26) bool_val -> . TRUE
+    (27) bool_val -> . FALSE
+
+    NAME            shift and go to state 30
+    FNUMBER         shift and go to state 32
+    INUMBER         shift and go to state 33
+    STRING_VAL      shift and go to state 34
+    L_PAREN         shift and go to state 36
+    SUBTRACTION     shift and go to state 31
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 88
+    bool_val                       shift and go to state 35
+
+state 63
+
+    (29) expression -> SUBTRACTION expression .
+    (9) expression -> expression . AND expression
+    (10) expression -> expression . OR expression
+    (11) expression -> expression . ADDITION expression
+    (12) expression -> expression . SUBTRACTION expression
+    (13) expression -> expression . MULTI expression
+    (14) expression -> expression . DIVISION expression
+    (15) expression -> expression . EXP expression
+    (16) expression -> expression . EQUALS expression
+    (17) expression -> expression . EQ_MORE expression
+    (18) expression -> expression . EQ_LESS expression
+    (19) expression -> expression . NOT_EQUALS expression
+    (20) expression -> expression . MORE expression
+    (21) expression -> expression . LESS expression
+
+    AND             reduce using rule 29 (expression -> SUBTRACTION expression .)
+    OR              reduce using rule 29 (expression -> SUBTRACTION expression .)
+    ADDITION        reduce using rule 29 (expression -> SUBTRACTION expression .)
+    SUBTRACTION     reduce using rule 29 (expression -> SUBTRACTION expression .)
+    MULTI           reduce using rule 29 (expression -> SUBTRACTION expression .)
+    DIVISION        reduce using rule 29 (expression -> SUBTRACTION expression .)
+    EXP             reduce using rule 29 (expression -> SUBTRACTION expression .)
+    EQUALS          reduce using rule 29 (expression -> SUBTRACTION expression .)
+    EQ_MORE         reduce using rule 29 (expression -> SUBTRACTION expression .)
+    EQ_LESS         reduce using rule 29 (expression -> SUBTRACTION expression .)
+    NOT_EQUALS      reduce using rule 29 (expression -> SUBTRACTION expression .)
+    MORE            reduce using rule 29 (expression -> SUBTRACTION expression .)
+    LESS            reduce using rule 29 (expression -> SUBTRACTION expression .)
+    FINISH          reduce using rule 29 (expression -> SUBTRACTION expression .)
+    R_PAREN         reduce using rule 29 (expression -> SUBTRACTION expression .)
+
+  ! AND             [ shift and go to state 50 ]
+  ! OR              [ shift and go to state 51 ]
+  ! ADDITION        [ shift and go to state 52 ]
+  ! SUBTRACTION     [ shift and go to state 53 ]
+  ! MULTI           [ shift and go to state 54 ]
+  ! DIVISION        [ shift and go to state 55 ]
+  ! EXP             [ shift and go to state 56 ]
+  ! EQUALS          [ shift and go to state 57 ]
+  ! EQ_MORE         [ shift and go to state 58 ]
+  ! EQ_LESS         [ shift and go to state 59 ]
+  ! NOT_EQUALS      [ shift and go to state 60 ]
+  ! MORE            [ shift and go to state 61 ]
+  ! LESS            [ shift and go to state 62 ]
+
+
+state 64
+
+    (28) expression -> L_PAREN expression . R_PAREN
+    (9) expression -> expression . AND expression
+    (10) expression -> expression . OR expression
+    (11) expression -> expression . ADDITION expression
+    (12) expression -> expression . SUBTRACTION expression
+    (13) expression -> expression . MULTI expression
+    (14) expression -> expression . DIVISION expression
+    (15) expression -> expression . EXP expression
+    (16) expression -> expression . EQUALS expression
+    (17) expression -> expression . EQ_MORE expression
+    (18) expression -> expression . EQ_LESS expression
+    (19) expression -> expression . NOT_EQUALS expression
+    (20) expression -> expression . MORE expression
+    (21) expression -> expression . LESS expression
+
+    R_PAREN         shift and go to state 89
+    AND             shift and go to state 50
+    OR              shift and go to state 51
+    ADDITION        shift and go to state 52
+    SUBTRACTION     shift and go to state 53
+    MULTI           shift and go to state 54
+    DIVISION        shift and go to state 55
+    EXP             shift and go to state 56
+    EQUALS          shift and go to state 57
+    EQ_MORE         shift and go to state 58
+    EQ_LESS         shift and go to state 59
+    NOT_EQUALS      shift and go to state 60
+    MORE            shift and go to state 61
+    LESS            shift and go to state 62
+
+
+state 65
+
+    (37) statement_condition -> if_condition elif_condition else_condition .
+
+    PRINT           reduce using rule 37 (statement_condition -> if_condition elif_condition else_condition .)
+    FOR             reduce using rule 37 (statement_condition -> if_condition elif_condition else_condition .)
+    WHILE           reduce using rule 37 (statement_condition -> if_condition elif_condition else_condition .)
+    DO              reduce using rule 37 (statement_condition -> if_condition elif_condition else_condition .)
+    NAME            reduce using rule 37 (statement_condition -> if_condition elif_condition else_condition .)
+    IF              reduce using rule 37 (statement_condition -> if_condition elif_condition else_condition .)
+    BOOL            reduce using rule 37 (statement_condition -> if_condition elif_condition else_condition .)
+    INTDEC          reduce using rule 37 (statement_condition -> if_condition elif_condition else_condition .)
+    FLOATDEC        reduce using rule 37 (statement_condition -> if_condition elif_condition else_condition .)
+    STRING          reduce using rule 37 (statement_condition -> if_condition elif_condition else_condition .)
+    $end            reduce using rule 37 (statement_condition -> if_condition elif_condition else_condition .)
+    R_KEY           reduce using rule 37 (statement_condition -> if_condition elif_condition else_condition .)
+
+
+state 66
+
+    (41) else_condition -> ELSE . L_KEY statement R_KEY
+
+    L_KEY           shift and go to state 90
+
+
+state 67
+
+    (42) else_condition -> empty .
+
+    PRINT           reduce using rule 42 (else_condition -> empty .)
+    FOR             reduce using rule 42 (else_condition -> empty .)
+    WHILE           reduce using rule 42 (else_condition -> empty .)
+    DO              reduce using rule 42 (else_condition -> empty .)
+    NAME            reduce using rule 42 (else_condition -> empty .)
+    IF              reduce using rule 42 (else_condition -> empty .)
+    BOOL            reduce using rule 42 (else_condition -> empty .)
+    INTDEC          reduce using rule 42 (else_condition -> empty .)
+    FLOATDEC        reduce using rule 42 (else_condition -> empty .)
+    STRING          reduce using rule 42 (else_condition -> empty .)
+    $end            reduce using rule 42 (else_condition -> empty .)
+    R_KEY           reduce using rule 42 (else_condition -> empty .)
+
+
+state 68
+
+    (39) elif_condition -> ELIF L_PAREN . expression R_PAREN L_KEY statement R_KEY elif_condition
+    (8) expression -> . NAME
+    (9) expression -> . expression AND expression
+    (10) expression -> . expression OR expression
+    (11) expression -> . expression ADDITION expression
+    (12) expression -> . expression SUBTRACTION expression
+    (13) expression -> . expression MULTI expression
+    (14) expression -> . expression DIVISION expression
+    (15) expression -> . expression EXP expression
+    (16) expression -> . expression EQUALS expression
+    (17) expression -> . expression EQ_MORE expression
+    (18) expression -> . expression EQ_LESS expression
+    (19) expression -> . expression NOT_EQUALS expression
+    (20) expression -> . expression MORE expression
+    (21) expression -> . expression LESS expression
+    (22) expression -> . FNUMBER
+    (23) expression -> . INUMBER
+    (24) expression -> . STRING_VAL
+    (25) expression -> . bool_val
+    (28) expression -> . L_PAREN expression R_PAREN
+    (29) expression -> . SUBTRACTION expression
+    (26) bool_val -> . TRUE
+    (27) bool_val -> . FALSE
+
+    NAME            shift and go to state 30
+    FNUMBER         shift and go to state 32
+    INUMBER         shift and go to state 33
+    STRING_VAL      shift and go to state 34
+    L_PAREN         shift and go to state 36
+    SUBTRACTION     shift and go to state 31
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 91
+    bool_val                       shift and go to state 35
+
+state 69
+
+    (43) statement_for -> FOR L_PAREN declare_assign_register . FINISH expression FINISH assign_register R_PAREN L_KEY statement R_KEY
+
+    FINISH          shift and go to state 92
+
+
+state 70
+
+    (35) declare_assign_register -> type . NAME ASSIGN expression
+
+    NAME            shift and go to state 93
+
+
+state 71
+
+    (44) statement_while -> WHILE L_PAREN expression . R_PAREN L_KEY statement R_KEY
+    (9) expression -> expression . AND expression
+    (10) expression -> expression . OR expression
+    (11) expression -> expression . ADDITION expression
+    (12) expression -> expression . SUBTRACTION expression
+    (13) expression -> expression . MULTI expression
+    (14) expression -> expression . DIVISION expression
+    (15) expression -> expression . EXP expression
+    (16) expression -> expression . EQUALS expression
+    (17) expression -> expression . EQ_MORE expression
+    (18) expression -> expression . EQ_LESS expression
+    (19) expression -> expression . NOT_EQUALS expression
+    (20) expression -> expression . MORE expression
+    (21) expression -> expression . LESS expression
+
+    R_PAREN         shift and go to state 94
+    AND             shift and go to state 50
+    OR              shift and go to state 51
+    ADDITION        shift and go to state 52
+    SUBTRACTION     shift and go to state 53
+    MULTI           shift and go to state 54
+    DIVISION        shift and go to state 55
+    EXP             shift and go to state 56
+    EQUALS          shift and go to state 57
+    EQ_MORE         shift and go to state 58
+    EQ_LESS         shift and go to state 59
+    NOT_EQUALS      shift and go to state 60
+    MORE            shift and go to state 61
+    LESS            shift and go to state 62
+
+
+state 72
+
+    (45) statement_while -> DO L_KEY statement . R_KEY WHILE L_PAREN expression R_PAREN FINISH
+
+    R_KEY           shift and go to state 95
+
+
+state 73
+
+    (35) declare_assign_register -> type NAME ASSIGN . expression
+    (8) expression -> . NAME
+    (9) expression -> . expression AND expression
+    (10) expression -> . expression OR expression
+    (11) expression -> . expression ADDITION expression
+    (12) expression -> . expression SUBTRACTION expression
+    (13) expression -> . expression MULTI expression
+    (14) expression -> . expression DIVISION expression
+    (15) expression -> . expression EXP expression
+    (16) expression -> . expression EQUALS expression
+    (17) expression -> . expression EQ_MORE expression
+    (18) expression -> . expression EQ_LESS expression
+    (19) expression -> . expression NOT_EQUALS expression
+    (20) expression -> . expression MORE expression
+    (21) expression -> . expression LESS expression
+    (22) expression -> . FNUMBER
+    (23) expression -> . INUMBER
+    (24) expression -> . STRING_VAL
+    (25) expression -> . bool_val
+    (28) expression -> . L_PAREN expression R_PAREN
+    (29) expression -> . SUBTRACTION expression
+    (26) bool_val -> . TRUE
+    (27) bool_val -> . FALSE
+
+    NAME            shift and go to state 30
+    FNUMBER         shift and go to state 32
+    INUMBER         shift and go to state 33
+    STRING_VAL      shift and go to state 34
+    L_PAREN         shift and go to state 36
+    SUBTRACTION     shift and go to state 31
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 96
+    bool_val                       shift and go to state 35
+
+state 74
+
+    (36) assign_register -> NAME ASSIGN expression .
+    (9) expression -> expression . AND expression
+    (10) expression -> expression . OR expression
+    (11) expression -> expression . ADDITION expression
+    (12) expression -> expression . SUBTRACTION expression
+    (13) expression -> expression . MULTI expression
+    (14) expression -> expression . DIVISION expression
+    (15) expression -> expression . EXP expression
+    (16) expression -> expression . EQUALS expression
+    (17) expression -> expression . EQ_MORE expression
+    (18) expression -> expression . EQ_LESS expression
+    (19) expression -> expression . NOT_EQUALS expression
+    (20) expression -> expression . MORE expression
+    (21) expression -> expression . LESS expression
+
+    FINISH          reduce using rule 36 (assign_register -> NAME ASSIGN expression .)
+    R_PAREN         reduce using rule 36 (assign_register -> NAME ASSIGN expression .)
+    AND             shift and go to state 50
+    OR              shift and go to state 51
+    ADDITION        shift and go to state 52
+    SUBTRACTION     shift and go to state 53
+    MULTI           shift and go to state 54
+    DIVISION        shift and go to state 55
+    EXP             shift and go to state 56
+    EQUALS          shift and go to state 57
+    EQ_MORE         shift and go to state 58
+    EQ_LESS         shift and go to state 59
+    NOT_EQUALS      shift and go to state 60
+    MORE            shift and go to state 61
+    LESS            shift and go to state 62
+
+
+state 75
+
+    (38) if_condition -> IF L_PAREN expression . R_PAREN L_KEY statement R_KEY
+    (9) expression -> expression . AND expression
+    (10) expression -> expression . OR expression
+    (11) expression -> expression . ADDITION expression
+    (12) expression -> expression . SUBTRACTION expression
+    (13) expression -> expression . MULTI expression
+    (14) expression -> expression . DIVISION expression
+    (15) expression -> expression . EXP expression
+    (16) expression -> expression . EQUALS expression
+    (17) expression -> expression . EQ_MORE expression
+    (18) expression -> expression . EQ_LESS expression
+    (19) expression -> expression . NOT_EQUALS expression
+    (20) expression -> expression . MORE expression
+    (21) expression -> expression . LESS expression
+
+    R_PAREN         shift and go to state 97
+    AND             shift and go to state 50
+    OR              shift and go to state 51
+    ADDITION        shift and go to state 52
+    SUBTRACTION     shift and go to state 53
+    MULTI           shift and go to state 54
+    DIVISION        shift and go to state 55
+    EXP             shift and go to state 56
+    EQUALS          shift and go to state 57
+    EQ_MORE         shift and go to state 58
+    EQ_LESS         shift and go to state 59
+    NOT_EQUALS      shift and go to state 60
+    MORE            shift and go to state 61
+    LESS            shift and go to state 62
+
+
+state 76
+
+    (9) expression -> expression AND expression .
+    (9) expression -> expression . AND expression
+    (10) expression -> expression . OR expression
+    (11) expression -> expression . ADDITION expression
+    (12) expression -> expression . SUBTRACTION expression
+    (13) expression -> expression . MULTI expression
+    (14) expression -> expression . DIVISION expression
+    (15) expression -> expression . EXP expression
+    (16) expression -> expression . EQUALS expression
+    (17) expression -> expression . EQ_MORE expression
+    (18) expression -> expression . EQ_LESS expression
+    (19) expression -> expression . NOT_EQUALS expression
+    (20) expression -> expression . MORE expression
+    (21) expression -> expression . LESS expression
+
+    AND             reduce using rule 9 (expression -> expression AND expression .)
+    OR              reduce using rule 9 (expression -> expression AND expression .)
+    FINISH          reduce using rule 9 (expression -> expression AND expression .)
+    R_PAREN         reduce using rule 9 (expression -> expression AND expression .)
+    ADDITION        shift and go to state 52
+    SUBTRACTION     shift and go to state 53
+    MULTI           shift and go to state 54
+    DIVISION        shift and go to state 55
+    EXP             shift and go to state 56
+    EQUALS          shift and go to state 57
+    EQ_MORE         shift and go to state 58
+    EQ_LESS         shift and go to state 59
+    NOT_EQUALS      shift and go to state 60
+    MORE            shift and go to state 61
+    LESS            shift and go to state 62
+
+  ! ADDITION        [ reduce using rule 9 (expression -> expression AND expression .) ]
+  ! SUBTRACTION     [ reduce using rule 9 (expression -> expression AND expression .) ]
+  ! MULTI           [ reduce using rule 9 (expression -> expression AND expression .) ]
+  ! DIVISION        [ reduce using rule 9 (expression -> expression AND expression .) ]
+  ! EXP             [ reduce using rule 9 (expression -> expression AND expression .) ]
+  ! EQUALS          [ reduce using rule 9 (expression -> expression AND expression .) ]
+  ! EQ_MORE         [ reduce using rule 9 (expression -> expression AND expression .) ]
+  ! EQ_LESS         [ reduce using rule 9 (expression -> expression AND expression .) ]
+  ! NOT_EQUALS      [ reduce using rule 9 (expression -> expression AND expression .) ]
+  ! MORE            [ reduce using rule 9 (expression -> expression AND expression .) ]
+  ! LESS            [ reduce using rule 9 (expression -> expression AND expression .) ]
+  ! AND             [ shift and go to state 50 ]
+  ! OR              [ shift and go to state 51 ]
+
+
+state 77
+
+    (10) expression -> expression OR expression .
+    (9) expression -> expression . AND expression
+    (10) expression -> expression . OR expression
+    (11) expression -> expression . ADDITION expression
+    (12) expression -> expression . SUBTRACTION expression
+    (13) expression -> expression . MULTI expression
+    (14) expression -> expression . DIVISION expression
+    (15) expression -> expression . EXP expression
+    (16) expression -> expression . EQUALS expression
+    (17) expression -> expression . EQ_MORE expression
+    (18) expression -> expression . EQ_LESS expression
+    (19) expression -> expression . NOT_EQUALS expression
+    (20) expression -> expression . MORE expression
+    (21) expression -> expression . LESS expression
+
+    AND             reduce using rule 10 (expression -> expression OR expression .)
+    OR              reduce using rule 10 (expression -> expression OR expression .)
+    FINISH          reduce using rule 10 (expression -> expression OR expression .)
+    R_PAREN         reduce using rule 10 (expression -> expression OR expression .)
+    ADDITION        shift and go to state 52
+    SUBTRACTION     shift and go to state 53
+    MULTI           shift and go to state 54
+    DIVISION        shift and go to state 55
+    EXP             shift and go to state 56
+    EQUALS          shift and go to state 57
+    EQ_MORE         shift and go to state 58
+    EQ_LESS         shift and go to state 59
+    NOT_EQUALS      shift and go to state 60
+    MORE            shift and go to state 61
+    LESS            shift and go to state 62
+
+  ! ADDITION        [ reduce using rule 10 (expression -> expression OR expression .) ]
+  ! SUBTRACTION     [ reduce using rule 10 (expression -> expression OR expression .) ]
+  ! MULTI           [ reduce using rule 10 (expression -> expression OR expression .) ]
+  ! DIVISION        [ reduce using rule 10 (expression -> expression OR expression .) ]
+  ! EXP             [ reduce using rule 10 (expression -> expression OR expression .) ]
+  ! EQUALS          [ reduce using rule 10 (expression -> expression OR expression .) ]
+  ! EQ_MORE         [ reduce using rule 10 (expression -> expression OR expression .) ]
+  ! EQ_LESS         [ reduce using rule 10 (expression -> expression OR expression .) ]
+  ! NOT_EQUALS      [ reduce using rule 10 (expression -> expression OR expression .) ]
+  ! MORE            [ reduce using rule 10 (expression -> expression OR expression .) ]
+  ! LESS            [ reduce using rule 10 (expression -> expression OR expression .) ]
+  ! AND             [ shift and go to state 50 ]
+  ! OR              [ shift and go to state 51 ]
+
+
+state 78
+
+    (11) expression -> expression ADDITION expression .
+    (9) expression -> expression . AND expression
+    (10) expression -> expression . OR expression
+    (11) expression -> expression . ADDITION expression
+    (12) expression -> expression . SUBTRACTION expression
+    (13) expression -> expression . MULTI expression
+    (14) expression -> expression . DIVISION expression
+    (15) expression -> expression . EXP expression
+    (16) expression -> expression . EQUALS expression
+    (17) expression -> expression . EQ_MORE expression
+    (18) expression -> expression . EQ_LESS expression
+    (19) expression -> expression . NOT_EQUALS expression
+    (20) expression -> expression . MORE expression
+    (21) expression -> expression . LESS expression
+
+    AND             reduce using rule 11 (expression -> expression ADDITION expression .)
+    OR              reduce using rule 11 (expression -> expression ADDITION expression .)
+    ADDITION        reduce using rule 11 (expression -> expression ADDITION expression .)
+    SUBTRACTION     reduce using rule 11 (expression -> expression ADDITION expression .)
+    EQUALS          reduce using rule 11 (expression -> expression ADDITION expression .)
+    EQ_MORE         reduce using rule 11 (expression -> expression ADDITION expression .)
+    EQ_LESS         reduce using rule 11 (expression -> expression ADDITION expression .)
+    NOT_EQUALS      reduce using rule 11 (expression -> expression ADDITION expression .)
+    MORE            reduce using rule 11 (expression -> expression ADDITION expression .)
+    LESS            reduce using rule 11 (expression -> expression ADDITION expression .)
+    FINISH          reduce using rule 11 (expression -> expression ADDITION expression .)
+    R_PAREN         reduce using rule 11 (expression -> expression ADDITION expression .)
+    MULTI           shift and go to state 54
+    DIVISION        shift and go to state 55
+    EXP             shift and go to state 56
+
+  ! MULTI           [ reduce using rule 11 (expression -> expression ADDITION expression .) ]
+  ! DIVISION        [ reduce using rule 11 (expression -> expression ADDITION expression .) ]
+  ! EXP             [ reduce using rule 11 (expression -> expression ADDITION expression .) ]
+  ! AND             [ shift and go to state 50 ]
+  ! OR              [ shift and go to state 51 ]
+  ! ADDITION        [ shift and go to state 52 ]
+  ! SUBTRACTION     [ shift and go to state 53 ]
+  ! EQUALS          [ shift and go to state 57 ]
+  ! EQ_MORE         [ shift and go to state 58 ]
+  ! EQ_LESS         [ shift and go to state 59 ]
+  ! NOT_EQUALS      [ shift and go to state 60 ]
+  ! MORE            [ shift and go to state 61 ]
+  ! LESS            [ shift and go to state 62 ]
+
+
+state 79
+
+    (12) expression -> expression SUBTRACTION expression .
+    (9) expression -> expression . AND expression
+    (10) expression -> expression . OR expression
+    (11) expression -> expression . ADDITION expression
+    (12) expression -> expression . SUBTRACTION expression
+    (13) expression -> expression . MULTI expression
+    (14) expression -> expression . DIVISION expression
+    (15) expression -> expression . EXP expression
+    (16) expression -> expression . EQUALS expression
+    (17) expression -> expression . EQ_MORE expression
+    (18) expression -> expression . EQ_LESS expression
+    (19) expression -> expression . NOT_EQUALS expression
+    (20) expression -> expression . MORE expression
+    (21) expression -> expression . LESS expression
+
+    AND             reduce using rule 12 (expression -> expression SUBTRACTION expression .)
+    OR              reduce using rule 12 (expression -> expression SUBTRACTION expression .)
+    ADDITION        reduce using rule 12 (expression -> expression SUBTRACTION expression .)
+    SUBTRACTION     reduce using rule 12 (expression -> expression SUBTRACTION expression .)
+    EQUALS          reduce using rule 12 (expression -> expression SUBTRACTION expression .)
+    EQ_MORE         reduce using rule 12 (expression -> expression SUBTRACTION expression .)
+    EQ_LESS         reduce using rule 12 (expression -> expression SUBTRACTION expression .)
+    NOT_EQUALS      reduce using rule 12 (expression -> expression SUBTRACTION expression .)
+    MORE            reduce using rule 12 (expression -> expression SUBTRACTION expression .)
+    LESS            reduce using rule 12 (expression -> expression SUBTRACTION expression .)
+    FINISH          reduce using rule 12 (expression -> expression SUBTRACTION expression .)
+    R_PAREN         reduce using rule 12 (expression -> expression SUBTRACTION expression .)
+    MULTI           shift and go to state 54
+    DIVISION        shift and go to state 55
+    EXP             shift and go to state 56
+
+  ! MULTI           [ reduce using rule 12 (expression -> expression SUBTRACTION expression .) ]
+  ! DIVISION        [ reduce using rule 12 (expression -> expression SUBTRACTION expression .) ]
+  ! EXP             [ reduce using rule 12 (expression -> expression SUBTRACTION expression .) ]
+  ! AND             [ shift and go to state 50 ]
+  ! OR              [ shift and go to state 51 ]
+  ! ADDITION        [ shift and go to state 52 ]
+  ! SUBTRACTION     [ shift and go to state 53 ]
+  ! EQUALS          [ shift and go to state 57 ]
+  ! EQ_MORE         [ shift and go to state 58 ]
+  ! EQ_LESS         [ shift and go to state 59 ]
+  ! NOT_EQUALS      [ shift and go to state 60 ]
+  ! MORE            [ shift and go to state 61 ]
+  ! LESS            [ shift and go to state 62 ]
+
+
+state 80
+
+    (13) expression -> expression MULTI expression .
+    (9) expression -> expression . AND expression
+    (10) expression -> expression . OR expression
+    (11) expression -> expression . ADDITION expression
+    (12) expression -> expression . SUBTRACTION expression
+    (13) expression -> expression . MULTI expression
+    (14) expression -> expression . DIVISION expression
+    (15) expression -> expression . EXP expression
+    (16) expression -> expression . EQUALS expression
+    (17) expression -> expression . EQ_MORE expression
+    (18) expression -> expression . EQ_LESS expression
+    (19) expression -> expression . NOT_EQUALS expression
+    (20) expression -> expression . MORE expression
+    (21) expression -> expression . LESS expression
+
+    AND             reduce using rule 13 (expression -> expression MULTI expression .)
+    OR              reduce using rule 13 (expression -> expression MULTI expression .)
+    ADDITION        reduce using rule 13 (expression -> expression MULTI expression .)
+    SUBTRACTION     reduce using rule 13 (expression -> expression MULTI expression .)
+    MULTI           reduce using rule 13 (expression -> expression MULTI expression .)
+    DIVISION        reduce using rule 13 (expression -> expression MULTI expression .)
+    EQUALS          reduce using rule 13 (expression -> expression MULTI expression .)
+    EQ_MORE         reduce using rule 13 (expression -> expression MULTI expression .)
+    EQ_LESS         reduce using rule 13 (expression -> expression MULTI expression .)
+    NOT_EQUALS      reduce using rule 13 (expression -> expression MULTI expression .)
+    MORE            reduce using rule 13 (expression -> expression MULTI expression .)
+    LESS            reduce using rule 13 (expression -> expression MULTI expression .)
+    FINISH          reduce using rule 13 (expression -> expression MULTI expression .)
+    R_PAREN         reduce using rule 13 (expression -> expression MULTI expression .)
+    EXP             shift and go to state 56
+
+  ! EXP             [ reduce using rule 13 (expression -> expression MULTI expression .) ]
+  ! AND             [ shift and go to state 50 ]
+  ! OR              [ shift and go to state 51 ]
+  ! ADDITION        [ shift and go to state 52 ]
+  ! SUBTRACTION     [ shift and go to state 53 ]
+  ! MULTI           [ shift and go to state 54 ]
+  ! DIVISION        [ shift and go to state 55 ]
+  ! EQUALS          [ shift and go to state 57 ]
+  ! EQ_MORE         [ shift and go to state 58 ]
+  ! EQ_LESS         [ shift and go to state 59 ]
+  ! NOT_EQUALS      [ shift and go to state 60 ]
+  ! MORE            [ shift and go to state 61 ]
+  ! LESS            [ shift and go to state 62 ]
+
+
+state 81
+
+    (14) expression -> expression DIVISION expression .
+    (9) expression -> expression . AND expression
+    (10) expression -> expression . OR expression
+    (11) expression -> expression . ADDITION expression
+    (12) expression -> expression . SUBTRACTION expression
+    (13) expression -> expression . MULTI expression
+    (14) expression -> expression . DIVISION expression
+    (15) expression -> expression . EXP expression
+    (16) expression -> expression . EQUALS expression
+    (17) expression -> expression . EQ_MORE expression
+    (18) expression -> expression . EQ_LESS expression
+    (19) expression -> expression . NOT_EQUALS expression
+    (20) expression -> expression . MORE expression
+    (21) expression -> expression . LESS expression
+
+    AND             reduce using rule 14 (expression -> expression DIVISION expression .)
+    OR              reduce using rule 14 (expression -> expression DIVISION expression .)
+    ADDITION        reduce using rule 14 (expression -> expression DIVISION expression .)
+    SUBTRACTION     reduce using rule 14 (expression -> expression DIVISION expression .)
+    MULTI           reduce using rule 14 (expression -> expression DIVISION expression .)
+    DIVISION        reduce using rule 14 (expression -> expression DIVISION expression .)
+    EQUALS          reduce using rule 14 (expression -> expression DIVISION expression .)
+    EQ_MORE         reduce using rule 14 (expression -> expression DIVISION expression .)
+    EQ_LESS         reduce using rule 14 (expression -> expression DIVISION expression .)
+    NOT_EQUALS      reduce using rule 14 (expression -> expression DIVISION expression .)
+    MORE            reduce using rule 14 (expression -> expression DIVISION expression .)
+    LESS            reduce using rule 14 (expression -> expression DIVISION expression .)
+    FINISH          reduce using rule 14 (expression -> expression DIVISION expression .)
+    R_PAREN         reduce using rule 14 (expression -> expression DIVISION expression .)
+    EXP             shift and go to state 56
+
+  ! EXP             [ reduce using rule 14 (expression -> expression DIVISION expression .) ]
+  ! AND             [ shift and go to state 50 ]
+  ! OR              [ shift and go to state 51 ]
+  ! ADDITION        [ shift and go to state 52 ]
+  ! SUBTRACTION     [ shift and go to state 53 ]
+  ! MULTI           [ shift and go to state 54 ]
+  ! DIVISION        [ shift and go to state 55 ]
+  ! EQUALS          [ shift and go to state 57 ]
+  ! EQ_MORE         [ shift and go to state 58 ]
+  ! EQ_LESS         [ shift and go to state 59 ]
+  ! NOT_EQUALS      [ shift and go to state 60 ]
+  ! MORE            [ shift and go to state 61 ]
+  ! LESS            [ shift and go to state 62 ]
+
+
+state 82
+
+    (15) expression -> expression EXP expression .
+    (9) expression -> expression . AND expression
+    (10) expression -> expression . OR expression
+    (11) expression -> expression . ADDITION expression
+    (12) expression -> expression . SUBTRACTION expression
+    (13) expression -> expression . MULTI expression
+    (14) expression -> expression . DIVISION expression
+    (15) expression -> expression . EXP expression
+    (16) expression -> expression . EQUALS expression
+    (17) expression -> expression . EQ_MORE expression
+    (18) expression -> expression . EQ_LESS expression
+    (19) expression -> expression . NOT_EQUALS expression
+    (20) expression -> expression . MORE expression
+    (21) expression -> expression . LESS expression
+
+    AND             reduce using rule 15 (expression -> expression EXP expression .)
+    OR              reduce using rule 15 (expression -> expression EXP expression .)
+    ADDITION        reduce using rule 15 (expression -> expression EXP expression .)
+    SUBTRACTION     reduce using rule 15 (expression -> expression EXP expression .)
+    MULTI           reduce using rule 15 (expression -> expression EXP expression .)
+    DIVISION        reduce using rule 15 (expression -> expression EXP expression .)
+    EXP             reduce using rule 15 (expression -> expression EXP expression .)
+    EQUALS          reduce using rule 15 (expression -> expression EXP expression .)
+    EQ_MORE         reduce using rule 15 (expression -> expression EXP expression .)
+    EQ_LESS         reduce using rule 15 (expression -> expression EXP expression .)
+    NOT_EQUALS      reduce using rule 15 (expression -> expression EXP expression .)
+    MORE            reduce using rule 15 (expression -> expression EXP expression .)
+    LESS            reduce using rule 15 (expression -> expression EXP expression .)
+    FINISH          reduce using rule 15 (expression -> expression EXP expression .)
+    R_PAREN         reduce using rule 15 (expression -> expression EXP expression .)
+
+  ! AND             [ shift and go to state 50 ]
+  ! OR              [ shift and go to state 51 ]
+  ! ADDITION        [ shift and go to state 52 ]
+  ! SUBTRACTION     [ shift and go to state 53 ]
+  ! MULTI           [ shift and go to state 54 ]
+  ! DIVISION        [ shift and go to state 55 ]
+  ! EXP             [ shift and go to state 56 ]
+  ! EQUALS          [ shift and go to state 57 ]
+  ! EQ_MORE         [ shift and go to state 58 ]
+  ! EQ_LESS         [ shift and go to state 59 ]
+  ! NOT_EQUALS      [ shift and go to state 60 ]
+  ! MORE            [ shift and go to state 61 ]
+  ! LESS            [ shift and go to state 62 ]
+
+
+state 83
+
+    (16) expression -> expression EQUALS expression .
+    (9) expression -> expression . AND expression
+    (10) expression -> expression . OR expression
+    (11) expression -> expression . ADDITION expression
+    (12) expression -> expression . SUBTRACTION expression
+    (13) expression -> expression . MULTI expression
+    (14) expression -> expression . DIVISION expression
+    (15) expression -> expression . EXP expression
+    (16) expression -> expression . EQUALS expression
+    (17) expression -> expression . EQ_MORE expression
+    (18) expression -> expression . EQ_LESS expression
+    (19) expression -> expression . NOT_EQUALS expression
+    (20) expression -> expression . MORE expression
+    (21) expression -> expression . LESS expression
+
+    AND             reduce using rule 16 (expression -> expression EQUALS expression .)
+    OR              reduce using rule 16 (expression -> expression EQUALS expression .)
+    EQUALS          reduce using rule 16 (expression -> expression EQUALS expression .)
+    EQ_MORE         reduce using rule 16 (expression -> expression EQUALS expression .)
+    EQ_LESS         reduce using rule 16 (expression -> expression EQUALS expression .)
+    NOT_EQUALS      reduce using rule 16 (expression -> expression EQUALS expression .)
+    MORE            reduce using rule 16 (expression -> expression EQUALS expression .)
+    LESS            reduce using rule 16 (expression -> expression EQUALS expression .)
+    FINISH          reduce using rule 16 (expression -> expression EQUALS expression .)
+    R_PAREN         reduce using rule 16 (expression -> expression EQUALS expression .)
+    ADDITION        shift and go to state 52
+    SUBTRACTION     shift and go to state 53
+    MULTI           shift and go to state 54
+    DIVISION        shift and go to state 55
+    EXP             shift and go to state 56
+
+  ! ADDITION        [ reduce using rule 16 (expression -> expression EQUALS expression .) ]
+  ! SUBTRACTION     [ reduce using rule 16 (expression -> expression EQUALS expression .) ]
+  ! MULTI           [ reduce using rule 16 (expression -> expression EQUALS expression .) ]
+  ! DIVISION        [ reduce using rule 16 (expression -> expression EQUALS expression .) ]
+  ! EXP             [ reduce using rule 16 (expression -> expression EQUALS expression .) ]
+  ! AND             [ shift and go to state 50 ]
+  ! OR              [ shift and go to state 51 ]
+  ! EQUALS          [ shift and go to state 57 ]
+  ! EQ_MORE         [ shift and go to state 58 ]
+  ! EQ_LESS         [ shift and go to state 59 ]
+  ! NOT_EQUALS      [ shift and go to state 60 ]
+  ! MORE            [ shift and go to state 61 ]
+  ! LESS            [ shift and go to state 62 ]
+
+
+state 84
+
+    (17) expression -> expression EQ_MORE expression .
+    (9) expression -> expression . AND expression
+    (10) expression -> expression . OR expression
+    (11) expression -> expression . ADDITION expression
+    (12) expression -> expression . SUBTRACTION expression
+    (13) expression -> expression . MULTI expression
+    (14) expression -> expression . DIVISION expression
+    (15) expression -> expression . EXP expression
+    (16) expression -> expression . EQUALS expression
+    (17) expression -> expression . EQ_MORE expression
+    (18) expression -> expression . EQ_LESS expression
+    (19) expression -> expression . NOT_EQUALS expression
+    (20) expression -> expression . MORE expression
+    (21) expression -> expression . LESS expression
+
+    AND             reduce using rule 17 (expression -> expression EQ_MORE expression .)
+    OR              reduce using rule 17 (expression -> expression EQ_MORE expression .)
+    EQUALS          reduce using rule 17 (expression -> expression EQ_MORE expression .)
+    EQ_MORE         reduce using rule 17 (expression -> expression EQ_MORE expression .)
+    EQ_LESS         reduce using rule 17 (expression -> expression EQ_MORE expression .)
+    NOT_EQUALS      reduce using rule 17 (expression -> expression EQ_MORE expression .)
+    MORE            reduce using rule 17 (expression -> expression EQ_MORE expression .)
+    LESS            reduce using rule 17 (expression -> expression EQ_MORE expression .)
+    FINISH          reduce using rule 17 (expression -> expression EQ_MORE expression .)
+    R_PAREN         reduce using rule 17 (expression -> expression EQ_MORE expression .)
+    ADDITION        shift and go to state 52
+    SUBTRACTION     shift and go to state 53
+    MULTI           shift and go to state 54
+    DIVISION        shift and go to state 55
+    EXP             shift and go to state 56
+
+  ! ADDITION        [ reduce using rule 17 (expression -> expression EQ_MORE expression .) ]
+  ! SUBTRACTION     [ reduce using rule 17 (expression -> expression EQ_MORE expression .) ]
+  ! MULTI           [ reduce using rule 17 (expression -> expression EQ_MORE expression .) ]
+  ! DIVISION        [ reduce using rule 17 (expression -> expression EQ_MORE expression .) ]
+  ! EXP             [ reduce using rule 17 (expression -> expression EQ_MORE expression .) ]
+  ! AND             [ shift and go to state 50 ]
+  ! OR              [ shift and go to state 51 ]
+  ! EQUALS          [ shift and go to state 57 ]
+  ! EQ_MORE         [ shift and go to state 58 ]
+  ! EQ_LESS         [ shift and go to state 59 ]
+  ! NOT_EQUALS      [ shift and go to state 60 ]
+  ! MORE            [ shift and go to state 61 ]
+  ! LESS            [ shift and go to state 62 ]
+
+
+state 85
+
+    (18) expression -> expression EQ_LESS expression .
+    (9) expression -> expression . AND expression
+    (10) expression -> expression . OR expression
+    (11) expression -> expression . ADDITION expression
+    (12) expression -> expression . SUBTRACTION expression
+    (13) expression -> expression . MULTI expression
+    (14) expression -> expression . DIVISION expression
+    (15) expression -> expression . EXP expression
+    (16) expression -> expression . EQUALS expression
+    (17) expression -> expression . EQ_MORE expression
+    (18) expression -> expression . EQ_LESS expression
+    (19) expression -> expression . NOT_EQUALS expression
+    (20) expression -> expression . MORE expression
+    (21) expression -> expression . LESS expression
+
+    AND             reduce using rule 18 (expression -> expression EQ_LESS expression .)
+    OR              reduce using rule 18 (expression -> expression EQ_LESS expression .)
+    EQUALS          reduce using rule 18 (expression -> expression EQ_LESS expression .)
+    EQ_MORE         reduce using rule 18 (expression -> expression EQ_LESS expression .)
+    EQ_LESS         reduce using rule 18 (expression -> expression EQ_LESS expression .)
+    NOT_EQUALS      reduce using rule 18 (expression -> expression EQ_LESS expression .)
+    MORE            reduce using rule 18 (expression -> expression EQ_LESS expression .)
+    LESS            reduce using rule 18 (expression -> expression EQ_LESS expression .)
+    FINISH          reduce using rule 18 (expression -> expression EQ_LESS expression .)
+    R_PAREN         reduce using rule 18 (expression -> expression EQ_LESS expression .)
+    ADDITION        shift and go to state 52
+    SUBTRACTION     shift and go to state 53
+    MULTI           shift and go to state 54
+    DIVISION        shift and go to state 55
+    EXP             shift and go to state 56
+
+  ! ADDITION        [ reduce using rule 18 (expression -> expression EQ_LESS expression .) ]
+  ! SUBTRACTION     [ reduce using rule 18 (expression -> expression EQ_LESS expression .) ]
+  ! MULTI           [ reduce using rule 18 (expression -> expression EQ_LESS expression .) ]
+  ! DIVISION        [ reduce using rule 18 (expression -> expression EQ_LESS expression .) ]
+  ! EXP             [ reduce using rule 18 (expression -> expression EQ_LESS expression .) ]
+  ! AND             [ shift and go to state 50 ]
+  ! OR              [ shift and go to state 51 ]
+  ! EQUALS          [ shift and go to state 57 ]
+  ! EQ_MORE         [ shift and go to state 58 ]
+  ! EQ_LESS         [ shift and go to state 59 ]
+  ! NOT_EQUALS      [ shift and go to state 60 ]
+  ! MORE            [ shift and go to state 61 ]
+  ! LESS            [ shift and go to state 62 ]
+
+
+state 86
+
+    (19) expression -> expression NOT_EQUALS expression .
+    (9) expression -> expression . AND expression
+    (10) expression -> expression . OR expression
+    (11) expression -> expression . ADDITION expression
+    (12) expression -> expression . SUBTRACTION expression
+    (13) expression -> expression . MULTI expression
+    (14) expression -> expression . DIVISION expression
+    (15) expression -> expression . EXP expression
+    (16) expression -> expression . EQUALS expression
+    (17) expression -> expression . EQ_MORE expression
+    (18) expression -> expression . EQ_LESS expression
+    (19) expression -> expression . NOT_EQUALS expression
+    (20) expression -> expression . MORE expression
+    (21) expression -> expression . LESS expression
+
+    AND             reduce using rule 19 (expression -> expression NOT_EQUALS expression .)
+    OR              reduce using rule 19 (expression -> expression NOT_EQUALS expression .)
+    EQUALS          reduce using rule 19 (expression -> expression NOT_EQUALS expression .)
+    EQ_MORE         reduce using rule 19 (expression -> expression NOT_EQUALS expression .)
+    EQ_LESS         reduce using rule 19 (expression -> expression NOT_EQUALS expression .)
+    NOT_EQUALS      reduce using rule 19 (expression -> expression NOT_EQUALS expression .)
+    MORE            reduce using rule 19 (expression -> expression NOT_EQUALS expression .)
+    LESS            reduce using rule 19 (expression -> expression NOT_EQUALS expression .)
+    FINISH          reduce using rule 19 (expression -> expression NOT_EQUALS expression .)
+    R_PAREN         reduce using rule 19 (expression -> expression NOT_EQUALS expression .)
+    ADDITION        shift and go to state 52
+    SUBTRACTION     shift and go to state 53
+    MULTI           shift and go to state 54
+    DIVISION        shift and go to state 55
+    EXP             shift and go to state 56
+
+  ! ADDITION        [ reduce using rule 19 (expression -> expression NOT_EQUALS expression .) ]
+  ! SUBTRACTION     [ reduce using rule 19 (expression -> expression NOT_EQUALS expression .) ]
+  ! MULTI           [ reduce using rule 19 (expression -> expression NOT_EQUALS expression .) ]
+  ! DIVISION        [ reduce using rule 19 (expression -> expression NOT_EQUALS expression .) ]
+  ! EXP             [ reduce using rule 19 (expression -> expression NOT_EQUALS expression .) ]
+  ! AND             [ shift and go to state 50 ]
+  ! OR              [ shift and go to state 51 ]
+  ! EQUALS          [ shift and go to state 57 ]
+  ! EQ_MORE         [ shift and go to state 58 ]
+  ! EQ_LESS         [ shift and go to state 59 ]
+  ! NOT_EQUALS      [ shift and go to state 60 ]
+  ! MORE            [ shift and go to state 61 ]
+  ! LESS            [ shift and go to state 62 ]
+
+
+state 87
+
+    (20) expression -> expression MORE expression .
+    (9) expression -> expression . AND expression
+    (10) expression -> expression . OR expression
+    (11) expression -> expression . ADDITION expression
+    (12) expression -> expression . SUBTRACTION expression
+    (13) expression -> expression . MULTI expression
+    (14) expression -> expression . DIVISION expression
+    (15) expression -> expression . EXP expression
+    (16) expression -> expression . EQUALS expression
+    (17) expression -> expression . EQ_MORE expression
+    (18) expression -> expression . EQ_LESS expression
+    (19) expression -> expression . NOT_EQUALS expression
+    (20) expression -> expression . MORE expression
+    (21) expression -> expression . LESS expression
+
+    AND             reduce using rule 20 (expression -> expression MORE expression .)
+    OR              reduce using rule 20 (expression -> expression MORE expression .)
+    EQUALS          reduce using rule 20 (expression -> expression MORE expression .)
+    EQ_MORE         reduce using rule 20 (expression -> expression MORE expression .)
+    EQ_LESS         reduce using rule 20 (expression -> expression MORE expression .)
+    NOT_EQUALS      reduce using rule 20 (expression -> expression MORE expression .)
+    MORE            reduce using rule 20 (expression -> expression MORE expression .)
+    LESS            reduce using rule 20 (expression -> expression MORE expression .)
+    FINISH          reduce using rule 20 (expression -> expression MORE expression .)
+    R_PAREN         reduce using rule 20 (expression -> expression MORE expression .)
+    ADDITION        shift and go to state 52
+    SUBTRACTION     shift and go to state 53
+    MULTI           shift and go to state 54
+    DIVISION        shift and go to state 55
+    EXP             shift and go to state 56
+
+  ! ADDITION        [ reduce using rule 20 (expression -> expression MORE expression .) ]
+  ! SUBTRACTION     [ reduce using rule 20 (expression -> expression MORE expression .) ]
+  ! MULTI           [ reduce using rule 20 (expression -> expression MORE expression .) ]
+  ! DIVISION        [ reduce using rule 20 (expression -> expression MORE expression .) ]
+  ! EXP             [ reduce using rule 20 (expression -> expression MORE expression .) ]
+  ! AND             [ shift and go to state 50 ]
+  ! OR              [ shift and go to state 51 ]
+  ! EQUALS          [ shift and go to state 57 ]
+  ! EQ_MORE         [ shift and go to state 58 ]
+  ! EQ_LESS         [ shift and go to state 59 ]
+  ! NOT_EQUALS      [ shift and go to state 60 ]
+  ! MORE            [ shift and go to state 61 ]
+  ! LESS            [ shift and go to state 62 ]
+
+
+state 88
+
+    (21) expression -> expression LESS expression .
+    (9) expression -> expression . AND expression
+    (10) expression -> expression . OR expression
+    (11) expression -> expression . ADDITION expression
+    (12) expression -> expression . SUBTRACTION expression
+    (13) expression -> expression . MULTI expression
+    (14) expression -> expression . DIVISION expression
+    (15) expression -> expression . EXP expression
+    (16) expression -> expression . EQUALS expression
+    (17) expression -> expression . EQ_MORE expression
+    (18) expression -> expression . EQ_LESS expression
+    (19) expression -> expression . NOT_EQUALS expression
+    (20) expression -> expression . MORE expression
+    (21) expression -> expression . LESS expression
+
+    AND             reduce using rule 21 (expression -> expression LESS expression .)
+    OR              reduce using rule 21 (expression -> expression LESS expression .)
+    EQUALS          reduce using rule 21 (expression -> expression LESS expression .)
+    EQ_MORE         reduce using rule 21 (expression -> expression LESS expression .)
+    EQ_LESS         reduce using rule 21 (expression -> expression LESS expression .)
+    NOT_EQUALS      reduce using rule 21 (expression -> expression LESS expression .)
+    MORE            reduce using rule 21 (expression -> expression LESS expression .)
+    LESS            reduce using rule 21 (expression -> expression LESS expression .)
+    FINISH          reduce using rule 21 (expression -> expression LESS expression .)
+    R_PAREN         reduce using rule 21 (expression -> expression LESS expression .)
+    ADDITION        shift and go to state 52
+    SUBTRACTION     shift and go to state 53
+    MULTI           shift and go to state 54
+    DIVISION        shift and go to state 55
+    EXP             shift and go to state 56
+
+  ! ADDITION        [ reduce using rule 21 (expression -> expression LESS expression .) ]
+  ! SUBTRACTION     [ reduce using rule 21 (expression -> expression LESS expression .) ]
+  ! MULTI           [ reduce using rule 21 (expression -> expression LESS expression .) ]
+  ! DIVISION        [ reduce using rule 21 (expression -> expression LESS expression .) ]
+  ! EXP             [ reduce using rule 21 (expression -> expression LESS expression .) ]
+  ! AND             [ shift and go to state 50 ]
+  ! OR              [ shift and go to state 51 ]
+  ! EQUALS          [ shift and go to state 57 ]
+  ! EQ_MORE         [ shift and go to state 58 ]
+  ! EQ_LESS         [ shift and go to state 59 ]
+  ! NOT_EQUALS      [ shift and go to state 60 ]
+  ! MORE            [ shift and go to state 61 ]
+  ! LESS            [ shift and go to state 62 ]
+
+
+state 89
+
+    (28) expression -> L_PAREN expression R_PAREN .
+
+    AND             reduce using rule 28 (expression -> L_PAREN expression R_PAREN .)
+    OR              reduce using rule 28 (expression -> L_PAREN expression R_PAREN .)
+    ADDITION        reduce using rule 28 (expression -> L_PAREN expression R_PAREN .)
+    SUBTRACTION     reduce using rule 28 (expression -> L_PAREN expression R_PAREN .)
+    MULTI           reduce using rule 28 (expression -> L_PAREN expression R_PAREN .)
+    DIVISION        reduce using rule 28 (expression -> L_PAREN expression R_PAREN .)
+    EXP             reduce using rule 28 (expression -> L_PAREN expression R_PAREN .)
+    EQUALS          reduce using rule 28 (expression -> L_PAREN expression R_PAREN .)
+    EQ_MORE         reduce using rule 28 (expression -> L_PAREN expression R_PAREN .)
+    EQ_LESS         reduce using rule 28 (expression -> L_PAREN expression R_PAREN .)
+    NOT_EQUALS      reduce using rule 28 (expression -> L_PAREN expression R_PAREN .)
+    MORE            reduce using rule 28 (expression -> L_PAREN expression R_PAREN .)
+    LESS            reduce using rule 28 (expression -> L_PAREN expression R_PAREN .)
+    FINISH          reduce using rule 28 (expression -> L_PAREN expression R_PAREN .)
+    R_PAREN         reduce using rule 28 (expression -> L_PAREN expression R_PAREN .)
+
+
+state 90
+
+    (41) else_condition -> ELSE L_KEY . statement R_KEY
+    (2) statement -> . statement_print FINISH statement
+    (3) statement -> . statement_register FINISH statement
+    (4) statement -> . statement_condition statement
+    (5) statement -> . statement_for statement
+    (6) statement -> . statement_while statement
+    (7) statement -> . empty
+    (30) statement_print -> . PRINT expression
+    (31) statement_register -> . declare_register
+    (32) statement_register -> . declare_assign_register
+    (33) statement_register -> . assign_register
+    (37) statement_condition -> . if_condition elif_condition else_condition
+    (43) statement_for -> . FOR L_PAREN declare_assign_register FINISH expression FINISH assign_register R_PAREN L_KEY statement R_KEY
+    (44) statement_while -> . WHILE L_PAREN expression R_PAREN L_KEY statement R_KEY
+    (45) statement_while -> . DO L_KEY statement R_KEY WHILE L_PAREN expression R_PAREN FINISH
+    (46) empty -> .
+    (34) declare_register -> . type NAME
+    (35) declare_assign_register -> . type NAME ASSIGN expression
+    (36) assign_register -> . NAME ASSIGN expression
+    (38) if_condition -> . IF L_PAREN expression R_PAREN L_KEY statement R_KEY
+    (47) type -> . BOOL
+    (48) type -> . INTDEC
+    (49) type -> . FLOATDEC
+    (50) type -> . STRING
+
+    PRINT           shift and go to state 9
+    FOR             shift and go to state 14
+    WHILE           shift and go to state 15
+    DO              shift and go to state 16
+    R_KEY           reduce using rule 46 (empty -> .)
+    NAME            shift and go to state 18
+    IF              shift and go to state 19
+    BOOL            shift and go to state 20
+    INTDEC          shift and go to state 21
+    FLOATDEC        shift and go to state 22
+    STRING          shift and go to state 23
+
+    statement                      shift and go to state 98
+    statement_print                shift and go to state 3
+    statement_register             shift and go to state 4
+    statement_condition            shift and go to state 5
+    statement_for                  shift and go to state 6
+    statement_while                shift and go to state 7
+    empty                          shift and go to state 8
+    declare_register               shift and go to state 10
+    declare_assign_register        shift and go to state 11
+    assign_register                shift and go to state 12
+    if_condition                   shift and go to state 13
+    type                           shift and go to state 17
+
+state 91
+
+    (39) elif_condition -> ELIF L_PAREN expression . R_PAREN L_KEY statement R_KEY elif_condition
+    (9) expression -> expression . AND expression
+    (10) expression -> expression . OR expression
+    (11) expression -> expression . ADDITION expression
+    (12) expression -> expression . SUBTRACTION expression
+    (13) expression -> expression . MULTI expression
+    (14) expression -> expression . DIVISION expression
+    (15) expression -> expression . EXP expression
+    (16) expression -> expression . EQUALS expression
+    (17) expression -> expression . EQ_MORE expression
+    (18) expression -> expression . EQ_LESS expression
+    (19) expression -> expression . NOT_EQUALS expression
+    (20) expression -> expression . MORE expression
+    (21) expression -> expression . LESS expression
+
+    R_PAREN         shift and go to state 99
+    AND             shift and go to state 50
+    OR              shift and go to state 51
+    ADDITION        shift and go to state 52
+    SUBTRACTION     shift and go to state 53
+    MULTI           shift and go to state 54
+    DIVISION        shift and go to state 55
+    EXP             shift and go to state 56
+    EQUALS          shift and go to state 57
+    EQ_MORE         shift and go to state 58
+    EQ_LESS         shift and go to state 59
+    NOT_EQUALS      shift and go to state 60
+    MORE            shift and go to state 61
+    LESS            shift and go to state 62
+
+
+state 92
+
+    (43) statement_for -> FOR L_PAREN declare_assign_register FINISH . expression FINISH assign_register R_PAREN L_KEY statement R_KEY
+    (8) expression -> . NAME
+    (9) expression -> . expression AND expression
+    (10) expression -> . expression OR expression
+    (11) expression -> . expression ADDITION expression
+    (12) expression -> . expression SUBTRACTION expression
+    (13) expression -> . expression MULTI expression
+    (14) expression -> . expression DIVISION expression
+    (15) expression -> . expression EXP expression
+    (16) expression -> . expression EQUALS expression
+    (17) expression -> . expression EQ_MORE expression
+    (18) expression -> . expression EQ_LESS expression
+    (19) expression -> . expression NOT_EQUALS expression
+    (20) expression -> . expression MORE expression
+    (21) expression -> . expression LESS expression
+    (22) expression -> . FNUMBER
+    (23) expression -> . INUMBER
+    (24) expression -> . STRING_VAL
+    (25) expression -> . bool_val
+    (28) expression -> . L_PAREN expression R_PAREN
+    (29) expression -> . SUBTRACTION expression
+    (26) bool_val -> . TRUE
+    (27) bool_val -> . FALSE
+
+    NAME            shift and go to state 30
+    FNUMBER         shift and go to state 32
+    INUMBER         shift and go to state 33
+    STRING_VAL      shift and go to state 34
+    L_PAREN         shift and go to state 36
+    SUBTRACTION     shift and go to state 31
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 100
+    bool_val                       shift and go to state 35
+
+state 93
+
+    (35) declare_assign_register -> type NAME . ASSIGN expression
+
+    ASSIGN          shift and go to state 73
+
+
+state 94
+
+    (44) statement_while -> WHILE L_PAREN expression R_PAREN . L_KEY statement R_KEY
+
+    L_KEY           shift and go to state 101
+
+
+state 95
+
+    (45) statement_while -> DO L_KEY statement R_KEY . WHILE L_PAREN expression R_PAREN FINISH
+
+    WHILE           shift and go to state 102
+
+
+state 96
+
+    (35) declare_assign_register -> type NAME ASSIGN expression .
+    (9) expression -> expression . AND expression
+    (10) expression -> expression . OR expression
+    (11) expression -> expression . ADDITION expression
+    (12) expression -> expression . SUBTRACTION expression
+    (13) expression -> expression . MULTI expression
+    (14) expression -> expression . DIVISION expression
+    (15) expression -> expression . EXP expression
+    (16) expression -> expression . EQUALS expression
+    (17) expression -> expression . EQ_MORE expression
+    (18) expression -> expression . EQ_LESS expression
+    (19) expression -> expression . NOT_EQUALS expression
+    (20) expression -> expression . MORE expression
+    (21) expression -> expression . LESS expression
+
+    FINISH          reduce using rule 35 (declare_assign_register -> type NAME ASSIGN expression .)
+    AND             shift and go to state 50
+    OR              shift and go to state 51
+    ADDITION        shift and go to state 52
+    SUBTRACTION     shift and go to state 53
+    MULTI           shift and go to state 54
+    DIVISION        shift and go to state 55
+    EXP             shift and go to state 56
+    EQUALS          shift and go to state 57
+    EQ_MORE         shift and go to state 58
+    EQ_LESS         shift and go to state 59
+    NOT_EQUALS      shift and go to state 60
+    MORE            shift and go to state 61
+    LESS            shift and go to state 62
+
+
+state 97
+
+    (38) if_condition -> IF L_PAREN expression R_PAREN . L_KEY statement R_KEY
+
+    L_KEY           shift and go to state 103
+
+
+state 98
+
+    (41) else_condition -> ELSE L_KEY statement . R_KEY
+
+    R_KEY           shift and go to state 104
+
+
+state 99
+
+    (39) elif_condition -> ELIF L_PAREN expression R_PAREN . L_KEY statement R_KEY elif_condition
+
+    L_KEY           shift and go to state 105
+
+
+state 100
+
+    (43) statement_for -> FOR L_PAREN declare_assign_register FINISH expression . FINISH assign_register R_PAREN L_KEY statement R_KEY
+    (9) expression -> expression . AND expression
+    (10) expression -> expression . OR expression
+    (11) expression -> expression . ADDITION expression
+    (12) expression -> expression . SUBTRACTION expression
+    (13) expression -> expression . MULTI expression
+    (14) expression -> expression . DIVISION expression
+    (15) expression -> expression . EXP expression
+    (16) expression -> expression . EQUALS expression
+    (17) expression -> expression . EQ_MORE expression
+    (18) expression -> expression . EQ_LESS expression
+    (19) expression -> expression . NOT_EQUALS expression
+    (20) expression -> expression . MORE expression
+    (21) expression -> expression . LESS expression
+
+    FINISH          shift and go to state 106
+    AND             shift and go to state 50
+    OR              shift and go to state 51
+    ADDITION        shift and go to state 52
+    SUBTRACTION     shift and go to state 53
+    MULTI           shift and go to state 54
+    DIVISION        shift and go to state 55
+    EXP             shift and go to state 56
+    EQUALS          shift and go to state 57
+    EQ_MORE         shift and go to state 58
+    EQ_LESS         shift and go to state 59
+    NOT_EQUALS      shift and go to state 60
+    MORE            shift and go to state 61
+    LESS            shift and go to state 62
+
+
+state 101
+
+    (44) statement_while -> WHILE L_PAREN expression R_PAREN L_KEY . statement R_KEY
+    (2) statement -> . statement_print FINISH statement
+    (3) statement -> . statement_register FINISH statement
+    (4) statement -> . statement_condition statement
+    (5) statement -> . statement_for statement
+    (6) statement -> . statement_while statement
+    (7) statement -> . empty
+    (30) statement_print -> . PRINT expression
+    (31) statement_register -> . declare_register
+    (32) statement_register -> . declare_assign_register
+    (33) statement_register -> . assign_register
+    (37) statement_condition -> . if_condition elif_condition else_condition
+    (43) statement_for -> . FOR L_PAREN declare_assign_register FINISH expression FINISH assign_register R_PAREN L_KEY statement R_KEY
+    (44) statement_while -> . WHILE L_PAREN expression R_PAREN L_KEY statement R_KEY
+    (45) statement_while -> . DO L_KEY statement R_KEY WHILE L_PAREN expression R_PAREN FINISH
+    (46) empty -> .
+    (34) declare_register -> . type NAME
+    (35) declare_assign_register -> . type NAME ASSIGN expression
+    (36) assign_register -> . NAME ASSIGN expression
+    (38) if_condition -> . IF L_PAREN expression R_PAREN L_KEY statement R_KEY
+    (47) type -> . BOOL
+    (48) type -> . INTDEC
+    (49) type -> . FLOATDEC
+    (50) type -> . STRING
+
+    PRINT           shift and go to state 9
+    FOR             shift and go to state 14
+    WHILE           shift and go to state 15
+    DO              shift and go to state 16
+    R_KEY           reduce using rule 46 (empty -> .)
+    NAME            shift and go to state 18
+    IF              shift and go to state 19
+    BOOL            shift and go to state 20
+    INTDEC          shift and go to state 21
+    FLOATDEC        shift and go to state 22
+    STRING          shift and go to state 23
+
+    statement                      shift and go to state 107
+    statement_print                shift and go to state 3
+    statement_register             shift and go to state 4
+    statement_condition            shift and go to state 5
+    statement_for                  shift and go to state 6
+    statement_while                shift and go to state 7
+    empty                          shift and go to state 8
+    declare_register               shift and go to state 10
+    declare_assign_register        shift and go to state 11
+    assign_register                shift and go to state 12
+    if_condition                   shift and go to state 13
+    type                           shift and go to state 17
+
+state 102
+
+    (45) statement_while -> DO L_KEY statement R_KEY WHILE . L_PAREN expression R_PAREN FINISH
+
+    L_PAREN         shift and go to state 108
+
+
+state 103
+
+    (38) if_condition -> IF L_PAREN expression R_PAREN L_KEY . statement R_KEY
+    (2) statement -> . statement_print FINISH statement
+    (3) statement -> . statement_register FINISH statement
+    (4) statement -> . statement_condition statement
+    (5) statement -> . statement_for statement
+    (6) statement -> . statement_while statement
+    (7) statement -> . empty
+    (30) statement_print -> . PRINT expression
+    (31) statement_register -> . declare_register
+    (32) statement_register -> . declare_assign_register
+    (33) statement_register -> . assign_register
+    (37) statement_condition -> . if_condition elif_condition else_condition
+    (43) statement_for -> . FOR L_PAREN declare_assign_register FINISH expression FINISH assign_register R_PAREN L_KEY statement R_KEY
+    (44) statement_while -> . WHILE L_PAREN expression R_PAREN L_KEY statement R_KEY
+    (45) statement_while -> . DO L_KEY statement R_KEY WHILE L_PAREN expression R_PAREN FINISH
+    (46) empty -> .
+    (34) declare_register -> . type NAME
+    (35) declare_assign_register -> . type NAME ASSIGN expression
+    (36) assign_register -> . NAME ASSIGN expression
+    (38) if_condition -> . IF L_PAREN expression R_PAREN L_KEY statement R_KEY
+    (47) type -> . BOOL
+    (48) type -> . INTDEC
+    (49) type -> . FLOATDEC
+    (50) type -> . STRING
+
+    PRINT           shift and go to state 9
+    FOR             shift and go to state 14
+    WHILE           shift and go to state 15
+    DO              shift and go to state 16
+    R_KEY           reduce using rule 46 (empty -> .)
+    NAME            shift and go to state 18
+    IF              shift and go to state 19
+    BOOL            shift and go to state 20
+    INTDEC          shift and go to state 21
+    FLOATDEC        shift and go to state 22
+    STRING          shift and go to state 23
+
+    statement                      shift and go to state 109
+    statement_print                shift and go to state 3
+    statement_register             shift and go to state 4
+    statement_condition            shift and go to state 5
+    statement_for                  shift and go to state 6
+    statement_while                shift and go to state 7
+    empty                          shift and go to state 8
+    declare_register               shift and go to state 10
+    declare_assign_register        shift and go to state 11
+    assign_register                shift and go to state 12
+    if_condition                   shift and go to state 13
+    type                           shift and go to state 17
+
+state 104
+
+    (41) else_condition -> ELSE L_KEY statement R_KEY .
+
+    PRINT           reduce using rule 41 (else_condition -> ELSE L_KEY statement R_KEY .)
+    FOR             reduce using rule 41 (else_condition -> ELSE L_KEY statement R_KEY .)
+    WHILE           reduce using rule 41 (else_condition -> ELSE L_KEY statement R_KEY .)
+    DO              reduce using rule 41 (else_condition -> ELSE L_KEY statement R_KEY .)
+    NAME            reduce using rule 41 (else_condition -> ELSE L_KEY statement R_KEY .)
+    IF              reduce using rule 41 (else_condition -> ELSE L_KEY statement R_KEY .)
+    BOOL            reduce using rule 41 (else_condition -> ELSE L_KEY statement R_KEY .)
+    INTDEC          reduce using rule 41 (else_condition -> ELSE L_KEY statement R_KEY .)
+    FLOATDEC        reduce using rule 41 (else_condition -> ELSE L_KEY statement R_KEY .)
+    STRING          reduce using rule 41 (else_condition -> ELSE L_KEY statement R_KEY .)
+    $end            reduce using rule 41 (else_condition -> ELSE L_KEY statement R_KEY .)
+    R_KEY           reduce using rule 41 (else_condition -> ELSE L_KEY statement R_KEY .)
+
+
+state 105
+
+    (39) elif_condition -> ELIF L_PAREN expression R_PAREN L_KEY . statement R_KEY elif_condition
+    (2) statement -> . statement_print FINISH statement
+    (3) statement -> . statement_register FINISH statement
+    (4) statement -> . statement_condition statement
+    (5) statement -> . statement_for statement
+    (6) statement -> . statement_while statement
+    (7) statement -> . empty
+    (30) statement_print -> . PRINT expression
+    (31) statement_register -> . declare_register
+    (32) statement_register -> . declare_assign_register
+    (33) statement_register -> . assign_register
+    (37) statement_condition -> . if_condition elif_condition else_condition
+    (43) statement_for -> . FOR L_PAREN declare_assign_register FINISH expression FINISH assign_register R_PAREN L_KEY statement R_KEY
+    (44) statement_while -> . WHILE L_PAREN expression R_PAREN L_KEY statement R_KEY
+    (45) statement_while -> . DO L_KEY statement R_KEY WHILE L_PAREN expression R_PAREN FINISH
+    (46) empty -> .
+    (34) declare_register -> . type NAME
+    (35) declare_assign_register -> . type NAME ASSIGN expression
+    (36) assign_register -> . NAME ASSIGN expression
+    (38) if_condition -> . IF L_PAREN expression R_PAREN L_KEY statement R_KEY
+    (47) type -> . BOOL
+    (48) type -> . INTDEC
+    (49) type -> . FLOATDEC
+    (50) type -> . STRING
+
+    PRINT           shift and go to state 9
+    FOR             shift and go to state 14
+    WHILE           shift and go to state 15
+    DO              shift and go to state 16
+    R_KEY           reduce using rule 46 (empty -> .)
+    NAME            shift and go to state 18
+    IF              shift and go to state 19
+    BOOL            shift and go to state 20
+    INTDEC          shift and go to state 21
+    FLOATDEC        shift and go to state 22
+    STRING          shift and go to state 23
+
+    statement                      shift and go to state 110
+    statement_print                shift and go to state 3
+    statement_register             shift and go to state 4
+    statement_condition            shift and go to state 5
+    statement_for                  shift and go to state 6
+    statement_while                shift and go to state 7
+    empty                          shift and go to state 8
+    declare_register               shift and go to state 10
+    declare_assign_register        shift and go to state 11
+    assign_register                shift and go to state 12
+    if_condition                   shift and go to state 13
+    type                           shift and go to state 17
+
+state 106
+
+    (43) statement_for -> FOR L_PAREN declare_assign_register FINISH expression FINISH . assign_register R_PAREN L_KEY statement R_KEY
+    (36) assign_register -> . NAME ASSIGN expression
+
+    NAME            shift and go to state 18
+
+    assign_register                shift and go to state 111
+
+state 107
+
+    (44) statement_while -> WHILE L_PAREN expression R_PAREN L_KEY statement . R_KEY
+
+    R_KEY           shift and go to state 112
+
+
+state 108
+
+    (45) statement_while -> DO L_KEY statement R_KEY WHILE L_PAREN . expression R_PAREN FINISH
+    (8) expression -> . NAME
+    (9) expression -> . expression AND expression
+    (10) expression -> . expression OR expression
+    (11) expression -> . expression ADDITION expression
+    (12) expression -> . expression SUBTRACTION expression
+    (13) expression -> . expression MULTI expression
+    (14) expression -> . expression DIVISION expression
+    (15) expression -> . expression EXP expression
+    (16) expression -> . expression EQUALS expression
+    (17) expression -> . expression EQ_MORE expression
+    (18) expression -> . expression EQ_LESS expression
+    (19) expression -> . expression NOT_EQUALS expression
+    (20) expression -> . expression MORE expression
+    (21) expression -> . expression LESS expression
+    (22) expression -> . FNUMBER
+    (23) expression -> . INUMBER
+    (24) expression -> . STRING_VAL
+    (25) expression -> . bool_val
+    (28) expression -> . L_PAREN expression R_PAREN
+    (29) expression -> . SUBTRACTION expression
+    (26) bool_val -> . TRUE
+    (27) bool_val -> . FALSE
+
+    NAME            shift and go to state 30
+    FNUMBER         shift and go to state 32
+    INUMBER         shift and go to state 33
+    STRING_VAL      shift and go to state 34
+    L_PAREN         shift and go to state 36
+    SUBTRACTION     shift and go to state 31
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 113
+    bool_val                       shift and go to state 35
+
+state 109
+
+    (38) if_condition -> IF L_PAREN expression R_PAREN L_KEY statement . R_KEY
+
+    R_KEY           shift and go to state 114
+
+
+state 110
+
+    (39) elif_condition -> ELIF L_PAREN expression R_PAREN L_KEY statement . R_KEY elif_condition
+
+    R_KEY           shift and go to state 115
+
+
+state 111
+
+    (43) statement_for -> FOR L_PAREN declare_assign_register FINISH expression FINISH assign_register . R_PAREN L_KEY statement R_KEY
+
+    R_PAREN         shift and go to state 116
+
+
+state 112
+
+    (44) statement_while -> WHILE L_PAREN expression R_PAREN L_KEY statement R_KEY .
+
+    PRINT           reduce using rule 44 (statement_while -> WHILE L_PAREN expression R_PAREN L_KEY statement R_KEY .)
+    FOR             reduce using rule 44 (statement_while -> WHILE L_PAREN expression R_PAREN L_KEY statement R_KEY .)
+    WHILE           reduce using rule 44 (statement_while -> WHILE L_PAREN expression R_PAREN L_KEY statement R_KEY .)
+    DO              reduce using rule 44 (statement_while -> WHILE L_PAREN expression R_PAREN L_KEY statement R_KEY .)
+    NAME            reduce using rule 44 (statement_while -> WHILE L_PAREN expression R_PAREN L_KEY statement R_KEY .)
+    IF              reduce using rule 44 (statement_while -> WHILE L_PAREN expression R_PAREN L_KEY statement R_KEY .)
+    BOOL            reduce using rule 44 (statement_while -> WHILE L_PAREN expression R_PAREN L_KEY statement R_KEY .)
+    INTDEC          reduce using rule 44 (statement_while -> WHILE L_PAREN expression R_PAREN L_KEY statement R_KEY .)
+    FLOATDEC        reduce using rule 44 (statement_while -> WHILE L_PAREN expression R_PAREN L_KEY statement R_KEY .)
+    STRING          reduce using rule 44 (statement_while -> WHILE L_PAREN expression R_PAREN L_KEY statement R_KEY .)
+    $end            reduce using rule 44 (statement_while -> WHILE L_PAREN expression R_PAREN L_KEY statement R_KEY .)
+    R_KEY           reduce using rule 44 (statement_while -> WHILE L_PAREN expression R_PAREN L_KEY statement R_KEY .)
+
+
+state 113
+
+    (45) statement_while -> DO L_KEY statement R_KEY WHILE L_PAREN expression . R_PAREN FINISH
+    (9) expression -> expression . AND expression
+    (10) expression -> expression . OR expression
+    (11) expression -> expression . ADDITION expression
+    (12) expression -> expression . SUBTRACTION expression
+    (13) expression -> expression . MULTI expression
+    (14) expression -> expression . DIVISION expression
+    (15) expression -> expression . EXP expression
+    (16) expression -> expression . EQUALS expression
+    (17) expression -> expression . EQ_MORE expression
+    (18) expression -> expression . EQ_LESS expression
+    (19) expression -> expression . NOT_EQUALS expression
+    (20) expression -> expression . MORE expression
+    (21) expression -> expression . LESS expression
+
+    R_PAREN         shift and go to state 117
+    AND             shift and go to state 50
+    OR              shift and go to state 51
+    ADDITION        shift and go to state 52
+    SUBTRACTION     shift and go to state 53
+    MULTI           shift and go to state 54
+    DIVISION        shift and go to state 55
+    EXP             shift and go to state 56
+    EQUALS          shift and go to state 57
+    EQ_MORE         shift and go to state 58
+    EQ_LESS         shift and go to state 59
+    NOT_EQUALS      shift and go to state 60
+    MORE            shift and go to state 61
+    LESS            shift and go to state 62
+
+
+state 114
+
+    (38) if_condition -> IF L_PAREN expression R_PAREN L_KEY statement R_KEY .
+
+    ELIF            reduce using rule 38 (if_condition -> IF L_PAREN expression R_PAREN L_KEY statement R_KEY .)
+    ELSE            reduce using rule 38 (if_condition -> IF L_PAREN expression R_PAREN L_KEY statement R_KEY .)
+    PRINT           reduce using rule 38 (if_condition -> IF L_PAREN expression R_PAREN L_KEY statement R_KEY .)
+    FOR             reduce using rule 38 (if_condition -> IF L_PAREN expression R_PAREN L_KEY statement R_KEY .)
+    WHILE           reduce using rule 38 (if_condition -> IF L_PAREN expression R_PAREN L_KEY statement R_KEY .)
+    DO              reduce using rule 38 (if_condition -> IF L_PAREN expression R_PAREN L_KEY statement R_KEY .)
+    NAME            reduce using rule 38 (if_condition -> IF L_PAREN expression R_PAREN L_KEY statement R_KEY .)
+    IF              reduce using rule 38 (if_condition -> IF L_PAREN expression R_PAREN L_KEY statement R_KEY .)
+    BOOL            reduce using rule 38 (if_condition -> IF L_PAREN expression R_PAREN L_KEY statement R_KEY .)
+    INTDEC          reduce using rule 38 (if_condition -> IF L_PAREN expression R_PAREN L_KEY statement R_KEY .)
+    FLOATDEC        reduce using rule 38 (if_condition -> IF L_PAREN expression R_PAREN L_KEY statement R_KEY .)
+    STRING          reduce using rule 38 (if_condition -> IF L_PAREN expression R_PAREN L_KEY statement R_KEY .)
+    $end            reduce using rule 38 (if_condition -> IF L_PAREN expression R_PAREN L_KEY statement R_KEY .)
+    R_KEY           reduce using rule 38 (if_condition -> IF L_PAREN expression R_PAREN L_KEY statement R_KEY .)
+
+
+state 115
+
+    (39) elif_condition -> ELIF L_PAREN expression R_PAREN L_KEY statement R_KEY . elif_condition
+    (39) elif_condition -> . ELIF L_PAREN expression R_PAREN L_KEY statement R_KEY elif_condition
+    (40) elif_condition -> . empty
+    (46) empty -> .
+
+    ELIF            shift and go to state 40
+    ELSE            reduce using rule 46 (empty -> .)
+    PRINT           reduce using rule 46 (empty -> .)
+    FOR             reduce using rule 46 (empty -> .)
+    WHILE           reduce using rule 46 (empty -> .)
+    DO              reduce using rule 46 (empty -> .)
+    NAME            reduce using rule 46 (empty -> .)
+    IF              reduce using rule 46 (empty -> .)
+    BOOL            reduce using rule 46 (empty -> .)
+    INTDEC          reduce using rule 46 (empty -> .)
+    FLOATDEC        reduce using rule 46 (empty -> .)
+    STRING          reduce using rule 46 (empty -> .)
+    $end            reduce using rule 46 (empty -> .)
+    R_KEY           reduce using rule 46 (empty -> .)
+
+    elif_condition                 shift and go to state 118
+    empty                          shift and go to state 41
+
+state 116
+
+    (43) statement_for -> FOR L_PAREN declare_assign_register FINISH expression FINISH assign_register R_PAREN . L_KEY statement R_KEY
+
+    L_KEY           shift and go to state 119
+
+
+state 117
+
+    (45) statement_while -> DO L_KEY statement R_KEY WHILE L_PAREN expression R_PAREN . FINISH
+
+    FINISH          shift and go to state 120
+
+
+state 118
+
+    (39) elif_condition -> ELIF L_PAREN expression R_PAREN L_KEY statement R_KEY elif_condition .
+
+    ELSE            reduce using rule 39 (elif_condition -> ELIF L_PAREN expression R_PAREN L_KEY statement R_KEY elif_condition .)
+    PRINT           reduce using rule 39 (elif_condition -> ELIF L_PAREN expression R_PAREN L_KEY statement R_KEY elif_condition .)
+    FOR             reduce using rule 39 (elif_condition -> ELIF L_PAREN expression R_PAREN L_KEY statement R_KEY elif_condition .)
+    WHILE           reduce using rule 39 (elif_condition -> ELIF L_PAREN expression R_PAREN L_KEY statement R_KEY elif_condition .)
+    DO              reduce using rule 39 (elif_condition -> ELIF L_PAREN expression R_PAREN L_KEY statement R_KEY elif_condition .)
+    NAME            reduce using rule 39 (elif_condition -> ELIF L_PAREN expression R_PAREN L_KEY statement R_KEY elif_condition .)
+    IF              reduce using rule 39 (elif_condition -> ELIF L_PAREN expression R_PAREN L_KEY statement R_KEY elif_condition .)
+    BOOL            reduce using rule 39 (elif_condition -> ELIF L_PAREN expression R_PAREN L_KEY statement R_KEY elif_condition .)
+    INTDEC          reduce using rule 39 (elif_condition -> ELIF L_PAREN expression R_PAREN L_KEY statement R_KEY elif_condition .)
+    FLOATDEC        reduce using rule 39 (elif_condition -> ELIF L_PAREN expression R_PAREN L_KEY statement R_KEY elif_condition .)
+    STRING          reduce using rule 39 (elif_condition -> ELIF L_PAREN expression R_PAREN L_KEY statement R_KEY elif_condition .)
+    $end            reduce using rule 39 (elif_condition -> ELIF L_PAREN expression R_PAREN L_KEY statement R_KEY elif_condition .)
+    R_KEY           reduce using rule 39 (elif_condition -> ELIF L_PAREN expression R_PAREN L_KEY statement R_KEY elif_condition .)
+
+
+state 119
+
+    (43) statement_for -> FOR L_PAREN declare_assign_register FINISH expression FINISH assign_register R_PAREN L_KEY . statement R_KEY
+    (2) statement -> . statement_print FINISH statement
+    (3) statement -> . statement_register FINISH statement
+    (4) statement -> . statement_condition statement
+    (5) statement -> . statement_for statement
+    (6) statement -> . statement_while statement
+    (7) statement -> . empty
+    (30) statement_print -> . PRINT expression
+    (31) statement_register -> . declare_register
+    (32) statement_register -> . declare_assign_register
+    (33) statement_register -> . assign_register
+    (37) statement_condition -> . if_condition elif_condition else_condition
+    (43) statement_for -> . FOR L_PAREN declare_assign_register FINISH expression FINISH assign_register R_PAREN L_KEY statement R_KEY
+    (44) statement_while -> . WHILE L_PAREN expression R_PAREN L_KEY statement R_KEY
+    (45) statement_while -> . DO L_KEY statement R_KEY WHILE L_PAREN expression R_PAREN FINISH
+    (46) empty -> .
+    (34) declare_register -> . type NAME
+    (35) declare_assign_register -> . type NAME ASSIGN expression
+    (36) assign_register -> . NAME ASSIGN expression
+    (38) if_condition -> . IF L_PAREN expression R_PAREN L_KEY statement R_KEY
+    (47) type -> . BOOL
+    (48) type -> . INTDEC
+    (49) type -> . FLOATDEC
+    (50) type -> . STRING
+
+    PRINT           shift and go to state 9
+    FOR             shift and go to state 14
+    WHILE           shift and go to state 15
+    DO              shift and go to state 16
+    R_KEY           reduce using rule 46 (empty -> .)
+    NAME            shift and go to state 18
+    IF              shift and go to state 19
+    BOOL            shift and go to state 20
+    INTDEC          shift and go to state 21
+    FLOATDEC        shift and go to state 22
+    STRING          shift and go to state 23
+
+    declare_assign_register        shift and go to state 11
+    assign_register                shift and go to state 12
+    statement                      shift and go to state 121
+    statement_print                shift and go to state 3
+    statement_register             shift and go to state 4
+    statement_condition            shift and go to state 5
+    statement_for                  shift and go to state 6
+    statement_while                shift and go to state 7
+    empty                          shift and go to state 8
+    declare_register               shift and go to state 10
+    if_condition                   shift and go to state 13
+    type                           shift and go to state 17
+
+state 120
+
+    (45) statement_while -> DO L_KEY statement R_KEY WHILE L_PAREN expression R_PAREN FINISH .
+
+    PRINT           reduce using rule 45 (statement_while -> DO L_KEY statement R_KEY WHILE L_PAREN expression R_PAREN FINISH .)
+    FOR             reduce using rule 45 (statement_while -> DO L_KEY statement R_KEY WHILE L_PAREN expression R_PAREN FINISH .)
+    WHILE           reduce using rule 45 (statement_while -> DO L_KEY statement R_KEY WHILE L_PAREN expression R_PAREN FINISH .)
+    DO              reduce using rule 45 (statement_while -> DO L_KEY statement R_KEY WHILE L_PAREN expression R_PAREN FINISH .)
+    NAME            reduce using rule 45 (statement_while -> DO L_KEY statement R_KEY WHILE L_PAREN expression R_PAREN FINISH .)
+    IF              reduce using rule 45 (statement_while -> DO L_KEY statement R_KEY WHILE L_PAREN expression R_PAREN FINISH .)
+    BOOL            reduce using rule 45 (statement_while -> DO L_KEY statement R_KEY WHILE L_PAREN expression R_PAREN FINISH .)
+    INTDEC          reduce using rule 45 (statement_while -> DO L_KEY statement R_KEY WHILE L_PAREN expression R_PAREN FINISH .)
+    FLOATDEC        reduce using rule 45 (statement_while -> DO L_KEY statement R_KEY WHILE L_PAREN expression R_PAREN FINISH .)
+    STRING          reduce using rule 45 (statement_while -> DO L_KEY statement R_KEY WHILE L_PAREN expression R_PAREN FINISH .)
+    $end            reduce using rule 45 (statement_while -> DO L_KEY statement R_KEY WHILE L_PAREN expression R_PAREN FINISH .)
+    R_KEY           reduce using rule 45 (statement_while -> DO L_KEY statement R_KEY WHILE L_PAREN expression R_PAREN FINISH .)
+
+
+state 121
+
+    (43) statement_for -> FOR L_PAREN declare_assign_register FINISH expression FINISH assign_register R_PAREN L_KEY statement . R_KEY
+
+    R_KEY           shift and go to state 122
+
+
+state 122
+
+    (43) statement_for -> FOR L_PAREN declare_assign_register FINISH expression FINISH assign_register R_PAREN L_KEY statement R_KEY .
+
+    PRINT           reduce using rule 43 (statement_for -> FOR L_PAREN declare_assign_register FINISH expression FINISH assign_register R_PAREN L_KEY statement R_KEY .)
+    FOR             reduce using rule 43 (statement_for -> FOR L_PAREN declare_assign_register FINISH expression FINISH assign_register R_PAREN L_KEY statement R_KEY .)
+    WHILE           reduce using rule 43 (statement_for -> FOR L_PAREN declare_assign_register FINISH expression FINISH assign_register R_PAREN L_KEY statement R_KEY .)
+    DO              reduce using rule 43 (statement_for -> FOR L_PAREN declare_assign_register FINISH expression FINISH assign_register R_PAREN L_KEY statement R_KEY .)
+    NAME            reduce using rule 43 (statement_for -> FOR L_PAREN declare_assign_register FINISH expression FINISH assign_register R_PAREN L_KEY statement R_KEY .)
+    IF              reduce using rule 43 (statement_for -> FOR L_PAREN declare_assign_register FINISH expression FINISH assign_register R_PAREN L_KEY statement R_KEY .)
+    BOOL            reduce using rule 43 (statement_for -> FOR L_PAREN declare_assign_register FINISH expression FINISH assign_register R_PAREN L_KEY statement R_KEY .)
+    INTDEC          reduce using rule 43 (statement_for -> FOR L_PAREN declare_assign_register FINISH expression FINISH assign_register R_PAREN L_KEY statement R_KEY .)
+    FLOATDEC        reduce using rule 43 (statement_for -> FOR L_PAREN declare_assign_register FINISH expression FINISH assign_register R_PAREN L_KEY statement R_KEY .)
+    STRING          reduce using rule 43 (statement_for -> FOR L_PAREN declare_assign_register FINISH expression FINISH assign_register R_PAREN L_KEY statement R_KEY .)
+    $end            reduce using rule 43 (statement_for -> FOR L_PAREN declare_assign_register FINISH expression FINISH assign_register R_PAREN L_KEY statement R_KEY .)
+    R_KEY           reduce using rule 43 (statement_for -> FOR L_PAREN declare_assign_register FINISH expression FINISH assign_register R_PAREN L_KEY statement R_KEY .)
+

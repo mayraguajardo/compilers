@@ -90,8 +90,8 @@ lexer = lex.lex()
 precedence = (
     ('left', 'AND', 'OR'),
     ('nonassoc', 'EQUALS', 'NOT_EQUALS', 'EQ_MORE', 'EQ_LESS', 'MORE', 'LESS'),
-    ('left', 'PLUS', 'MINUS'),
-    ('left', 'MULT', 'DIV'),
+    ('left', 'ADDITION', 'SUBTRACTION'),
+    ('left', 'MULTI', 'DIVISION'),
     ('left', 'EXP'),
     ('right', 'UMINUS'),
 )
@@ -143,7 +143,10 @@ def p_expression_binop(p):
     p[0] = ('operation', p[1], p[2], p[3])
 
 def p_expression_values(p):
-    '''expression : FNUMBER | INUMBER | STRING_VAL | bool_val '''
+    '''expression : FNUMBER
+                 | INUMBER
+                 | STRING_VAL
+                 | bool_val'''
     p[0] = p[1]
 
 def p_bool_val(p):
@@ -194,7 +197,7 @@ def p_if_condition(p):
 
 
 def p_elif_condition(p):
-    '''elif_condition : ELIF L_PAREN expression R_PAREN L_KEY statement R_KEY elif_cond
+    '''elif_condition : ELIF L_PAREN expression R_PAREN L_KEY statement R_KEY elif_condition
                 | empty'''
     if len(p) > 2:
         p[0] = (('elif', p[3], p[6]), ) + p[8]
@@ -211,8 +214,8 @@ def p_statement_for(p):
     '''statement_for : FOR L_PAREN declare_assign_register FINISH expression FINISH assign_register R_PAREN L_KEY statement R_KEY'''
     p[0] = ('for', p[3], p[5], p[7], p[10])
 
-def p_while_stmt(p):
-    '''while_stmt : WHILE L_PAREN expression R_PAREN L_KEY statement R_KEY
+def p_statement_while(p):
+    '''statement_while : WHILE L_PAREN expression R_PAREN L_KEY statement R_KEY
                  | DO L_KEY statement R_KEY WHILE L_PAREN expression R_PAREN FINISH'''
     if p[1] == "while":
         p[0] = ('while', p[3], p[6])
@@ -227,8 +230,8 @@ def p_empty(p):
 
 def p_type(p):
     '''type : BOOL
-           | INT
-           | FLOAT
+           | INTDEC
+           | FLOATDEC
            | STRING'''
     p[0] = p[1]
 
