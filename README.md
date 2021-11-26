@@ -2,7 +2,9 @@
 En este proyecto se realizó un compilador sencillo utilizando las  librerías de Lex y Yacc de la librería PLY.
 
 #Requisitos para correr el proyecto
+
 pyhon
+
 pip install ply
 
 #Como correrlo
